@@ -30,3 +30,14 @@
 *.exe
 *.out
 *.app
+
+# Latex ignore files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.gz
+
+# Custom ignore files
+*.txt
