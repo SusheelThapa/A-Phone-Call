@@ -13,14 +13,16 @@
 \graphicspath{ {../resources/images/}}
 
 
+\setstretch{1.5}
 \begin{document}
+
 
 %% Front Cover %%
 \newpage{
 
 	% Latex code for Front Cover
 
-
+	\pagenumbering{gobble}
 	\begin{center}
 
 		\includegraphics[width=4cm, height=4.3cm]{"proposal-tu-logo.png"} \\
@@ -53,7 +55,7 @@
 			A PHONE CALL \\
 			\vspace{20pt}
 		}
-		\vspace{85pt}
+		\vspace{45pt}
 
 
 
@@ -63,7 +65,7 @@
 		\textbf{\underline{SUBMITTED TO:}} \\
 
 		\vspace{15pt}
-		\begin{tabular}{lrr}
+		\begin{tabular}{lr}
 			\Large	Susheel Thapa [077BCT092]     & DEPARTMENT OF       \\
 			\Large	Saurav Kr. Mahato [077BCT079] & ELECTRONIC COMPUTER \\
 			                                     & ENGINEERING         \\
@@ -150,6 +152,7 @@
 
 	% Latex Code for Introduction
 
+	\pagenumbering{arabic}
 	\vspace{30pt}
 
 	\begin{center}
@@ -203,7 +206,7 @@
 
 	\begin{center}
 
-		\textbf{ \huge{3.\hspace{25pt}Existing System}}
+		\textbf{ \huge{Existing System}}
 
 	\end{center}
 
@@ -216,19 +219,25 @@
 
 	\setlength{\parindent}{0pt}
 	\begin{center}
-		{\section{\huge {Proposed System}}}
+		{\section*{\huge {Proposed System}}}
 	\end{center}
 
-	\vspace{30pt}
+
+	\vspace{20pt}
+
 
 	\Large{
-		\subsection*{\Large{4.1 Introduction}}
+		\subsection*{\Large{Introduction}}
+		\Large{
+	
 
-		\justify *****************************************
-		\justify *****************************************
-		\justify *****************************************\\
+
+		}
 		\setlength{\parindent}{0pt}
-		\subsection*{\Large{4.2 System Block Diagram\\}}
+
+		\vspace{20pt}
+
+		\subsection*{\Large{System Block Diagram\\}}
 
 
 		\begin{center}
@@ -251,7 +260,7 @@
 
 	\begin{center}
 
-		\textbf{ \huge{5.\hspace{25pt}Methodology}}
+		\textbf{ \huge{Methodology}}
 
 	\end{center}
 
@@ -287,7 +296,7 @@
 
 	\setlength{\parindent}{0pt}
 	\begin{center}
-		\textbf{ {\section*{6.\hspace{25pt}\huge {Project Scope}}}}
+		\textbf{ {\section*{\huge {Project Scope}}}}
 	\end{center}
 
 	\vspace{30pt}
@@ -313,7 +322,7 @@
 
 	\setlength{\parindent}{0pt}
 	\begin{center}
-		\textbf{ {\section*{7.\hspace{25pt}\huge {Project Schedule}}}}
+		\textbf{ {\section*{\huge {Project Schedule}}}}
 	\end{center}
 
 	\vspace{30pt}
@@ -328,13 +337,15 @@
 		\begin{center}
 			\begin{tabular}{|c|c|}
 				\hline
-				Phases:            & Days Required:     \\
+				Phases:                   & Days Required: \\
 				\hline
-				****************** & ****************** \\
-				****************** & ****************** \\
-				****************** & ****************** \\
-				****************** & ****************** \\
-				****************** & ****************** \\
+				Project Brainstorming     & 2 days         \\
+				Algorithm and Flowchart   & 3 days         \\
+				Server side programming   & 4 days         \\
+				Client side programming   & 7 days         \\
+				Linking server and client & 3 days         \\
+				Testing and Debugging     & 3 days         \\
+				Deployment(GitHub)        & 2 days         \\
 
 				\hline
 			\end{tabular}
