@@ -5,6 +5,7 @@
 \usepackage[document]{ragged2e}
 \usepackage{lipsum}
 \usepackage{multirow}
+\usepackage{multicol}
 
 % Margins for document
 \usepackage[left=1.5in, right=1.25in , top=1in, bottom=1in]{geometry}
@@ -61,16 +62,33 @@
 
 
 
-		\textbf{\underline{SUBMITTED BY:}}
-		\hfill
-		\textbf{\underline{SUBMITTED TO:}} \\
+		% \textbf{\underline{SUBMITTED BY:}}
+		% \hfill
+		% \textbf{\underline{SUBMITTED TO:}} \\
 
-		\vspace{15pt}
-		\begin{tabular}{lr}
-			\Large	Susheel Thapa [077BCT090]     & DEPARTMENT OF        \\
-			\Large	Saurav Kr. Mahato [077BCT079] & ELECTRONICS AND      \\
-			                                     & COMPUTER ENGINEERING \\
-		\end{tabular}
+		% \vspace{15pt}
+		% \begin{tabular}{lr}
+		% 	\Large	Susheel Thapa [077BCT090]     & DEPARTMENT OF        \\
+		% 	\Large	Saurav Kr. Mahato [077BCT079] & ELECTRONICS AND      \\
+		% 	                                     & COMPUTER ENGINEERING \\
+		% \end{tabular}
+
+		\begin{multicols}{2}
+
+			\begin{flushleft}
+				\section*{Submitted By:}
+				Saurav Kumar Mahato(077BCT079) \\
+				Susheel Thapa(077BCT090)
+			\end{flushleft}
+
+			\columnbreak
+
+			\begin{flushright}
+				\section*{Submitted To:}
+				Department of Electronics and Computer Engineering
+			\end{flushright}
+
+		\end{multicols}
 	\end{center}
 
 }
@@ -240,14 +258,15 @@
 		\vspace{10pt}
 		\Large{
 
-		\justify{
-			\textbf{A Phone Call} is simple to demonstrate how does the call get establish between any two user who are connected in any network.
+			\justify{
+				\textbf{A Phone Call} is simple to demonstrate how does the call get establish between any two user who are connected in any network.
 
 
-			\justify The most common example of existing in the real world are network provider like Nepal Telecom , Ncell. What mainly happen is that a person calls another person from his phone by dialing number and call the call gets conneted to the destination after the server ( NCELL OR NTC as instance) does its work.
-			The calling service provider acts as the bridge between two clients and allows to share information with each other.
+				\noindent \justify The most common example of existing in the real world are network provider like Nepal Telecom , Ncell. What mainly happen is that a person calls another person from his phone by dialing number and call the call gets conneted to the destination after the server ( NCELL OR NTC as instance) does its work.
+				The calling service provider acts as the bridge between two clients and allows to share information with each other.
 
-			\justify This is what all the phone or sim company does and charges money. So, eventually in context of Nepal, the best example of existing system for this project can be NCELL and NTC.
+				\noindent \justify This is what all the phone or sim company does and charges money. So, eventually in context of Nepal, the best example of existing system for this project can be NCELL and NTC.
+			}
 		}
 	\end{center}
 
@@ -334,13 +353,12 @@
 
 		\Large{
 			\begin{enumerate}
-				\item Since our project is based over networking and database so we need to do two things at first i.e Building up client and server and Interaction with database.\\
+				\item Since our project is based over networking and database so we need to do two things at first i.e Building up client and server and Interaction with database.
 
 				\item After we have setup client/server and Interaction with database we will be working into the GUI part of the project(mostly client side)  as we will be using terminal console to display the mesage from the sever.
 
 
 				\item Then we will integrated our GUI with the client and try to setup the connection with the server.
-				      .................................................
 				\item After we become successful over one client then we will go for setup three client.
 
 				\item Then before heading to the phone call we wil first try messging feature between client i.e we will try to message client 2 form client 1 and vice versa.
@@ -370,31 +388,23 @@
 	\setlength{\parindent}{0pt}
 
 	\Large{
-		\justify The main idea of this project is to create the MVP( Minimum Viable Product) to show the real life events happening in our daily life.
+		\justify The main idea of this project is to create the MVP( Minimum Viable Product) to show the real life events happening in our daily life. All we need was some databases to store the information related to call logs with some graphics, client-server model and of course OOP. One will see some interface similar to their phone dial pad and will be able to type number and listen the specific sound of the number after pressing it. After dialing the number, called window ( like in our daily life when call comes ) will appear on the screen.
 
-		\justify All we need was some databases to store the information related to call logs with some graphics, client-server model and of course OOP.
 
-		\justify One will see some interface similar to their phone dial pad and will be able to type number and listen the specific sound of the number after pressing it.
 
-		\justify After dialing the number, called window ( like in our daily life when call comes ) will appear on the screen.
+		\justify{
+			These are the outcomes of this project in real world.
 
-		\justify Client side coding will require more time since it also includes graphics along with databases.
-	}
-
-	\justify{
-
-		\begin {enumerate}
-		\item This project rather than focusing over the development of existing system, it aims to understanding how things are working behind the scene.
-
-		\item It aims to upgrade the knowledge one have in the field of communication
-		\item It aims to provide information about does the NTC, Ncell knows to whom we are calling.
-		\item It aims to provide a real time simulation of Calling App that exist in almost all mobile phones.
-		\item It will be able to make people understand why it say \textit{Tapaile samparka garna khojeko manche bessta xa, tapaile samparka garna khojeko number switch off xa} and many other.
-		\item Also it will explain why there is system of ringtone when we call other person.
-		\end{enumerate}
+			\begin {enumerate}
+			\item It aims over how things are working behind the scene while calling each other and how does they know we are calling whom.
+			\item It aims to provide a real time simulation of Calling App that exist in almost all mobile phones.
+			\item It will be able to make people understand why it say \textit{Tapaile samparka garna khojeko manche bessta xa, tapaile samparka garna khojeko number switch off xa} and many other.
+			\item Also it will explain why there is system of ringtone when we call other person.
+			\end{enumerate}
+		}
 	}
 }
-}
+
 
 %% Project Schedule %%
 \newpage{
