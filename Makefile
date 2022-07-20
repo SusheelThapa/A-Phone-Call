@@ -1,22 +1,29 @@
-#OBJS specifies which files to compile as part of the project
-OBJS = main.cpp src/*.cpp
-
-#CC specifies which compiler we're using
-CC = g++
-
-#COMPILER_FLAGS specifies the additional compilation options we're using
-# -w suppresses all warnings
-COMPILER_FLAGS = -w
-
-#HEADERFILE to include
+CPP_COMPILER = g++
 HEADER_FLAGS = -Iinclude/
-
-#LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
-#OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = main.out
+CPP_SOURCE_FILE_LOCATION = src/
+HEADER_FILE_LOCATION = include/
+OBJECTS_FILE_LOCATION = build/
+OBJECTS_FILE = $(OBJECTS_FILE_LOCATION)main.o $(OBJECTS_FILE_LOCATION)window.o $(OBJECTS_FILE_LOCATION)texture.o
 
-#This is the target that compiles our executable
-all : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(HEADER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+main: build $(OBJECTS_FILE)
+	$(CPP_COMPILER) -o main $(OBJECTS_FILE) $(HEADER_FLAGS) $(LINKER_FLAGS)
+
+$(OBJECTS_FILE_LOCATION)main.o: main.cpp  $(HEADER_FILE_LOCATION)window.hpp
+	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)main.o -c main.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
+	
+$(OBJECTS_FILE_LOCATION)window.o: $(CPP_SOURCE_FILE_LOCATION)window.cpp $(HEADER_FILE_LOCATION)window.hpp
+	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)window.o -c $(CPP_SOURCE_FILE_LOCATION)window.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
+
+$(OBJECTS_FILE_LOCATION)texture.o: $(CPP_SOURCE_FILE_LOCATION)texture.cpp $(HEADER_FILE_LOCATION)texture.hpp
+	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)texture.o -c $(CPP_SOURCE_FILE_LOCATION)texture.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
+
+clean:
+	$(RM) -r build
+
+build:
+	mkdir build
+
+run: main
+	./main
