@@ -7,7 +7,7 @@ HEADER_FILE_LOCATION = include/
 OBJECTS_FILE_LOCATION = build/
 OBJECTS_FILE = $(OBJECTS_FILE_LOCATION)main.o $(OBJECTS_FILE_LOCATION)window.o $(OBJECTS_FILE_LOCATION)texture.o
 
-main: build $(OBJECTS_FILE)
+build: build/ $(OBJECTS_FILE)
 	$(CPP_COMPILER) -o main $(OBJECTS_FILE) $(HEADER_FLAGS) $(LINKER_FLAGS)
 
 $(OBJECTS_FILE_LOCATION)main.o: main.cpp  $(HEADER_FILE_LOCATION)window.hpp
@@ -22,8 +22,8 @@ $(OBJECTS_FILE_LOCATION)texture.o: $(CPP_SOURCE_FILE_LOCATION)texture.cpp $(HEAD
 clean:
 	$(RM) -r build
 
-build:
+build/:
 	mkdir build
 
-run: main
+run: build
 	./main
