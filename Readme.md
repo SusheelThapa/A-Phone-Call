@@ -4,15 +4,22 @@
 
 We are using [Makefile](Makefile) to compile our project.
 
-1. Build Command
-
+1. Compiling Client Code
    ```make
-    make build
+    make client_one client
    ```
 
-   It will create the necessary object file for the project.
+   It will create two client `client_one` and `client_two`.
 
-2. Clean command
+2. Compiling Server Code
+
+   ```make
+    make server
+   ```
+
+   It will create `server`.
+
+3. Clean command
 
    ```make
     make clean
@@ -20,10 +27,3 @@ We are using [Makefile](Makefile) to compile our project.
 
    It will clean the working directory by removing all those file created using [Makefile](Makefile)
 
-3. Run command
-
-   ```make
-    make run
-   ```
-
-   It will first run the [build](#project-compilation) to create necessary object file in [build folder](build/) and run the project executable file.
