@@ -1,25 +1,31 @@
 #include <iostream>
 #include "window.hpp"
 #include <fstream>
+#include "texture.hpp"
 
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
 
 int main(int argc, char const *argv[])
 {
-    Window client_one("Client One");
-    SDL_Event e;
 
+    /*Variable required for communication with server*/
     std::fstream server_file;
     std::fstream client_one_file;
     std::string message;
     int previous_client_one_file_size = 0;
     int current_client_one_file_size = 0;
 
+    /*Variable used by Client One GUI*/
+    SDL_Event e;
+    Window client_one("Client One");
+    Texture dialpad_screen;
+
+    dialpad_screen.loadFromFile(client_one, "resources/images/dial_pad.png");
+
     while (!client_one.isWindowClosed())
     {
         {
-
             /*Opening server and client file*/
             client_one_file.open(CLIENT_ONE_FILE, std::ios::in);
             server_file.open(SERVER_FILE, std::ios::out);
@@ -74,11 +80,12 @@ int main(int argc, char const *argv[])
         while (SDL_PollEvent(&e) != 0)
         {
             client_one.handleEvent(e);
-
-            /*It is used to communicate with server*/
         }
 
         client_one.clear({125, 234, 254, 164});
+
+        dialpad_screen.render(client_one, 0, 0, nullptr, nullptr);
+
         client_one.present();
     }
 
