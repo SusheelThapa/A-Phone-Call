@@ -2,28 +2,36 @@ CPP_COMPILER = g++
 HEADER_FLAGS = -Iinclude/
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
-CPP_SOURCE_FILE_LOCATION = src/
-HEADER_FILE_LOCATION = include/
-OBJECTS_FILE_LOCATION = build/
-OBJECTS_FILE = $(OBJECTS_FILE_LOCATION)main.o $(OBJECTS_FILE_LOCATION)window.o $(OBJECTS_FILE_LOCATION)texture.o
 
-build: build/ $(OBJECTS_FILE)
-	$(CPP_COMPILER) -o main $(OBJECTS_FILE) $(HEADER_FLAGS) $(LINKER_FLAGS)
+# Creating Server
+server: build/ build/server.o
+	${CPP_COMPILER} -o server.out build/server.o
 
-$(OBJECTS_FILE_LOCATION)main.o: main.cpp  $(HEADER_FILE_LOCATION)window.hpp
-	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)main.o -c main.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
-	
-$(OBJECTS_FILE_LOCATION)window.o: $(CPP_SOURCE_FILE_LOCATION)window.cpp $(HEADER_FILE_LOCATION)window.hpp
-	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)window.o -c $(CPP_SOURCE_FILE_LOCATION)window.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
+build/server.o: Server/server.cpp	
+	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
 
-$(OBJECTS_FILE_LOCATION)texture.o: $(CPP_SOURCE_FILE_LOCATION)texture.cpp $(HEADER_FILE_LOCATION)texture.hpp
-	$(CPP_COMPILER) -o $(OBJECTS_FILE_LOCATION)texture.o -c $(CPP_SOURCE_FILE_LOCATION)texture.cpp $(HEADER_FLAGS) $(LINKER_FLAGS)
+# Creating Client One
+client_one: build/  build/client_one.o build/window.o
+	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-clean:
-	$(RM) -r build
+build/client_one.o: Client/One/client_one.cpp
+	${CPP_COMPILER} -o build/client_one.o -c Client/One/client_one.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+#Creating Client Two
+client_two: build/ build/client_two.o build/window.o
+	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+build/client_two.o: Client/Two/client_two.cpp
+	${CPP_COMPILER} -o build/client_two.o -c Client/Two/client_two.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+
+#Helper
+build/window.o: src/window.cpp
+	${CPP_COMPILER} -o build/window.o -c src/window.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
 
-run: build
-	./main
+clean:	
+	rm -rf build
+	rm *.out

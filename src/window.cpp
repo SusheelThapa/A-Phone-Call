@@ -130,14 +130,12 @@ Window::~Window()
     SDL_Quit();
 }
 
-void Window::handleEvent()
+void Window::handleEvent(SDL_Event &e)
 {
-    while (SDL_PollEvent(&this->e) != 0)
+
+    if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
     {
-        if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
-        {
-            this->closed = true;
-        }
+        this->closed = true;
     }
 }
 

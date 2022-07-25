@@ -31,8 +31,6 @@ private:
 
 	SDL_Window *window = nullptr;
 
-	SDL_Event e;
-
 public:
 	SDL_Renderer *renderer = nullptr;
 
@@ -45,7 +43,7 @@ public:
 
 	~Window();
 
-	void handleEvent();
+	void handleEvent(SDL_Event &);
 
 	void clear(SDL_Color color);
 
