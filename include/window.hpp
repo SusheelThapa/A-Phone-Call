@@ -2,17 +2,9 @@
 
 #define WINDOW_HEADER_FILE 1
 
-#ifdef _WIN32
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-// #include <SDL_ttf.h>
-
-#elif __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-
-#endif
 
 #include <iostream>
 #include <string>
@@ -23,9 +15,9 @@ class Window
 private:
 	std::string title;
 
-	static const int width = 400;
+	static const int width = 414;
 
-	static const int height = 400;
+	static const int height = 736;
 
 	bool closed = false;
 
