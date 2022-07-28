@@ -26,6 +26,12 @@ build/client_two.o: Client/Two/client_two.cpp
 
 
 #Helper
+
+client_one_run:
+	make client_one
+	clear
+	./client_one.out
+
 build/window.o: src/window.cpp
 	${CPP_COMPILER} -o build/window.o -c src/window.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
