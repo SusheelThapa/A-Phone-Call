@@ -24,6 +24,7 @@ int main(int argc, char const *argv[])
 
     while (!window.isWindowClosed())
     {
+        client_one.setScreen(CALL_CONNECTED);
 
         /*This is for communication with other client via server. I will work over it later on*/
         {
@@ -63,11 +64,15 @@ int main(int argc, char const *argv[])
                     {
                         /*Client two has receive our call*/
                         client_one.setScreen(OUTGOING_CALL); /*later it will be replaced by received call screen*/
+
+                        client_one.setCallingPersonName("Client One");
                     }
                     else if (message == "CALLENDEDFROMCLIENTTWO")
                     {
                         /*Call had been ended by client two*/
                         client_one.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
+
+                        client_one.setCallingPersonName("");
                     }
                 }
 
@@ -123,7 +128,7 @@ int main(int argc, char const *argv[])
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
-                    /*Print in server file that i want to edn call with client two*/
+                    /*Print in server file that i want to end call with client two*/
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)
                     {
