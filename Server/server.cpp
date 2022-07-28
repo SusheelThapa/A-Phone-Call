@@ -110,7 +110,7 @@ int main()
 
                 if (client_two_file_pointer)
                 {
-                    client_two_file_pointer << "CALLRECEIVEDBYCLIENTONE";
+                    client_two_file_pointer << "CALLRECEIVEDFROMCLIENTONE";
                 }
                 else
                 {

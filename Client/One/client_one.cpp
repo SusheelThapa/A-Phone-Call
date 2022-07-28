@@ -66,6 +66,11 @@ int main(int argc, char const *argv[])
                         /*Client Two has reject our call*/
                         client_one.screen = DIALPAD; // Later on we will say to user sth like besta xa
                     }
+                    else if (message == "CALLRECEIVEFROMCLIENTTWO")
+                    {
+                        /*Client two has receive our call*/
+                        client_one.screen = OUTGOING_CALL; /*later it will be replaced by received call screen*/
+                    }
                 }
 
                 /*Erase Everything*/
