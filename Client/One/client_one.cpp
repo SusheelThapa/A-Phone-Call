@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
 
     /*Loading the image that are required*/
     dialpad_screen.loadFromFile(client_one, "resources/images/dial_pad.png");
-    outgoing_call.loadFromFile(client_one, "resources/images/outgoing_call.png");
+    ~outgoing_call.loadFromFile(client_one, "resources/images/outgoing_call.png");
     incoming_call.loadFromFile(client_one, "resources/images/incoming_call.png");
 
     while (!client_one.isWindowClosed())
@@ -105,6 +105,21 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_one.screen = OUTGOING_CALL;
+                }
+            }
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == OUTGOING_CALL)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button maximum square coordinate checking*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+                    /*Print in server file that i want to call client two*/
+
+                    /*Display the calling screen*/
+                    client_one.screen = DIALPAD;
                 }
             }
         }
