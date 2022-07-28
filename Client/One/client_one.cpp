@@ -19,14 +19,20 @@ int main(int argc, char const *argv[])
     /*Variable used by Client One GUI*/
     SDL_Event e;
     Window client_one("Client One");
+
     Texture dialpad_screen;
     Texture outgoing_call;
+    Texture incoming_call;
 
+    /*Loading the image that are required*/
     dialpad_screen.loadFromFile(client_one, "resources/images/dial_pad.png");
     outgoing_call.loadFromFile(client_one, "resources/images/outgoing_call.png");
+    incoming_call.loadFromFile(client_one, "resources/images/incoming_call.png");
 
     while (!client_one.isWindowClosed())
     {
+
+        /*This is for communication with other client via server. I will work over it later on*/
         if (0)
         {
             /*Opening server and client file*/
@@ -80,15 +86,19 @@ int main(int argc, char const *argv[])
             }
         }
 
+        /*Handle the events*/
         while (SDL_PollEvent(&e) != 0)
         {
+            /*Handle the event related to window*/
             client_one.handleEvent(e);
 
-            if (e.type == SDL_MOUSEBUTTONDOWN)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == DIALPAD)
             {
+                /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
+                /*Call button maximum square coordinate checking*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
                     /*Print in server file that i want to call client two*/
@@ -99,17 +109,26 @@ int main(int argc, char const *argv[])
             }
         }
 
+        /*Clear the window with the color provided*/
         client_one.clear({125, 234, 254, 164});
 
+        /*Show the dialpad screen*/
         if (client_one.screen == DIALPAD)
         {
             dialpad_screen.render(client_one, 0, 0, nullptr, nullptr);
         }
+        /*Show the outgoing call screen*/
         else if (client_one.screen == OUTGOING_CALL)
         {
             outgoing_call.render(client_one, 0, 0, nullptr, nullptr);
         }
+        /*Show the incoming call screen*/
+        else if (client_one.screen == INCOMING_CALL)
+        {
+            incoming_call.render(client_one, 0, 0, nullptr, nullptr);
+        }
 
+        /*Render all the context we have written in background in the window*/
         client_one.present();
     }
 
