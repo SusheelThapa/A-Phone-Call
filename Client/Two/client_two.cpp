@@ -61,6 +61,11 @@ int main(int argc, char const *argv[])
                         /*Show incoming call screen*/
                         client_two.screen = INCOMING_CALL;
                     }
+                    else if (message == "CALLDECLINEDFROMCLIENTONE")
+                    {
+                        /*Client Two has reject our call*/
+                        client_two.screen = DIALPAD; // Later on we will say to user sth like besta xa
+                    }
                 }
 
                 /*Erase Everything*/
@@ -148,7 +153,7 @@ int main(int argc, char const *argv[])
                     if (server_file)
                     {
 
-                        server_file << "CALLDECLINEDFROMCLIENTTWO" << std::endl;
+                        server_file << "CALLDECLINEDBYCLIENTTWO" << std::endl;
                     }
                     else
                     {

@@ -82,7 +82,7 @@ int main()
                 client_one_file_pointer.open(CLIENT_ONE_FILE, ios::out);
                 if (client_one_file_pointer)
                 {
-                    client_one_file_pointer << "CALLDECLINEDFROMCLIENTONE";
+                    client_one_file_pointer << "CALLDECLINEDFROMCLIENTTWO";
                 }
                 else
                 {
