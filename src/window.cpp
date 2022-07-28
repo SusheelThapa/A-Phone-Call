@@ -96,13 +96,11 @@ Window::Window()
 {
 
     init();
-    this->screen = DIALPAD;
 }
 
 Window::Window(std::string title)
 {
     this->title = title;
-    this->screen = DIALPAD;
 
     init();
 }

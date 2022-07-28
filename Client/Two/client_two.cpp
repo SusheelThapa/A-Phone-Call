@@ -1,7 +1,7 @@
 #include <iostream>
 #include "window.hpp"
 #include <fstream>
-#include "texture.hpp"
+#include "phone.hpp"
 
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_TWO_FILE "Client/Two/client_two.txt"
@@ -17,19 +17,11 @@ int main(int argc, char const *argv[])
     int current_client_two_file_size = 0;
 
     /*Variable used by Client One GUI*/
+    Window window("Client Two");
+    Phone client_two(window, "Client Two");
     SDL_Event e;
-    Window client_two("Client Two");
 
-    Texture dialpad_screen;
-    Texture outgoing_call;
-    Texture incoming_call;
-
-    /*Loading the image that are required*/
-    dialpad_screen.loadFromFile(client_two, "resources/images/dial_pad.png");
-    ~outgoing_call.loadFromFile(client_two, "resources/images/outgoing_call.png");
-    incoming_call.loadFromFile(client_two, "resources/images/incoming_call.png");
-
-    while (!client_two.isWindowClosed())
+    while (!window.isWindowClosed())
     {
 
         /*This is for communication with other client via server. I will work over it later on*/
@@ -59,22 +51,22 @@ int main(int argc, char const *argv[])
                     if (message == "CALLFROMCLIENTONE")
                     {
                         /*Show incoming call screen*/
-                        client_two.screen = INCOMING_CALL;
+                        client_two.setScreen(INCOMING_CALL);
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTONE")
                     {
                         /*Client Two has reject our call*/
-                        client_two.screen = DIALPAD; // Later on we will say to user sth like besta xa
+                        client_two.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTONE")
                     {
                         /*Client one has receive our call*/
-                        client_two.screen = OUTGOING_CALL; /*later it will be replaced by received call screen*/
+                        client_two.setScreen(OUTGOING_CALL); /*later it will be replaced by received call screen*/
                     }
                     else if (message == "CALLENDEDFROMCLIENTONE")
                     {
                         /*Call had been ended by client two*/
-                        client_two.screen = DIALPAD; /*Later on we will display sth like money deducted*/
+                        client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
                     }
                 }
 
@@ -91,10 +83,10 @@ int main(int argc, char const *argv[])
         while (SDL_PollEvent(&e) != 0)
         {
             /*Handle the event related to window*/
-            client_two.handleEvent(e);
+            window.handleEvent(e);
 
             /*Dialpad Section*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.screen == DIALPAD)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == DIALPAD)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -116,12 +108,12 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_two.screen = OUTGOING_CALL;
+                    client_two.setScreen(OUTGOING_CALL);
                 }
             }
 
             /*Outgoing Call*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.screen == OUTGOING_CALL)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == OUTGOING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -144,12 +136,12 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_two.screen = DIALPAD;
+                    client_two.setScreen(DIALPAD);
                 }
             }
 
             /*Incoming Call*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.screen == INCOMING_CALL)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == INCOMING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -172,7 +164,7 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_two.screen = DIALPAD;
+                    client_two.setScreen(DIALPAD);
                 }
 
                 /*Receive button is pressed*/
@@ -193,32 +185,18 @@ int main(int argc, char const *argv[])
                     }
 
                     /*Display the calling screen*/
-                    client_two.screen = OUTGOING_CALL; /*Must be replaced with call received screen*/
+                    client_two.setScreen(OUTGOING_CALL); /*Must be replaced with call received screen*/
                 }
             }
         }
 
         /*Clear the window with the color provided*/
-        client_two.clear({125, 234, 254, 164});
+        window.clear({125, 234, 254, 164});
 
-        /*Show the dialpad screen*/
-        if (client_two.screen == DIALPAD)
-        {
-            dialpad_screen.render(client_two, 0, 0, nullptr, nullptr);
-        }
-        /*Show the outgoing call screen*/
-        else if (client_two.screen == OUTGOING_CALL)
-        {
-            outgoing_call.render(client_two, 0, 0, nullptr, nullptr);
-        }
-        /*Show the incoming call screen*/
-        else if (client_two.screen == INCOMING_CALL)
-        {
-            incoming_call.render(client_two, 0, 0, nullptr, nullptr);
-        }
+        client_two.render(window);
 
         /*Render all the context we have written in background in the window*/
-        client_two.present();
+        window.present();
     }
 
     return 0;
