@@ -25,6 +25,7 @@ int main(int argc, char const *argv[])
 
     while (!client_one.isWindowClosed())
     {
+        if (0)
         {
             /*Opening server and client file*/
             client_one_file.open(CLIENT_ONE_FILE, std::ios::in);
@@ -80,6 +81,17 @@ int main(int argc, char const *argv[])
         while (SDL_PollEvent(&e) != 0)
         {
             client_one.handleEvent(e);
+
+            if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
+                {
+                    std::cout << "Call button is clicked";
+                }
+            }
         }
 
         client_one.clear({125, 234, 254, 164});
