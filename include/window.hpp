@@ -9,6 +9,13 @@
 #include <iostream>
 #include <string>
 
+enum PhoneScreen
+{
+	DIALPAD,
+	INCOMING_CALL,
+	OUTGOING_CALL,
+};
+
 class Window
 {
 
@@ -25,6 +32,7 @@ private:
 
 public:
 	SDL_Renderer *renderer = nullptr;
+	PhoneScreen screen;
 
 private:
 	bool init();
@@ -46,4 +54,6 @@ public:
 	static const int getWidth();
 
 	static const int getHeight();
+
+public:
 };

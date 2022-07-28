@@ -20,8 +20,10 @@ int main(int argc, char const *argv[])
     SDL_Event e;
     Window client_one("Client One");
     Texture dialpad_screen;
+    Texture outgoing_call;
 
     dialpad_screen.loadFromFile(client_one, "resources/images/dial_pad.png");
+    outgoing_call.loadFromFile(client_one, "resources/images/outgoing_call.png");
 
     while (!client_one.isWindowClosed())
     {
@@ -89,14 +91,24 @@ int main(int argc, char const *argv[])
 
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
-                    std::cout << "Call button is clicked";
+                    /*Print in server file that i want to call client two*/
+
+                    /*Display the calling screen*/
+                    client_one.screen = OUTGOING_CALL;
                 }
             }
         }
 
         client_one.clear({125, 234, 254, 164});
 
-        dialpad_screen.render(client_one, 0, 0, nullptr, nullptr);
+        if (client_one.screen == DIALPAD)
+        {
+            dialpad_screen.render(client_one, 0, 0, nullptr, nullptr);
+        }
+        else if (client_one.screen == OUTGOING_CALL)
+        {
+            outgoing_call.render(client_one, 0, 0, nullptr, nullptr);
+        }
 
         client_one.present();
     }
