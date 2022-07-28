@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
                     getline(client_one_file, message);
 
                     /*Handling based on the message*/
-                    if (message == "INCOMING CALL")
+                    if (message == "CALLFROMCLIENTTWO")
                     {
                         /*Show incoming call screen*/
                         client_one.screen = INCOMING_CALL;
@@ -78,40 +78,41 @@ int main(int argc, char const *argv[])
             /*Handle the event related to window*/
             client_one.handleEvent(e);
 
+            /*Dialpad Section*/
             if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == DIALPAD)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
-                /*Call button maximum square coordinate checking*/
+                /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
                     /*Print in server file that i want to call client two*/
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)
                     {
-
                         server_file << "CALLCLIENTTWO" << std::endl;
-
-                        server_file.close();
                     }
                     else
                     {
                         std::cout << "Server file doesn't exist";
                     }
+                    server_file.close();
 
                     /*Display the calling screen*/
                     client_one.screen = OUTGOING_CALL;
                 }
             }
+
+            /*Outgoing Call*/
             if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == OUTGOING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
-                /*End button maximum square coordinate checking*/
+                /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
                     /*Print in server file that i want to edn call with client two*/
@@ -131,6 +132,8 @@ int main(int argc, char const *argv[])
                     client_one.screen = DIALPAD;
                 }
             }
+
+            /*Incoming Call*/
             if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == INCOMING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
@@ -145,7 +148,7 @@ int main(int argc, char const *argv[])
                     if (server_file)
                     {
 
-                        server_file << "ENDCALLCLIENTTWO" << std::endl;
+                        server_file << "CALLDECLINEDFROMCLIENTONE" << std::endl;
                     }
                     else
                     {
@@ -162,20 +165,20 @@ int main(int argc, char const *argv[])
                 {
                     /*Print in server file that i want to end call with client two*/
                     server_file.open(SERVER_FILE, std::ios::out);
-                    // if (server_file)
-                    // {
+                    if (server_file)
+                    {
 
-                    //     server_file << "ENDCALLCLIENTTWO" << std::endl;
+                        server_file << "CALLRECEIVEDBYCLIENTONE" << std::endl;
 
-                    //     server_file.close();
-                    // }
-                    // else
-                    // {
-                    //     std::cout << "Server file doesn't exist";
-                    // }
+                        server_file.close();
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
 
                     /*Display the calling screen*/
-                    client_one.screen = OUTGOING_CALL;
+                    client_one.screen = OUTGOING_CALL; /*Must be replaced with call received screen*/
                 }
             }
         }
