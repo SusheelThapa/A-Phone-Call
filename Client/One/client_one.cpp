@@ -71,6 +71,11 @@ int main(int argc, char const *argv[])
                         /*Client two has receive our call*/
                         client_one.screen = OUTGOING_CALL; /*later it will be replaced by received call screen*/
                     }
+                    else if (message == "CALLENDEDFROMCLIENTTWO")
+                    {
+                        /*Call had been ended by client two*/
+                        client_one.screen = DIALPAD; /*Later on we will display sth like money deducted*/
+                    }
                 }
 
                 /*Erase Everything*/
@@ -130,7 +135,7 @@ int main(int argc, char const *argv[])
                     if (server_file)
                     {
 
-                        server_file << "ENDCALLCLIENTTWO" << std::endl;
+                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
                     }
                     else
                     {

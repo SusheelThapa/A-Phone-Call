@@ -131,6 +131,33 @@ int main()
                     std::cout << "Error opening the file";
                 }
             }
+            else if (message == "CALLENDEDBYCLIENTONE")
+            {
+                client_two_file_pointer.open(CLIENT_TWO_FILE, ios::out);
+
+                if (client_two_file_pointer)
+                {
+                    client_two_file_pointer << "CALLENDEDFROMCLIENTONE";
+                }
+                else
+                {
+                    std::cout << "Error opening the file";
+                }
+            }
+            else if (message == "CALLENDEDBYCLIENTTWO")
+            {
+                client_one_file_pointer.open(CLIENT_TWO_FILE, ios::out);
+
+                if (client_one_file_pointer)
+                {
+                    client_one_file_pointer << "CALLENDEDFROMCLIENTTWO";
+                }
+                else
+                {
+                    std::cout << "Error opening the file";
+                }
+            }
+
             client_two_file_pointer.close();
             client_one_file_pointer.close();
         }
