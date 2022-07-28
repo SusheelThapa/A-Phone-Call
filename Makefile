@@ -2,6 +2,15 @@ CPP_COMPILER = g++
 HEADER_FLAGS = -Iinclude/
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
+# Building client_two client_one server at once
+all:
+	make server
+	make client_one
+	make client_two
+	git restore *.txt
+	clear
+	#Console was cleared
+
 
 # Creating Server
 server: build/ build/server.o
