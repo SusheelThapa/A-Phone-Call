@@ -33,11 +33,9 @@ int main(int argc, char const *argv[])
     {
 
         /*This is for communication with other client via server. I will work over it later on*/
-        if (0)
         {
             /*Opening server and client file*/
             client_one_file.open(CLIENT_ONE_FILE, std::ios::in);
-            server_file.open(SERVER_FILE, std::ios::out);
 
             /*Getting the total charcter of the file*/
             client_one_file.seekg(0, std::ios::end);
@@ -45,19 +43,6 @@ int main(int argc, char const *argv[])
             /*Updating the value of file size*/
             previous_client_one_file_size = current_client_one_file_size;
             current_client_one_file_size = client_one_file.tellg();
-
-            /*Server File*/
-            if (server_file)
-            {
-
-                server_file << "CALLC2" << std::endl;
-
-                server_file.close();
-            }
-            else
-            {
-                std::cout << "Server file doesn't exist";
-            }
 
             /*Client File*/
             if (client_one_file)
@@ -74,6 +59,7 @@ int main(int argc, char const *argv[])
                     if (message == "INCOMING CALL")
                     {
                         /*Show incoming call screen*/
+                        client_one.screen = INCOMING_CALL;
                     }
                 }
 
@@ -102,6 +88,18 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
                     /*Print in server file that i want to call client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+
+                        server_file << "CALLCLIENTTWO" << std::endl;
+
+                        server_file.close();
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
 
                     /*Display the calling screen*/
                     client_one.screen = OUTGOING_CALL;
@@ -116,10 +114,68 @@ int main(int argc, char const *argv[])
                 /*End button maximum square coordinate checking*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
-                    /*Print in server file that i want to call client two*/
+                    /*Print in server file that i want to edn call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+
+                        server_file << "ENDCALLCLIENTTWO" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
+                    server_file.close();
 
                     /*Display the calling screen*/
                     client_one.screen = DIALPAD;
+                }
+            }
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.screen == INCOMING_CALL)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 74 && x <= 134 && y >= 543 && y <= 593)
+                {
+                    /*Print in server file that i want to end call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+
+                        server_file << "ENDCALLCLIENTTWO" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
+                    server_file.close();
+
+                    /*Display the calling screen*/
+                    client_one.screen = DIALPAD;
+                }
+
+                /*Receive button is pressed*/
+                if (x >= 280 && x <= 344 && y >= 543 && y <= 593)
+                {
+                    /*Print in server file that i want to end call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    // if (server_file)
+                    // {
+
+                    //     server_file << "ENDCALLCLIENTTWO" << std::endl;
+
+                    //     server_file.close();
+                    // }
+                    // else
+                    // {
+                    //     std::cout << "Server file doesn't exist";
+                    // }
+
+                    /*Display the calling screen*/
+                    client_one.screen = OUTGOING_CALL;
                 }
             }
         }
