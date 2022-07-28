@@ -2,6 +2,12 @@ CPP_COMPILER = g++
 HEADER_FLAGS = -Iinclude/
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
+# Running server client_one and client_two simutaneoulsy
+run:
+	./client_one.out &
+	./client_two.out &
+	./server.out
+
 # Building client_two client_one server at once
 all:
 	make server
