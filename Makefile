@@ -26,15 +26,15 @@ build/server.o: Server/server.cpp
 	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
 
 # Creating Client One
-client_one: build/  build/client_one.o build/window.o build/texture.o
-	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o
+	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_one.o: Client/One/client_one.cpp
 	${CPP_COMPILER} -o build/client_one.o -c Client/One/client_one.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 #Creating Client Two
-client_two: build/ build/client_two.o build/window.o 
-	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o
+	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_two.o: Client/Two/client_two.cpp
 	${CPP_COMPILER} -o build/client_two.o -c Client/Two/client_two.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
@@ -57,6 +57,9 @@ build/window.o: src/window.cpp
 
 build/texture.o: src/texture.cpp
 	${CPP_COMPILER} -o build/texture.o -c src/texture.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+build/phone.o:	src/phone.cpp
+	${CPP_COMPILER} -o build/phone.o -c src/phone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
