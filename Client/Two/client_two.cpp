@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
                         /*Call had been ended by client two*/
                         client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
 
-                        client_two.setCallingPersonName("");
+                        client_two.setCallingPersonName(" ");
                     }
                 }
 
@@ -192,6 +192,34 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_two.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
+                }
+            }
+
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == CALL_CONNECTED)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+
+                    std::cout << "End button was pressed";
+                    /*Print in server file that i want to edn call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+                        server_file << "CALLENDEDBYCLIENTTWO" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
+                    server_file.close();
+
+                    /*Display the calling screen*/
+                    client_two.setScreen(DIALPAD);
                 }
             }
         }

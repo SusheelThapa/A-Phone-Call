@@ -146,7 +146,7 @@ int main()
             }
             else if (message == "CALLENDEDBYCLIENTTWO")
             {
-                client_one_file_pointer.open(CLIENT_TWO_FILE, ios::out);
+                client_one_file_pointer.open(CLIENT_ONE_FILE, ios::out);
 
                 if (client_one_file_pointer)
                 {

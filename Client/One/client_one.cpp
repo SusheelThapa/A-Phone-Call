@@ -129,9 +129,6 @@ int main(int argc, char const *argv[])
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
-                std::cout << "X : " << x << std::endl;
-                std::cout << "Y : " << y << std::endl;
-
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
@@ -139,7 +136,6 @@ int main(int argc, char const *argv[])
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)
                     {
-
                         server_file << "CALLENDEDBYCLIENTONE" << std::endl;
                     }
                     else
@@ -176,7 +172,7 @@ int main(int argc, char const *argv[])
                     }
                     server_file.close();
 
-                    client_one.setCallingPersonName("");
+                    client_one.setCallingPersonName(" ");
 
                     /*Display the calling screen*/
                     client_one.setScreen(DIALPAD);
@@ -203,6 +199,33 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_one.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
+                }
+            }
+
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_CONNECTED)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+                    /*Print in server file that i want to end call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+
+                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
+                    server_file.close();
+
+                    /*Display the calling screen*/
+                    client_one.setScreen(DIALPAD);
                 }
             }
         }
