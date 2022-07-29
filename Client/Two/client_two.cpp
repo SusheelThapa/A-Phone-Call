@@ -116,6 +116,46 @@ int main(int argc, char const *argv[])
                     /*Display the calling screen*/
                     client_two.setScreen(OUTGOING_CALL);
                 }
+
+                 /*0 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*1 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*2 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*3 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*4 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*5 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*6 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*7 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+
+                /*8 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
+                    
+                /*9 number is clicked*/
+                    // Print the number that is being clicked
+                    // Play the sound of respect number
             }
 
             /*Outgoing Call*/
