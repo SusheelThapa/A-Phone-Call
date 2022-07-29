@@ -112,6 +112,9 @@ int main(int argc, char const *argv[])
                     }
                     server_file.close();
 
+                    /*Set the name of the person calling*/
+                    client_one.setCallingPersonName("Client Two");
+
                     /*Display the calling screen*/
                     client_one.setScreen(OUTGOING_CALL);
                 }
@@ -123,6 +126,9 @@ int main(int argc, char const *argv[])
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
+
+                std::cout << "X : " << x << std::endl;
+                std::cout << "Y : " << y << std::endl;
 
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
