@@ -58,6 +58,7 @@ Phone::Phone(Window &window, std::string name)
 
     /*Loading ringtone*/
     ringtone.setAudioPath("resources/audio/ringtone.wav");
+    outgoing_tone.setAudioPath("resources/audio/outgoing-tone.wav");
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -178,4 +179,13 @@ void Phone::playRingtone()
 void Phone::stopRingtone()
 {
     ringtone.stop();
+}
+void Phone::playOutgoingTone()
+{
+    outgoing_tone.play();
+}
+
+void Phone::stopOutgoingTone()
+{
+    outgoing_tone.stop();
 }

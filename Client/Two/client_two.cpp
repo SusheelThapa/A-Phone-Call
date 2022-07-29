@@ -1,6 +1,7 @@
 #include <iostream>
-#include "window.hpp"
 #include <fstream>
+
+#include "window.hpp"
 #include "phone.hpp"
 
 #define SERVER_FILE "Server/server.txt"
@@ -63,6 +64,8 @@ int main(int argc, char const *argv[])
                     {
                         /*Client Two has reject our call*/
                         client_two.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
+
+                        client_two.stopOutgoingTone();
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTONE")
                     {
@@ -70,6 +73,8 @@ int main(int argc, char const *argv[])
                         client_two.setScreen(CALL_CONNECTED); /*later it will be replaced by received call screen*/
 
                         client_two.setCallingPersonName("Client One");
+
+                        client_two.stopOutgoingTone();
                     }
                     else if (message == "CALLENDEDFROMCLIENTONE")
                     {
@@ -123,6 +128,9 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_two.setScreen(OUTGOING_CALL);
+
+                    /*Play outgoing call sound*/
+                    client_two.playOutgoingTone();
                 }
 
                 /*0 number is clicked*/
@@ -191,6 +199,9 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_two.setScreen(DIALPAD);
+
+                    /*Play outgoing call sound*/
+                    client_two.playOutgoingTone();
                 }
             }
 

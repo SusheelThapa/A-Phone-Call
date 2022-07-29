@@ -64,6 +64,7 @@ private:
     Tone dialpad_tone[10];
 
     Audio ringtone;
+    Audio outgoing_tone;
 
 public:
     Phone(Window &window, std::string name);
@@ -85,6 +86,10 @@ public:
     void playRingtone();
 
     void stopRingtone();
+
+    void playOutgoingTone();
+
+    void stopOutgoingTone();
 
     ~Phone() {}
 };
