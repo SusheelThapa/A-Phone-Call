@@ -71,6 +71,15 @@ void Phone::render(Window &window)
         incoming_call.render(window, 0, 0, nullptr, nullptr);
 
         /*Add the name of person who is calling*/
+        calling_person.loadFromText(window, big_font, calling_person_name, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_rect = {
+            (window.getWidth() - calling_person.getWidth()) / 2,
+            300,
+            calling_person.getWidth(),
+            calling_person.getHeight()};
+
+        calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
     }
     else if (current_screen == OUTGOING_CALL)
     {
@@ -86,8 +95,7 @@ void Phone::render(Window &window)
             calling_person.getHeight()};
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
-        
-    }
+        }
     else if (current_screen == CALL_CONNECTED)
     {
         outgoing_call.render(window, 0, 0, nullptr, nullptr);
