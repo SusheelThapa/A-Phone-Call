@@ -9,10 +9,10 @@ Tone::Tone()
 
 Tone::Tone(std::string audio_path)
 {
-    this->setAudioPath(audio_path);
+    this->setTonePath(audio_path);
 }
 
-void Tone::setAudioPath(std::string audio_path)
+void Tone::setTonePath(std::string audio_path)
 {
     this->audio_path = audio_path;
     this->tone_audio = Mix_LoadWAV(this->audio_path.c_str());
@@ -26,7 +26,7 @@ void Tone::setAudioPath(std::string audio_path)
 
 void Tone::play()
 {
-    if (this->getAudioPath() == " ")
+    if (this->getTonePath() == " ")
     {
         std::cout << "Audio Path isn't set\n";
         return;
@@ -36,7 +36,7 @@ void Tone::play()
     Mix_PlayChannel(-1, this->tone_audio, 0);
 }
 
-std::string Tone::getAudioPath()
+std::string Tone::getTonePath()
 {
     return this->audio_path;
 }
