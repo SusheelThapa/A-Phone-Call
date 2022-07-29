@@ -1,9 +1,10 @@
 #pragma once
 
+#include <SDL2/SDL_ttf.h>
+#include <string>
+
 #include "texture.hpp"
 #include "window.hpp"
-#include <string>
-#include <SDL2/SDL_ttf.h>
 
 enum PhoneScreen
 {
