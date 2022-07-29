@@ -52,6 +52,12 @@ int main(int argc, char const *argv[])
                     {
                         /*Show incoming call screen*/
                         client_two.setScreen(INCOMING_CALL);
+
+                        /*Set the name of person who have called*/
+                        client_two.setCallingPersonName("Client One");
+
+                        /*Play the incoming call sound*/
+                        client_two.playRingtone();
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTONE")
                     {
@@ -71,6 +77,8 @@ int main(int argc, char const *argv[])
                         client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
 
                         client_two.setCallingPersonName(" ");
+
+                        client_two.stopRingtone();
                     }
                 }
 
@@ -117,45 +125,45 @@ int main(int argc, char const *argv[])
                     client_two.setScreen(OUTGOING_CALL);
                 }
 
-                 /*0 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                /*0 number is clicked*/
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*1 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*2 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*3 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*4 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*5 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*6 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*7 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
 
                 /*8 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
-                    
+                // Print the number that is being clicked
+                // Play the sound of respect number
+
                 /*9 number is clicked*/
-                    // Print the number that is being clicked
-                    // Play the sound of respect number
+                // Print the number that is being clicked
+                // Play the sound of respect number
             }
 
             /*Outgoing Call*/
@@ -209,8 +217,13 @@ int main(int argc, char const *argv[])
                     }
                     server_file.close();
 
+                    client_two.setCallingPersonName(" ");
+
                     /*Display the calling screen*/
                     client_two.setScreen(DIALPAD);
+
+                    /*Stop the ringtone*/
+                    client_two.stopRingtone();
                 }
 
                 /*Receive button is pressed*/
@@ -230,8 +243,13 @@ int main(int argc, char const *argv[])
                         std::cout << "Server file doesn't exist";
                     }
 
+                    client_two.setCallingPersonName("Client One");
+
                     /*Display the calling screen*/
-                    client_two.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
+                    client_two.setScreen(CALL_CONNECTED);
+
+                    /*Stop the ringtone*/
+                    client_two.stopRingtone();
                 }
             }
 
