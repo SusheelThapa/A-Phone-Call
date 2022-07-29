@@ -4,8 +4,9 @@ LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
 # Running server client_one and client_two simutaneoulsy
 run:
-	git restore Server/
-	git restore Client/
+	git restore Server/server.txt
+	git restore Client/One/client_one.txt
+	git restore Client/Two/client_two.txt
 	./client_one.out &
 	./client_two.out &
 	./server.out
