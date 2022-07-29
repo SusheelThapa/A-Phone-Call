@@ -168,6 +168,8 @@ int main(int argc, char const *argv[])
                     }
                     server_file.close();
 
+                    client_one.setCallingPersonName("");
+
                     /*Display the calling screen*/
                     client_one.setScreen(DIALPAD);
                 }
@@ -189,8 +191,10 @@ int main(int argc, char const *argv[])
                         std::cout << "Server file doesn't exist";
                     }
 
+                    client_one.setCallingPersonName("Client Two");
+
                     /*Display the calling screen*/
-                    client_one.setScreen(OUTGOING_CALL); /*Must be replaced with call received screen*/
+                    client_one.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
                 }
             }
         }

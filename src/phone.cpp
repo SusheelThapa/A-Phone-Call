@@ -69,10 +69,14 @@ void Phone::render(Window &window)
     else if (current_screen == INCOMING_CALL)
     {
         incoming_call.render(window, 0, 0, nullptr, nullptr);
+
+        /*Add the name of person who is calling*/
     }
     else if (current_screen == OUTGOING_CALL)
     {
         outgoing_call.render(window, 0, 0, nullptr, nullptr);
+
+        /*Add the person name to whom he/she is calling*/
     }
     else if (current_screen == CALL_CONNECTED)
     {

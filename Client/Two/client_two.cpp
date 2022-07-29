@@ -111,6 +111,8 @@ int main(int argc, char const *argv[])
                     }
                     server_file.close();
 
+                    client_two.setCallingPersonName("Client One");
+
                     /*Display the calling screen*/
                     client_two.setScreen(OUTGOING_CALL);
                 }
