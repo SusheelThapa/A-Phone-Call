@@ -161,3 +161,8 @@ void Phone::endCallTime()
 {
     start_time = 0;
 }
+
+void Phone::playDialpadTone(int dialpad_number)
+{
+    dialpad_tone[dialpad_number].play();
+}

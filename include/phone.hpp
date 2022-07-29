@@ -77,5 +77,7 @@ public:
 
     void endCallTime();
 
+    void playDialpadTone(int dialpad_number);
+
     ~Phone() {}
 };
