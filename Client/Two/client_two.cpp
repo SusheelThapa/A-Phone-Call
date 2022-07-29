@@ -119,7 +119,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Outgoing Call*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == OUTGOING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == OUTGOING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -147,7 +147,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Incoming Call*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == INCOMING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == INCOMING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
