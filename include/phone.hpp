@@ -6,6 +6,7 @@
 #include "window.hpp"
 #include "texture.hpp"
 #include "tone.hpp"
+#include "audio.hpp"
 
 enum PhoneScreen
 {
@@ -62,6 +63,8 @@ private:
 
     Tone dialpad_tone[10];
 
+    Audio ringtone;
+
 public:
     Phone(Window &window, std::string name);
 
@@ -78,6 +81,10 @@ public:
     void endCallTime();
 
     void playDialpadTone(int dialpad_number);
+
+    void playRingtone();
+
+    void stopRingtone();
 
     ~Phone() {}
 };

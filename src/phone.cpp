@@ -45,16 +45,19 @@ Phone::Phone(Window &window, std::string name)
     start_time = 0;
 
     /*Loading Dialpad tone*/
-    dialpad_tone[0].setAudioPath("resources/audio/tone-zero.wav");
-    dialpad_tone[1].setAudioPath("resources/audio/tone-one.wav");
-    dialpad_tone[2].setAudioPath("resources/audio/tone-two.wav");
-    dialpad_tone[3].setAudioPath("resources/audio/tone-three.wav");
-    dialpad_tone[4].setAudioPath("resources/audio/tone-four.wav");
-    dialpad_tone[5].setAudioPath("resources/audio/tone-five.wav");
-    dialpad_tone[6].setAudioPath("resources/audio/tone-six.wav");
-    dialpad_tone[7].setAudioPath("resources/audio/tone-seven.wav");
-    dialpad_tone[8].setAudioPath("resources/audio/tone-eight.wav");
-    dialpad_tone[9].setAudioPath("resources/audio/tone-nine.wav");
+    dialpad_tone[0].setTonePath("resources/audio/tone-zero.wav");
+    dialpad_tone[1].setTonePath("resources/audio/tone-one.wav");
+    dialpad_tone[2].setTonePath("resources/audio/tone-two.wav");
+    dialpad_tone[3].setTonePath("resources/audio/tone-three.wav");
+    dialpad_tone[4].setTonePath("resources/audio/tone-four.wav");
+    dialpad_tone[5].setTonePath("resources/audio/tone-five.wav");
+    dialpad_tone[6].setTonePath("resources/audio/tone-six.wav");
+    dialpad_tone[7].setTonePath("resources/audio/tone-seven.wav");
+    dialpad_tone[8].setTonePath("resources/audio/tone-eight.wav");
+    dialpad_tone[9].setTonePath("resources/audio/tone-nine.wav");
+
+    /*Loading ringtone*/
+    ringtone.setAudioPath("resources/audio/ringtone.wav");
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -165,4 +168,14 @@ void Phone::endCallTime()
 void Phone::playDialpadTone(int dialpad_number)
 {
     dialpad_tone[dialpad_number].play();
+}
+
+void Phone::playRingtone()
+{
+    ringtone.play();
+}
+
+void Phone::stopRingtone()
+{
+    ringtone.stop();
 }
