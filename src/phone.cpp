@@ -38,11 +38,23 @@ Phone::Phone(Window &window, std::string name)
     this->calling_person_name = "Client One";
 
     /*Loading the TTF Font*/
-    big_font = TTF_OpenFont("fonts/freesans.ttf", 56);
-    medium_font = TTF_OpenFont("fonts/freesans.ttf", 32);
+    big_font = TTF_OpenFont("resources/fonts/freesans.ttf", 56);
+    medium_font = TTF_OpenFont("resources/fonts/freesans.ttf", 32);
 
     /*Setting the value of start time after call connected*/
     start_time = 0;
+
+    /*Loading Dialpad tone*/
+    dialpad_tone[0].setAudioPath("resources/audio/tone-zero.wav");
+    dialpad_tone[1].setAudioPath("resources/audio/tone-one.wav");
+    dialpad_tone[2].setAudioPath("resources/audio/tone-two.wav");
+    dialpad_tone[3].setAudioPath("resources/audio/tone-three.wav");
+    dialpad_tone[4].setAudioPath("resources/audio/tone-four.wav");
+    dialpad_tone[5].setAudioPath("resources/audio/tone-five.wav");
+    dialpad_tone[6].setAudioPath("resources/audio/tone-six.wav");
+    dialpad_tone[7].setAudioPath("resources/audio/tone-seven.wav");
+    dialpad_tone[8].setAudioPath("resources/audio/tone-eight.wav");
+    dialpad_tone[9].setAudioPath("resources/audio/tone-nine.wav");
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -95,7 +107,7 @@ void Phone::render(Window &window)
             calling_person.getHeight()};
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
-        }
+    }
     else if (current_screen == CALL_CONNECTED)
     {
         outgoing_call.render(window, 0, 0, nullptr, nullptr);

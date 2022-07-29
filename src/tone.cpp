@@ -15,7 +15,7 @@ Tone::Tone(std::string audio_path)
 void Tone::setAudioPath(std::string audio_path)
 {
     this->audio_path = audio_path;
-    this->tone_audio = Mix_LoadWAV(audio_path.c_str());
+    this->tone_audio = Mix_LoadWAV(this->audio_path.c_str());
 
     /*Checking if the audio is loaded or not*/
     if (this->tone_audio == nullptr)
@@ -34,4 +34,9 @@ void Tone::play()
 
     // Audio is playing
     Mix_PlayChannel(-1, this->tone_audio, 0);
+}
+
+std::string Tone::getAudioPath()
+{
+    return this->audio_path;
 }

@@ -3,8 +3,9 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 
-#include "texture.hpp"
 #include "window.hpp"
+#include "texture.hpp"
+#include "tone.hpp"
 
 enum PhoneScreen
 {
@@ -58,6 +59,8 @@ private:
     int start_time; // Dummy argument to keep track how call connected time
 
     Time call_connected_time;
+
+    Tone dialpad_tone[10];
 
 public:
     Phone(Window &window, std::string name);

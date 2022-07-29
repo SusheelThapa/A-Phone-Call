@@ -89,6 +89,19 @@ bool Window::init()
 
 #endif
 
+#if defined SDL_MIXER_MAJOR_VERSION
+
+	/*Initialize SDL_mixer*/
+	if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2046) < 0 )
+	{
+		std::cout<<"SDL_Mixer cannot be initialize"
+				 << std::endl
+				 << "SDL_Error: "
+				 << Mix_GetError()
+				 <<std::endl;
+	}
+#endif
+
     return status;
 }
 
