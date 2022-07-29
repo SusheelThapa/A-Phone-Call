@@ -6,6 +6,7 @@
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
 #define CLIENT_TWO_FILE "Client/Two/client_two.txt"
+#define LOG_FILE "Server/logs.log"
 
 using namespace std;
 
@@ -22,11 +23,25 @@ int main()
     /*File object to write on client file*/
     fstream client_two_file_pointer;
     fstream client_one_file_pointer;
+    fstream log_message_file_pointer;
 
     while (true)
     {
+        /*Open the log file*/
+        log_message_file_pointer.open(LOG_FILE, ios::app);
+
+        // if (log_message_file_pointer)
+        // {
+        //     std::cout << "error";
+        // }
+
         /*Open the server file*/
         server_file.open(SERVER_FILE, ios::in);
+
+        // if (server_file)
+        // {
+        //     std::cout << "SErver";
+        // }
 
         /*Seeking the file pointer to  last*/
         server_file.seekg(0, ios::end);
@@ -47,9 +62,6 @@ int main()
             server_file.seekg(0, ios::beg);
             std::getline(server_file, message);
 
-            /*Printing out the message*/
-            std::cout << "Message: " << message << "\n";
-
             /*Processing the content of files*/
             if (message == "CALLCLIENTTWO")
             {
@@ -57,6 +69,8 @@ int main()
                 if (client_two_file_pointer)
                 {
                     client_two_file_pointer << "CALLFROMCLIENTONE";
+
+                    log_message_file_pointer << "Client One is calling Client Two\n";
                 }
                 else
                 {
@@ -71,6 +85,8 @@ int main()
                 if (client_one_file_pointer)
                 {
                     client_one_file_pointer << "CALLFROMCLIENTTWO";
+
+                    log_message_file_pointer << "Client Two is calling Client One\n";
                 }
                 else
                 {
@@ -80,9 +96,12 @@ int main()
             else if (message == "CALLDECLINEDBYCLIENTTWO")
             {
                 client_one_file_pointer.open(CLIENT_ONE_FILE, ios::out);
+
                 if (client_one_file_pointer)
                 {
                     client_one_file_pointer << "CALLDECLINEDFROMCLIENTTWO";
+
+                    log_message_file_pointer << "Client Two has declined the call from Client One\n";
                 }
                 else
                 {
@@ -97,6 +116,8 @@ int main()
                 if (client_two_file_pointer)
                 {
                     client_two_file_pointer << "CALLDECLINEDFROMCLIENTONE";
+
+                    log_message_file_pointer << "Client One has declined the call from Client Two\n";
                 }
                 else
                 {
@@ -111,6 +132,8 @@ int main()
                 if (client_two_file_pointer)
                 {
                     client_two_file_pointer << "CALLRECEIVEDFROMCLIENTONE";
+
+                    log_message_file_pointer << "Client Two had received the call from Client One\n";
                 }
                 else
                 {
@@ -125,6 +148,8 @@ int main()
                 if (client_one_file_pointer)
                 {
                     client_one_file_pointer << "CALLRECEIVEDFROMCLIENTTWO";
+
+                    log_message_file_pointer << "Client One had received the call from Client Two\n";
                 }
                 else
                 {
@@ -138,6 +163,8 @@ int main()
                 if (client_two_file_pointer)
                 {
                     client_two_file_pointer << "CALLENDEDFROMCLIENTONE";
+
+                    log_message_file_pointer << "Call has been ended by Client One\n";
                 }
                 else
                 {
@@ -151,6 +178,8 @@ int main()
                 if (client_one_file_pointer)
                 {
                     client_one_file_pointer << "CALLENDEDFROMCLIENTTWO";
+
+                    log_message_file_pointer << "Call has been ended by Client Two\n";
                 }
                 else
                 {
@@ -162,6 +191,7 @@ int main()
             client_one_file_pointer.close();
         }
 
+        log_message_file_pointer.close();
         server_file.close();
     }
     return 0;
