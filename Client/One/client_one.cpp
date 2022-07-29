@@ -53,6 +53,8 @@ int main(int argc, char const *argv[])
                     {
                         /*Show incoming call screen*/
                         client_one.setScreen(INCOMING_CALL);
+
+                        client_one.setCallingPersonName("Client Two");
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTTWO")
                     {
