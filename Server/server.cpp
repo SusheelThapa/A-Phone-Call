@@ -25,23 +25,19 @@ int main()
     fstream client_one_file_pointer;
     fstream log_message_file_pointer;
 
+    log_message_file_pointer.open(LOG_FILE, ios::app);
+
+    log_message_file_pointer << "\n";
+    log_message_file_pointer << "Date: " << __DATE__ << "\n";
+    log_message_file_pointer << "Time: " << __TIME__ << "\n";
+
     while (true)
     {
         /*Open the log file*/
         log_message_file_pointer.open(LOG_FILE, ios::app);
 
-        // if (log_message_file_pointer)
-        // {
-        //     std::cout << "error";
-        // }
-
         /*Open the server file*/
         server_file.open(SERVER_FILE, ios::in);
-
-        // if (server_file)
-        // {
-        //     std::cout << "SErver";
-        // }
 
         /*Seeking the file pointer to  last*/
         server_file.seekg(0, ios::end);
