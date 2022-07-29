@@ -61,12 +61,16 @@ int main(int argc, char const *argv[])
                     else if (message == "CALLRECEIVEDFROMCLIENTONE")
                     {
                         /*Client one has receive our call*/
-                        client_two.setScreen(OUTGOING_CALL); /*later it will be replaced by received call screen*/
+                        client_two.setScreen(CALL_CONNECTED); /*later it will be replaced by received call screen*/
+
+                        client_two.setCallingPersonName("Client One");
                     }
                     else if (message == "CALLENDEDFROMCLIENTONE")
                     {
                         /*Call had been ended by client two*/
                         client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
+
+                        client_two.setCallingPersonName("");
                     }
                 }
 
@@ -185,7 +189,7 @@ int main(int argc, char const *argv[])
                     }
 
                     /*Display the calling screen*/
-                    client_two.setScreen(OUTGOING_CALL); /*Must be replaced with call received screen*/
+                    client_two.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
                 }
             }
         }

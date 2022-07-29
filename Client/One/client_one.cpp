@@ -24,7 +24,6 @@ int main(int argc, char const *argv[])
 
     while (!window.isWindowClosed())
     {
-        client_one.setScreen(CALL_CONNECTED);
 
         /*This is for communication with other client via server. I will work over it later on*/
         {
@@ -60,12 +59,12 @@ int main(int argc, char const *argv[])
                         /*Client Two has reject our call*/
                         client_one.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
                     }
-                    else if (message == "CALLRECEIVEFROMCLIENTTWO")
+                    else if (message == "CALLRECEIVEDFROMCLIENTTWO")
                     {
                         /*Client two has receive our call*/
-                        client_one.setScreen(OUTGOING_CALL); /*later it will be replaced by received call screen*/
+                        client_one.setScreen(CALL_CONNECTED); /*later it will be replaced by received call screen*/
 
-                        client_one.setCallingPersonName("Client One");
+                        client_one.setCallingPersonName("Client Two");
                     }
                     else if (message == "CALLENDEDFROMCLIENTTWO")
                     {
