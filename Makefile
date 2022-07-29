@@ -29,15 +29,15 @@ build/server.o: Server/server.cpp
 	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
 
 # Creating Client One
-client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o
-	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o
+	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_one.o: Client/One/client_one.cpp
 	${CPP_COMPILER} -o build/client_one.o -c Client/One/client_one.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 #Creating Client Two
-client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o
-	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o
+	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_two.o: Client/Two/client_two.cpp
 	${CPP_COMPILER} -o build/client_two.o -c Client/Two/client_two.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
@@ -66,6 +66,9 @@ build/phone.o:	src/phone.cpp
 
 build/tone.o: src/tone.cpp
 	${CPP_COMPILER} -o build/tone.o -c src/tone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+build/audio.o: src/audio.cpp
+	${CPP_COMPILER} -o build/audio.o -c src/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
