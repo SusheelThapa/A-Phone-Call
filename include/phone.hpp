@@ -43,6 +43,13 @@ public:
 class Phone
 {
 private:
+    enum Status
+    {
+        SWITCH_OFF,
+        SWITCH_ON
+    };
+
+private:
     std::string name;
 
     std::string calling_person_name;
@@ -77,6 +84,12 @@ private:
     int outgoing_call_time;
 
     int incoming_call_time;
+
+    Status phone_status;
+
+    Texture *switch_on;
+
+    int switch_on_texture_to_display;
 
 public:
     Phone(Window &window, std::string name);

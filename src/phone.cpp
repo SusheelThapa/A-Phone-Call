@@ -78,6 +78,26 @@ Phone::Phone(Window &window, std::string name)
     /*Loading ringtone*/
     ringtone.setAudioPath("resources/audio/ringtone.wav");
     outgoing_tone.setAudioPath("resources/audio/outgoing-tone.wav");
+
+    /*Set the phone status*/
+    phone_status = SWITCH_OFF;
+
+    /*Dynamically allocate memory to load texture for switch on*/
+    switch_on = new Texture[10];
+
+    switch_on[0].loadFromFile(window, "resources/images/switch_on/switch_on_0.png");
+    switch_on[1].loadFromFile(window, "resources/images/switch_on/switch_on_1.png");
+    switch_on[2].loadFromFile(window, "resources/images/switch_on/switch_on_2.png");
+    switch_on[3].loadFromFile(window, "resources/images/switch_on/switch_on_3.png");
+    switch_on[4].loadFromFile(window, "resources/images/switch_on/switch_on_4.png");
+    switch_on[5].loadFromFile(window, "resources/images/switch_on/switch_on_5.png");
+    switch_on[6].loadFromFile(window, "resources/images/switch_on/switch_on_6.png");
+    switch_on[7].loadFromFile(window, "resources/images/switch_on/switch_on_7.png");
+    switch_on[8].loadFromFile(window, "resources/images/switch_on/switch_on_8.png");
+    switch_on[9].loadFromFile(window, "resources/images/switch_on/switch_on_9.png");
+
+    /*Set the texture to display while switch on the phone*/
+    switch_on_texture_to_display = 0;
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -97,6 +117,20 @@ PhoneScreen Phone::getScreen()
 
 void Phone::render(Window &window)
 {
+
+    /*Switch on animation*/
+    if (phone_status == SWITCH_OFF)
+    {
+        switch_on[(switch_on_texture_to_display / 20)].render(window, 0, 0, nullptr, nullptr);
+        switch_on_texture_to_display++;
+
+        if (switch_on_texture_to_display > 190)
+        {
+            phone_status = SWITCH_ON;
+        }
+
+        return;
+    }
 
     if (current_screen == DIALPAD)
     {
