@@ -248,7 +248,31 @@ void Phone::render(Window &window)
     }
     else if (current_screen == CALL_ENDED)
     {
-        /*Later on we will look into*/
+        /*Render the outgoing call screen*/
+        outgoing_call.render(window, 0, 0, nullptr, nullptr);
+
+        /*Render the name of person*/
+        calling_person.loadFromText(window, big_font, calling_person_name, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_rect = {
+            (window.getWidth() - calling_person.getWidth()) / 2,
+            40,
+            calling_person.getWidth(),
+            calling_person.getHeight()};
+
+        calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
+
+        /*Render call ended button*/
+        SDL_Rect call_ended_texture_display_rect = {
+            (window.getWidth() - call_ended.getWidth()) / 2,
+            90,
+            call_ended.getWidth(),
+            call_ended.getHeight()};
+
+        call_ended.render(window, 0, 0, nullptr, &call_ended_texture_display_rect);
+
+        /*Reset the name of the calling person*/
+        this->setCallingPersonName(" ");
     }
 }
 
@@ -362,9 +386,9 @@ void Phone::resetCallConnectedTime()
 
 void Phone::appendDialNumber(std::string num_string)
 {
-    if ( dial_pad_number.size() <= 10 )
+    if (dial_pad_number.size() <= 10)
     {
-    dial_pad_number += num_string;
+        dial_pad_number += num_string;
     }
 }
 

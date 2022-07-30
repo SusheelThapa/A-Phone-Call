@@ -98,10 +98,7 @@ int main(int argc, char const *argv[])
                     else if (message == "CALLENDEDFROMCLIENTONE")
                     {
                         /*Call had been ended by client two*/
-                        client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
-
-                        /*Reset the calling person name*/
-                        client_two.setCallingPersonName(" ");
+                        client_two.setScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
 
                         /*Stop the ringtone*/
                         client_two.stopRingtone();
@@ -343,12 +340,6 @@ int main(int argc, char const *argv[])
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
-                    /*Play the end call tone*/
-                    client_two.playEndCallTone();
-
-                    /*Program is delay so the we can end call tone running finish in other thread*/
-                    SDL_Delay(1200);
-
                     /*Print in server file that i want to edn call with client two*/
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)
@@ -362,7 +353,9 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_two.setScreen(DIALPAD);
+                    client_two.setScreen(CALL_ENDED);
+
+                    client_two.playEndCallTone();
                 }
             }
 
@@ -393,6 +386,14 @@ int main(int argc, char const *argv[])
 
         /*Render all the context we have written in background in the window*/
         window.present();
+
+        /*This is used to render the CALL_ENDED screen so that call end tone get played*/
+        if (client_two.getScreen() == CALL_ENDED)
+        {
+            SDL_Delay(1500);
+
+            client_two.setScreen(DIALPAD);
+        }
     }
 
     return 0;
