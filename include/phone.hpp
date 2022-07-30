@@ -140,8 +140,6 @@ public:
 
     void resetCallConnectedTime();
 
-    // void Phone::loadTextureForDialNumber( SDL_Rect dialRect );
-
     void appendDialNumber(std::string number);
 
     void resetDialNumber();

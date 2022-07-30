@@ -158,6 +158,8 @@ int main(int argc, char const *argv[])
 
                     /*Start the outgoing call time*/
                     client_two.startOutgoingCallTime();
+
+                    
                 }
 
                 /*1 number is clicked*/
@@ -184,7 +186,7 @@ int main(int argc, char const *argv[])
                 /*4 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
-                    client_two.appendDialNumber("3");
+                    client_two.appendDialNumber("4");
                     client_two.playDialpadTone(4);
                 }
 

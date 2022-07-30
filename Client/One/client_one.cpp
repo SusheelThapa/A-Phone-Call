@@ -159,6 +159,9 @@ int main(int argc, char const *argv[])
 
                     /*Start the outgoing call time*/
                     client_one.startOutgoingCallTime();
+
+                    /*Resetting dialpad number status after we press calling green button*/
+                    client_one.resetDialNumber();
                 }
 
                 /*1 number is clicked*/
