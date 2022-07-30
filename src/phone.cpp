@@ -265,7 +265,7 @@ void Phone::render(Window &window)
         /*Render call ended button*/
         SDL_Rect call_ended_texture_display_rect = {
             (window.getWidth() - call_ended.getWidth()) / 2,
-            90,
+            100,
             call_ended.getWidth(),
             call_ended.getHeight()};
 
