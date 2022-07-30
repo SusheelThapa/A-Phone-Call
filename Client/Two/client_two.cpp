@@ -388,7 +388,8 @@ int main(int argc, char const *argv[])
         }
 
         /*Clear the window with the color provided*/
-        window.clear({125, 234, 254, 164});
+  
+        window.clear({237, 5, 206,200});
 
         client_two.render(window);
 
