@@ -129,7 +129,6 @@ int main(int argc, char const *argv[])
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
-                // std::cout<< "x: "<< x << " , " << "y: "<< y << std::endl;
 
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
@@ -262,7 +261,7 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setScreen(CALL_ENDED);
 
                     /*Stop the outgoing call tone*/
                     client_one.stopOutgoingTone();
@@ -272,6 +271,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the busy tone(if there is )*/
                     client_one.stopBusyTone();
+
+                    /*Play end call tone*/
+                    client_one.playEndCallTone();
                 }
             }
 

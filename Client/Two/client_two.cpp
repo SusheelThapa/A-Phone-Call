@@ -251,7 +251,7 @@ int main(int argc, char const *argv[])
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)
                     {
-                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
+                        server_file << "CALLENDEDBYCLIENTTWO" << std::endl;
                     }
                     else
                     {
@@ -260,7 +260,7 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_two.setScreen(DIALPAD);
+                    client_two.setScreen(CALL_ENDED);
 
                     /*Stop the outgoing call tone*/
                     client_two.stopOutgoingTone();
@@ -270,6 +270,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the busy tone(if there is )*/
                     client_two.stopBusyTone();
+
+                    /*Play end call tone*/
+                    client_two.playEndCallTone();
                 }
             }
             /*Incoming Call*/
