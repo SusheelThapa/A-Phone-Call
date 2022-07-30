@@ -55,19 +55,19 @@ client_two_run:
 	clear
 	./client_two.out
 
-build/window.o: src/window.cpp
+build/window.o: src/window.cpp include/window.hpp
 	${CPP_COMPILER} -o build/window.o -c src/window.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/texture.o: src/texture.cpp
+build/texture.o: src/texture.cpp include/texture.hpp
 	${CPP_COMPILER} -o build/texture.o -c src/texture.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/phone.o:	src/phone.cpp 
+build/phone.o:	src/phone.cpp include/phone.hpp
 	${CPP_COMPILER} -o build/phone.o -c src/phone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/tone.o: src/tone.cpp
+build/tone.o: src/tone.cpp include/tone.hpp
 	${CPP_COMPILER} -o build/tone.o -c src/tone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/audio.o: src/audio.cpp
+build/audio.o: src/audio.cpp include/audio.hpp
 	${CPP_COMPILER} -o build/audio.o -c src/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
