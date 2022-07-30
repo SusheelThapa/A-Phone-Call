@@ -270,6 +270,9 @@ void Phone::render(Window &window)
             call_ended.getHeight()};
 
         call_ended.render(window, 0, 0, nullptr, &call_ended_texture_display_rect);
+
+        /*Reset the name of the calling person*/
+        this->setCallingPersonName(" ");
     }
 }
 
@@ -383,9 +386,9 @@ void Phone::resetCallConnectedTime()
 
 void Phone::appendDialNumber(std::string num_string)
 {
-    if ( dial_pad_number.size() <= 10 )
+    if (dial_pad_number.size() <= 10)
     {
-    dial_pad_number += num_string;
+        dial_pad_number += num_string;
     }
 }
 

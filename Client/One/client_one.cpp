@@ -100,9 +100,6 @@ int main(int argc, char const *argv[])
                         /*Call had been ended by client two*/
                         client_one.setScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
 
-                        /*Reset the calling person name*/
-                        client_one.setCallingPersonName(" ");
-
                         /*Stop the ringtone*/
                         client_one.stopRingtone();
 
