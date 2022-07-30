@@ -155,83 +155,82 @@ int main(int argc, char const *argv[])
 
                     /*Start the outgoing call time*/
                     client_two.startOutgoingCallTime();
-                    
+
                     /*Resetting dialpad number status after we press calling green button*/
                     client_two.resetDialNumber();
-                    
                 }
 
                 /* Section for back press in dial pad */
-                if ((x >= 300 && x <= 350) && (y >= 610 && y <= 635) )
+                if ((x >= 300 && x <= 350) && (y >= 610 && y <= 635))
                 {
-                   client_two.removeOneDialNumber();
+                    client_two.removeOneDialNumber();
                 }
 
                 /*1 number is clicked*/
-                if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
+                else if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
                 {
                     client_two.appendDialNumber("1");
                     client_two.playDialpadTone(1);
                 }
 
                 /*2 number is clicked*/
-                if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
+                else if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
                 {
                     client_two.appendDialNumber("2");
                     client_two.playDialpadTone(2);
                 }
 
                 /*3 number is clicked*/
-                if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
+                else if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
                 {
                     client_two.appendDialNumber("3");
                     client_two.playDialpadTone(3);
                 }
 
                 /*4 number is clicked*/
-                if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
+                else if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
                     client_two.appendDialNumber("4");
                     client_two.playDialpadTone(4);
                 }
 
                 /*5 number is clicked*/
-                if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
+                else if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
                 {
                     client_two.appendDialNumber("5");
                     client_two.playDialpadTone(5);
                 }
 
                 /*6 number is clicked*/
-                if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
+                else if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
                 {
                     client_two.appendDialNumber("6");
                     client_two.playDialpadTone(6);
                 }
 
                 /*7 number is clicked*/
-                if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
+                else if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
                 {
                     client_two.appendDialNumber("7");
                     client_two.playDialpadTone(7);
                 }
 
                 /*8 number is clicked*/
-                if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
+                else if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
                 {
                     client_two.appendDialNumber("8");
                     client_two.playDialpadTone(8);
                 }
 
                 /*9 number is clicked*/
-                if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
+                else if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
                 {
                     client_two.appendDialNumber("9");
                     client_two.playDialpadTone(9);
                 }
 
                 /* 0 number is clicked*/
-                if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
+                else if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
                 {
                     client_two.appendDialNumber("0");
                     client_two.playDialpadTone(0);
@@ -388,8 +387,8 @@ int main(int argc, char const *argv[])
         }
 
         /*Clear the window with the color provided*/
-  
-        window.clear({237, 5, 206,200});
+
+        window.clear({237, 5, 206, 200});
 
         client_two.render(window);
 
