@@ -66,7 +66,7 @@ private:
     Texture call_time;
 
     Texture dial_number;
-    std::string number_string;
+    std::string dial_pad_number;
 
     TTF_Font *big_font;
 
@@ -139,6 +139,8 @@ public:
     void updateCallConnectedTime();
 
     void resetCallConnectedTime();
+
+    // void Phone::loadTextureForDialNumber( SDL_Rect dialRect );
 
     void appendDialNumber(std::string number);
 

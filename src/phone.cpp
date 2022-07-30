@@ -107,6 +107,9 @@ Phone::Phone(Window &window, std::string name)
 
     /*Create callended texture*/
     call_ended.loadFromText(window, medium_font, "Call Ended", {255, 0, 0, 255});
+    
+    /*Initialize the dial number string*/
+    dial_pad_number = " ";
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -144,6 +147,16 @@ void Phone::render(Window &window)
     if (current_screen == DIALPAD)
     {
         dialpad_screen.render(window, 0, 0, nullptr, nullptr);
+
+        SDL_Rect dial_number_render_rect = {
+            (window.getWidth() - dial_number.getWidth()) / 2,
+            60,
+            dial_number.getWidth(),
+            dial_number.getHeight()};
+
+        dial_number.loadFromText(window, big_font, dial_pad_number, {0, 0, 0, 0});
+
+        dial_number.render(window, 0, 0, nullptr, &dial_number_render_rect);
     }
     else if (current_screen == INCOMING_CALL)
     {
@@ -349,15 +362,22 @@ void Phone::resetCallConnectedTime()
 
 void Phone::appendDialNumber(std::string num_string)
 {
-    number_string += num_string;
-    std::cout << number_string << std::endl;
+    if ( dial_pad_number.size() <= 10 )
+    {
+    dial_pad_number += num_string;
+    }
+    std::cout << dial_pad_number << std::endl;
 }
 
 void Phone::resetDialNumber()
 {
-    number_string = " ";
+    dial_pad_number = " ";
 }
 
+// void Phone::loadTextureForDialNumber( SDL_Rect dialRect )
+// {
+//     dialRect.render( )
+// }
 void Phone::playEndCallTone()
 {
     end_call_tone.play();
