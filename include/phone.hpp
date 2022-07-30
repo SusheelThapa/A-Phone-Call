@@ -51,7 +51,9 @@ private:
 
     Texture dialpad_screen;
     Texture outgoing_call;
-    Texture incoming_call;
+    Texture *incoming_call;
+
+    int incoming_call_texture_to_load;
 
     Texture calling_person;
     Texture call_time;
@@ -59,9 +61,8 @@ private:
     Texture dial_number;
     std::string number_string;
 
-
     TTF_Font *big_font;
-    
+
     TTF_Font *medium_font;
 
     int start_time; // Dummy argument to keep track how call connected time
@@ -120,7 +121,7 @@ public:
 
     void resetCallConnectedTime();
 
-    void appendDialNumber( std::string number );
+    void appendDialNumber(std::string number);
 
     void resetDialNumber();
 

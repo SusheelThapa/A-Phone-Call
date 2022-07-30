@@ -31,10 +31,19 @@ void Time::resetTime()
 
 Phone::Phone(Window &window, std::string name)
 {
+    /*Dynamically allocating the memory for texture of incoming call*/
+    incoming_call = new Texture[5];
+
     /*Loading the required Texture*/
     dialpad_screen.loadFromFile(window, "resources/images/dial_pad.png");
     outgoing_call.loadFromFile(window, "resources/images/outgoing_call.png");
-    incoming_call.loadFromFile(window, "resources/images/incoming_call.png");
+    incoming_call[0].loadFromFile(window, "resources/images/incoming_call_0.png");
+    incoming_call[1].loadFromFile(window, "resources/images/incoming_call_1.png");
+    incoming_call[2].loadFromFile(window, "resources/images/incoming_call_2.png");
+    incoming_call[3].loadFromFile(window, "resources/images/incoming_call_3.png");
+    incoming_call[4].loadFromFile(window, "resources/images/incoming_call_4.png");
+
+    incoming_call_texture_to_load = 3;
 
     /*Setting the default screen*/
     this->current_screen = DIALPAD;
@@ -97,7 +106,16 @@ void Phone::render(Window &window)
     {
         this->checkIncomingCallTime();
 
-        incoming_call.render(window, 0, 0, nullptr, nullptr);
+        /*Loading the texture of incoming call*/
+        incoming_call[(incoming_call_texture_to_load / 5)].render(window, 0, 0, nullptr, nullptr);
+
+        /*Choose the texture to render for incoming call*/
+        incoming_call_texture_to_load++;
+
+        if (incoming_call_texture_to_load > 20)
+        {
+            incoming_call_texture_to_load = 0;
+        }
 
         /*Add the name of person who is calling*/
         calling_person.loadFromText(window, big_font, calling_person_name, {0, 0, 0, 0});
@@ -274,15 +292,13 @@ void Phone::resetCallConnectedTime()
     start_time = 0;
 }
 
-void Phone::appendDialNumber( std::string num_string )
+void Phone::appendDialNumber(std::string num_string)
 {
-    number_string+= num_string;
-    std::cout<<number_string<< std::endl;
-  
+    number_string += num_string;
+    std::cout << number_string << std::endl;
 }
 
-void Phone::resetDialNumber(  )
+void Phone::resetDialNumber()
 {
     number_string = " ";
-  
 }
