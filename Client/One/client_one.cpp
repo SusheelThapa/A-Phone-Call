@@ -66,14 +66,17 @@ int main(int argc, char const *argv[])
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTTWO")
                     {
-                        /*Client Two has reject our call*/
-                        client_one.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
+                        /*Set the screen to call declined*/
+                        client_one.setScreen(CALL_REJECTED);
 
                         /*Stop the outgoing call Tone*/
                         client_one.stopOutgoingTone();
 
                         /*Stop the outgoing call time*/
                         client_one.endOutgoingCallTime();
+
+                        /*Play the busy tone*/
+                        client_one.playBusyTone();
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTTWO")
                     {
@@ -259,6 +262,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the count of outgoing call*/
                     client_one.endOutgoingCallTime();
+
+                    /*Stop the busy tone(if there is )*/
+                    client_one.stopBusyTone();
                 }
             }
 
@@ -359,6 +365,25 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_one.setScreen(DIALPAD);
+                }
+            }
+
+            /*Call Rejected*/
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_REJECTED)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+
+                    /*Display the calling screen*/
+                    client_one.setScreen(DIALPAD);
+
+                    /*Stop the busy tone(if there is )*/
+                    client_one.stopBusyTone();
                 }
             }
         }

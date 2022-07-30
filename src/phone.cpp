@@ -101,6 +101,12 @@ Phone::Phone(Window &window, std::string name)
 
     /*Load end call tone*/
     end_call_tone.setTonePath("resources/audio/end_call_tone.wav");
+
+    /*Load busy_audio*/
+    busy_audio.setAudioPath("resources/audio/busy-tone.wav");
+
+    /*Create callended texture*/
+    call_ended.loadFromText(window, medium_font, "Call Ended", {255, 0, 0, 255});
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -213,7 +219,19 @@ void Phone::render(Window &window)
     }
     else if (current_screen == CALL_REJECTED)
     {
-        /*Later on we will look into*/
+
+        outgoing_call.render(window, 0, 0, nullptr, nullptr);
+
+        /*Add the person name to whom he/she is calling*/
+        calling_person.loadFromText(window, big_font, calling_person_name, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_rect = {
+            (window.getWidth() - calling_person.getWidth()) / 2,
+            40,
+            calling_person.getWidth(),
+            calling_person.getHeight()};
+
+        calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
     }
     else if (current_screen == CALL_ENDED)
     {
@@ -343,4 +361,14 @@ void Phone::resetDialNumber()
 void Phone::playEndCallTone()
 {
     end_call_tone.play();
+}
+
+void Phone::playBusyTone()
+{
+    busy_audio.play();
+}
+
+void Phone::stopBusyTone()
+{
+    busy_audio.stop();
 }

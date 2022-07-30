@@ -67,13 +67,16 @@ int main(int argc, char const *argv[])
                     else if (message == "CALLDECLINEDFROMCLIENTONE")
                     {
                         /*Client Two has reject our call*/
-                        client_two.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
+                        client_two.setScreen(CALL_REJECTED);
 
                         /*Stop the outgoing call Tone*/
                         client_two.stopOutgoingTone();
 
                         /*Start the outgoing call time*/
                         client_two.startOutgoingCallTime();
+
+                        /*Play the busy tone*/
+                        client_two.playBusyTone();
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTONE")
                     {
@@ -228,6 +231,41 @@ int main(int argc, char const *argv[])
                 }
             }
 
+            /*Outgoing Call*/
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == OUTGOING_CALL)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+                    /*Print in server file that i want to end call with client two*/
+                    server_file.open(SERVER_FILE, std::ios::out);
+                    if (server_file)
+                    {
+                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Server file doesn't exist";
+                    }
+                    server_file.close();
+
+                    /*Display the calling screen*/
+                    client_two.setScreen(DIALPAD);
+
+                    /*Stop the outgoing call tone*/
+                    client_two.stopOutgoingTone();
+
+                    /*Stop the count of outgoing call*/
+                    client_two.endOutgoingCallTime();
+
+                    /*Stop the busy tone(if there is )*/
+                    client_two.stopBusyTone();
+                }
+            }
             /*Incoming Call*/
             else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == INCOMING_CALL)
             {
@@ -293,6 +331,7 @@ int main(int argc, char const *argv[])
                 }
             }
 
+            /*Call get Connected with another client*/
             else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
@@ -322,6 +361,25 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_two.setScreen(DIALPAD);
+                }
+            }
+
+            /*Call Rejected*/
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == CALL_REJECTED)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+
+                    /*Display the calling screen*/
+                    client_two.setScreen(DIALPAD);
+
+                    /*Stop the busy tone(if there is )*/
+                    client_two.stopBusyTone();
                 }
             }
         }

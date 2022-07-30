@@ -93,6 +93,10 @@ private:
 
     Tone end_call_tone;
 
+    Audio busy_audio;
+
+    Texture call_ended;
+
 public:
     Phone(Window &window, std::string name);
 
@@ -141,6 +145,10 @@ public:
     void resetDialNumber();
 
     void playEndCallTone();
+
+    void playBusyTone();
+
+    void stopBusyTone();
 
     ~Phone() {}
 };
