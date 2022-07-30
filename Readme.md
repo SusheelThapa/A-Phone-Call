@@ -63,6 +63,18 @@ A Phone call is a project which aims to demonstrate how the working of call app 
 
    ![Call in Progress](/Screenshots/call-in-progess.png)
 
+1. dialpad with numbers entered 
+
+   ![dialpad with numbers entered](/Screenshots/dialpad-with-number-entered.png)
+
+2. both client together 
+
+   ![dialpad with numbers entered](/Screenshots/both-dialpad-together.png)
+
+2. both client and receiver together 
+
+   ![dialpad with numbers entered](/Screenshots/both-client-and%20-receiver-together.png)
+
 ## Installation
 
 This project has been created and tested in linux platform.
