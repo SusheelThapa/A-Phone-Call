@@ -107,7 +107,7 @@ Phone::Phone(Window &window, std::string name)
 
     /*Create callended texture*/
     call_ended.loadFromText(window, medium_font, "Call Ended", {255, 0, 0, 255});
-    
+
     /*Initialize the dial number string*/
     dial_pad_number = " ";
 }
@@ -366,7 +366,6 @@ void Phone::appendDialNumber(std::string num_string)
     {
     dial_pad_number += num_string;
     }
-    std::cout << dial_pad_number << std::endl;
 }
 
 void Phone::resetDialNumber()
@@ -374,10 +373,6 @@ void Phone::resetDialNumber()
     dial_pad_number = " ";
 }
 
-// void Phone::loadTextureForDialNumber( SDL_Rect dialRect )
-// {
-//     dialRect.render( )
-// }
 void Phone::playEndCallTone()
 {
     end_call_tone.play();
