@@ -152,112 +152,67 @@ int main(int argc, char const *argv[])
                 }
 
                
-                /*1 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*1 number is clicked*/         
                 if ( (x >= 63 && x <= 120) && ( y >= 160 && y <= 210) )
                 {
-    
-                    client_two.playDialpadTone(1);
+                        client_two.playDialpadTone(1);
                 }
 
-                /*2 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
-
+                /*2 number is clicked*/     
                 if ( (x >= 180 && x <= 235 ) && ( y >= 155 && y <= 205) )
                 {
- 
                     client_two.playDialpadTone(2);
                 }
 
-                /*3 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*3 number is clicked*/               
                 if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
                 {
-    
                     client_two.playDialpadTone(3);
                 }
 
-                /*4 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*4 number is clicked*/          
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
-         
                     client_two.playDialpadTone(4);
                 }
 
-                /*5 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*5 number is clicked*/           
                 if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
                 {
-           
                     client_two.playDialpadTone(5);
                 }
 
-                /*6 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*6 number is clicked*/            
                 if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
                 {
-         
                     client_two.playDialpadTone(6);
                 }
 
-                /*7 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
+                /*7 number is clicked*/           
                 if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
                 {
-              
                     client_two.playDialpadTone(7);
                 }
 
                 /*8 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
                 if (x >=180  && x <= 235 && y >= 375 && y <= 425 )
                 {
-              
                     client_two.playDialpadTone(8);
                 }
 
                 /*9 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
                 if (x >= 295 && x <= 350 && y >= 380 && y <= 425 )
                 {
-                
                     client_two.playDialpadTone(9);
                 }
 
-                /* * number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
-                if (x >= 62 && x <= 120 && y >= 485 && y <= 535 )
-                {
-  
-                }
-
                 /* 0 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
                 if (x >= 180 && x <= 235 && y >= 485 && y <= 531 )
                 {
-                  
                     client_two.playDialpadTone(0);
                 }
 
-                /* # number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
-                if (x >= 295 && x <= 350 && y >= 485 && y <= 530 )
-                {
-                  
-                }
+
             }
 
             /*Outgoing Call*/
