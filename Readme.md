@@ -30,25 +30,50 @@ A Phone call is a project which aims to demonstrate how the working of call app 
 
 ### Phase Two
 
-**_Under Construction_**
-
+- [x] Opening screen animation with different color for different clients
+- [x] Made every button clickable playing specific sound for specific button
+- [x] Dial pad number appearing when we press numbers
+- [x] Limited number length to 10 digits
+- [x] Backspace button added with functionality to remove one number when pressed
+- [x] Refreshing dialpad entered number when green call button is pressed
+- [x] Ongoing call sound apperance after call button is pressed
+- [x] When pressed end button, shows red text as "Call Ended"
+- [x] When the receiver cuts the call, specific NCELL, unable to call sound appearance
+- [x] Iphone incoming call ringtone set with required amplitude
+- [x] Outgoing call sound and Incoming call sound set nearly to equal intensity
+- [x] Fixed different bugs related to backspace error when no number is pressed, 
 ## Screenshots
+
+1. Boot on Iphone
+   ![Boot on Iphone](/Screenshots/switch-on.png)
 
 1. Dial Pad Screen
 
-   ![Dial Pad Screen](/Screenshots/dialpad.png)
+   ![Dial Pad Screen](/Screenshots/dial_pad.png)
 
-2. Incoming Call Screen
+1. Incoming Call Screen
 
    ![Incoming Call Screen](/Screenshots/incoming-call.png)
 
-3. Outgoing Call Screen
+1. Outgoing Call Screen
 
    ![Outgoing Call Screen](/Screenshots/outgoing-call.png)
 
-4. Call in progress screen
+1. Call in progress screen
 
    ![Call in Progress](/Screenshots/call-in-progess.png)
+
+1. dialpad with numbers entered 
+
+   ![dialpad with numbers entered](/Screenshots/dialpad-with-number-entered.png)
+
+2. both client together 
+
+   ![dialpad with numbers entered](/Screenshots/both-dialpad-together.png)
+
+2. both client and receiver together 
+
+   ![dialpad with numbers entered](/Screenshots/both-client-and%20-receiver-together.png)
 
 ## Installation
 

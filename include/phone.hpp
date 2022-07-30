@@ -1,9 +1,12 @@
 #pragma once
 
-#include "texture.hpp"
-#include "window.hpp"
-#include <string>
 #include <SDL2/SDL_ttf.h>
+#include <string>
+
+#include "window.hpp"
+#include "texture.hpp"
+#include "tone.hpp"
+#include "audio.hpp"
 
 enum PhoneScreen
 {
@@ -33,10 +36,19 @@ public:
     int getSeconds();
 
     Time operator++(int);
+
+    void resetTime();
 };
 
 class Phone
 {
+private:
+    enum Status
+    {
+        SWITCH_OFF,
+        SWITCH_ON
+    };
+
 private:
     std::string name;
 
@@ -46,17 +58,44 @@ private:
 
     Texture dialpad_screen;
     Texture outgoing_call;
-    Texture incoming_call;
+    Texture *incoming_call;
+
+    int incoming_call_texture_to_load;
 
     Texture calling_person;
     Texture call_time;
 
+    Texture dial_number;
+    std::string dial_pad_number;
+
     TTF_Font *big_font;
+
     TTF_Font *medium_font;
 
     int start_time; // Dummy argument to keep track how call connected time
 
     Time call_connected_time;
+
+    Tone dialpad_tone[10];
+
+    Audio ringtone;
+    Audio outgoing_tone;
+
+    int outgoing_call_time;
+
+    int incoming_call_time;
+
+    Status phone_status;
+
+    Texture *switch_on;
+
+    int switch_on_texture_to_display;
+
+    Tone end_call_tone;
+
+    Audio busy_audio;
+
+    Texture call_ended;
 
 public:
     Phone(Window &window, std::string name);
@@ -72,6 +111,46 @@ public:
     void startCallTime();
 
     void endCallTime();
+
+    void startIncomingCallTime();
+
+    void endIncomingCallTime();
+
+    void checkIncomingCallTime();
+
+    void startOutgoingCallTime();
+
+    void endOutgoingCallTime();
+
+    void checkOutgoingCallTime();
+
+    void playDialpadTone(int dialpad_number);
+
+    void playRingtone();
+
+    void stopRingtone();
+
+    void playOutgoingTone();
+
+    void stopOutgoingTone();
+
+    void startCallConnectedTime();
+
+    void updateCallConnectedTime();
+
+    void resetCallConnectedTime();
+
+    void appendDialNumber(std::string number);
+
+    void resetDialNumber();
+
+    void removeOneDialNumber();
+
+    void playEndCallTone();
+
+    void playBusyTone();
+
+    void stopBusyTone();
 
     ~Phone() {}
 };

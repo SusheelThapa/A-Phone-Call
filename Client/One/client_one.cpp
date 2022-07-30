@@ -1,7 +1,8 @@
 #include <iostream>
-#include "window.hpp"
 #include <fstream>
-// #include "texture.hpp"
+#include <string>
+
+#include "window.hpp"
 #include "phone.hpp"
 
 #define SERVER_FILE "Server/server.txt"
@@ -54,26 +55,56 @@ int main(int argc, char const *argv[])
                         /*Show incoming call screen*/
                         client_one.setScreen(INCOMING_CALL);
 
+                        /*Set the name of person who have called*/
                         client_one.setCallingPersonName("Client Two");
+
+                        /*Play the incoming call sound*/
+                        client_one.playRingtone();
+
+                        /*Start incoming call time*/
+                        client_one.startIncomingCallTime();
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTTWO")
                     {
-                        /*Client Two has reject our call*/
-                        client_one.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
+                        /*Set the screen to call declined*/
+                        client_one.setScreen(CALL_REJECTED);
+
+                        /*Stop the outgoing call Tone*/
+                        client_one.stopOutgoingTone();
+
+                        /*Stop the outgoing call time*/
+                        client_one.endOutgoingCallTime();
+
+                        /*Play the busy tone*/
+                        client_one.playBusyTone();
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTTWO")
                     {
                         /*Client two has receive our call*/
-                        client_one.setScreen(CALL_CONNECTED); /*later it will be replaced by received call screen*/
+                        client_one.setScreen(CALL_CONNECTED);
 
+                        /*Set the name of person who is calling*/
                         client_one.setCallingPersonName("Client Two");
+
+                        /*Stop the outgoing call tone*/
+                        client_one.stopOutgoingTone();
+
+                        /*Stop outgoing call time*/
+                        client_one.endOutgoingCallTime();
+
+                        /*Start call time connected*/
+                        client_one.startCallConnectedTime();
                     }
                     else if (message == "CALLENDEDFROMCLIENTTWO")
                     {
                         /*Call had been ended by client two*/
-                        client_one.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
+                        client_one.setScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
 
-                        client_one.setCallingPersonName("");
+                        /*Stop the ringtone*/
+                        client_one.stopRingtone();
+
+                        /*Reset the call connected time*/
+                        client_one.resetCallConnectedTime();
                     }
                 }
 
@@ -119,6 +150,91 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_one.setScreen(OUTGOING_CALL);
+
+                    /*Play outgoing call sound*/
+                    client_one.playOutgoingTone();
+
+                    /*Start the outgoing call time*/
+                    client_one.startOutgoingCallTime();
+
+                    /*Resetting dialpad number status after we press calling green button*/
+                    client_one.resetDialNumber();
+                }
+
+                /* Section for back press in dial pad */
+                if ((x >= 300 && x <= 350) && (y >= 610 && y <= 635))
+                {
+                    client_one.removeOneDialNumber();
+                }
+
+                /*1 number is clicked*/
+                else if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
+                {
+                    client_one.appendDialNumber("1");
+                    client_one.playDialpadTone(1);
+                }
+
+                /*2 number is clicked*/
+                else if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
+                {
+                    client_one.appendDialNumber("2");
+                    client_one.playDialpadTone(2);
+                }
+
+                /*3 number is clicked*/
+                else if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
+                {
+                    client_one.appendDialNumber("3");
+                    client_one.playDialpadTone(3);
+                }
+
+                /*4 number is clicked*/
+                else if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
+                {
+                    client_one.appendDialNumber("4");
+                    client_one.playDialpadTone(4);
+                }
+
+                /*5 number is clicked*/
+                else if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
+                {
+                    client_one.appendDialNumber("5");
+                    client_one.playDialpadTone(5);
+                }
+
+                /*6 number is clicked*/
+                else if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
+                {
+                    client_one.appendDialNumber("6");
+                    client_one.playDialpadTone(6);
+                }
+
+                /*7 number is clicked*/
+                else if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
+                {
+                    client_one.appendDialNumber("7");
+                    client_one.playDialpadTone(7);
+                }
+
+                /*8 number is clicked*/
+                else if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
+                {
+                    client_one.appendDialNumber("8");
+                    client_one.playDialpadTone(8);
+                }
+
+                /*9 number is clicked*/
+                else if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
+                {
+                    client_one.appendDialNumber("9");
+                    client_one.playDialpadTone(9);
+                }
+
+                /* 0 number is clicked*/
+                else if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
+                {
+                    client_one.appendDialNumber("0");
+                    client_one.playDialpadTone(0);
                 }
             }
 
@@ -145,7 +261,19 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setScreen(CALL_ENDED);
+
+                    /*Stop the outgoing call tone*/
+                    client_one.stopOutgoingTone();
+
+                    /*Stop the count of outgoing call*/
+                    client_one.endOutgoingCallTime();
+
+                    /*Stop the busy tone(if there is )*/
+                    client_one.stopBusyTone();
+
+                    /*Play end call tone*/
+                    client_one.playEndCallTone();
                 }
             }
 
@@ -176,6 +304,12 @@ int main(int argc, char const *argv[])
 
                     /*Display the calling screen*/
                     client_one.setScreen(DIALPAD);
+
+                    /*Stop the ringtone*/
+                    client_one.stopRingtone();
+
+                    /*Stop incoming call time*/
+                    client_one.endIncomingCallTime();
                 }
 
                 /*Receive button is pressed*/
@@ -198,10 +332,17 @@ int main(int argc, char const *argv[])
                     client_one.setCallingPersonName("Client Two");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(CALL_CONNECTED); /*Must be replaced with call received screen*/
+                    client_one.setScreen(CALL_CONNECTED);
+
+                    /*Stop the ringtone*/
+                    client_one.stopRingtone();
+
+                    /*Stop incoming call time*/
+                    client_one.endIncomingCallTime();
                 }
             }
 
+            /*Call get Connected with another client*/
             else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
@@ -225,18 +366,47 @@ int main(int argc, char const *argv[])
                     server_file.close();
 
                     /*Display the calling screen*/
+                    client_one.setScreen(CALL_ENDED);
+
+                    client_one.playEndCallTone();
+                }
+            }
+
+            /*Call Rejected*/
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_REJECTED)
+            {
+                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                /*End button is pressed*/
+                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                {
+
+                    /*Display the calling screen*/
                     client_one.setScreen(DIALPAD);
+
+                    /*Stop the busy tone(if there is )*/
+                    client_one.stopBusyTone();
                 }
             }
         }
 
         /*Clear the window with the color provided*/
-        window.clear({125, 234, 254, 164});
+        window.clear({0, 255,0,255});
 
         client_one.render(window);
 
         /*Render all the context we have written in background in the window*/
         window.present();
+
+        /*This is used to render the CALL_ENDED screen so that call end tone get played*/
+        if (client_one.getScreen() == CALL_ENDED)
+        {
+            SDL_Delay(1500);
+
+            client_one.setScreen(DIALPAD);
+        }
     }
 
     return 0;
