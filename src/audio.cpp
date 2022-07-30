@@ -20,6 +20,7 @@ void Audio::setAudioPath(std::string audio_path)
     if (this->audio == nullptr)
     {
         std::cout << "Audio file cannot be loaded\n";
+        std::cout<< this->audio_path << "\n";
     }
 }
 

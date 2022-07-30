@@ -23,6 +23,12 @@ Time Time::operator++(int)
     return Time(sec, min);
 }
 
+void Time::timeReset()
+{
+    min = 0 ; 
+    sec = 0 ;
+}
+
 Phone::Phone(Window &window, std::string name)
 {
     /*Loading the required Texture*/
