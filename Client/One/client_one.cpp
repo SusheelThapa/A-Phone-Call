@@ -22,8 +22,7 @@ int main(int argc, char const *argv[])
     Window window("Client One");
     Phone client_one(window, "Client One");
     SDL_Event e;
-    std::string NumberString ="";
-
+    std::string NumberString;
 
     while (!window.isWindowClosed())
     {
@@ -111,7 +110,6 @@ int main(int argc, char const *argv[])
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
-                std::cout<<"X: "<< x << ", Y: "<< y << std::endl;
 
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
@@ -138,62 +136,112 @@ int main(int argc, char const *argv[])
                     client_one.playOutgoingTone();
                 }
 
-                /*0 number is clicked*/
-                // Print the number that is being clicked
-                // Play the sound of respect number
-                if ( x >= 63 && x <= 120 && y >=160 && y<= 210 )
-                {
-                    NumberString+= "1";   
-                    std::cout<<"\n" << NumberString;
-                    client_one.playDialpadTone(1);
-                    
-
-                }
-
                 /*1 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
-
-                   if ( x >= 180 && x <= 235 && y >=155 && y<= 205 )
+                if ( (x >= 63 && x <= 120) && ( y >= 160 && y <= 210) )
                 {
-                    NumberString+= "2";   
-                    
-                    std::cout<<NumberString;
-                    client_one.playDialpadTone(2);
-
+    
+                    client_one.playDialpadTone(1);
                 }
 
                 /*2 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
 
+                if ( (x >= 180 && x <= 235 ) && ( y >= 155 && y <= 205) )
+                {
+ 
+                    client_one.playDialpadTone(2);
+                }
+
                 /*3 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
+                {
+    
+                    client_one.playDialpadTone(3);
+                }
 
                 /*4 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
+                {
+         
+                    client_one.playDialpadTone(4);
+                }
 
                 /*5 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
+                {
+           
+                    client_one.playDialpadTone(5);
+                }
 
                 /*6 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
+                {
+         
+                    client_one.playDialpadTone(6);
+                }
 
                 /*7 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
+                {
+              
+                    client_one.playDialpadTone(7);
+                }
 
                 /*8 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >=180  && x <= 235 && y >= 375 && y <= 425 )
+                {
+              
+                    client_one.playDialpadTone(8);
+                }
 
                 /*9 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if (x >= 295 && x <= 350 && y >= 380 && y <= 425 )
+                {
+                
+                    client_one.playDialpadTone(9);
+                }
+
+                /* * number is clicked*/
+                // Print the number that is being clicked
+                // Play the sound of respect number
+                if (x >= 62 && x <= 120 && y >= 485 && y <= 535 )
+                {
+  
+                }
+
+                /* 0 number is clicked*/
+                // Print the number that is being clicked
+                // Play the sound of respect number
+                if (x >= 180 && x <= 235 && y >= 485 && y <= 531 )
+                {
+                  
+                    client_one.playDialpadTone(0);
+                }
+
+                /* # number is clicked*/
+                // Print the number that is being clicked
+                // Play the sound of respect number
+                if (x >= 295 && x <= 350 && y >= 485 && y <= 530 )
+                {
+                  
+                }
             }
 
             /*Outgoing Call*/
