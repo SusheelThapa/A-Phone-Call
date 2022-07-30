@@ -185,7 +185,7 @@ int main(int argc, char const *argv[])
                 /*4 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
-                    client_one.appendDialNumber("3");
+                    client_one.appendDialNumber("4");
                     client_one.playDialpadTone(4);
                 }
 
