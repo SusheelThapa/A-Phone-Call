@@ -157,98 +157,74 @@ int main(int argc, char const *argv[])
                     client_two.startOutgoingCallTime();
                 }
 
-                /*1 number is clicked*/
+                 /*1 number is clicked*/
                 if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
                 {
+                    client_two.appendDialNumber("1") ;
                     client_two.playDialpadTone(1);
                 }
 
                 /*2 number is clicked*/
                 if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
                 {
+                    client_two.appendDialNumber("2") ;
                     client_two.playDialpadTone(2);
                 }
 
                 /*3 number is clicked*/
                 if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
                 {
+                    client_two.appendDialNumber("3") ;
                     client_two.playDialpadTone(3);
                 }
 
                 /*4 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
+                    client_two.appendDialNumber("3") ;
                     client_two.playDialpadTone(4);
                 }
 
                 /*5 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
                 {
+                    client_two.appendDialNumber("5") ;                    
                     client_two.playDialpadTone(5);
                 }
 
                 /*6 number is clicked*/
                 if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
                 {
+                    client_two.appendDialNumber("6") ;                    
                     client_two.playDialpadTone(6);
                 }
 
                 /*7 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
                 {
+                    client_two.appendDialNumber("7") ;
                     client_two.playDialpadTone(7);
                 }
 
                 /*8 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
                 {
+                    client_two.appendDialNumber("8") ;
                     client_two.playDialpadTone(8);
                 }
 
                 /*9 number is clicked*/
                 if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
                 {
+                    client_two.appendDialNumber("9") ;                
                     client_two.playDialpadTone(9);
                 }
 
                 /* 0 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
                 {
+                    client_two.appendDialNumber("0") ;                    
                     client_two.playDialpadTone(0);
-                }
-            }
-
-            /*Outgoing Call*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == OUTGOING_CALL)
-            {
-                /*Getting the position of the place where we have click on the window*/
-                int x, y;
-                SDL_GetMouseState(&x, &y);
-
-                /*End button is pressed*/
-                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
-                {
-                    /*Print in server file that i want to edn call with client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
-                    {
-
-                        server_file << "CALLENDEDBYCLIENTTWO" << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "Server file doesn't exist";
-                    }
-                    server_file.close();
-
-                    /*Display the calling screen*/
-                    client_two.setScreen(DIALPAD);
-
-                    /*Play outgoing call sound*/
-                    client_two.stopOutgoingTone();
-
-                    /*Stop the count of outgoing call tone*/
-                    client_two.endOutgoingCallTime();
                 }
             }
 

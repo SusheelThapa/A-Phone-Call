@@ -22,7 +22,6 @@ int main(int argc, char const *argv[])
     Window window("Client One");
     Phone client_one(window, "Client One");
     SDL_Event e;
-    std::string NumberString;
 
     while (!window.isWindowClosed())
     {
@@ -162,62 +161,70 @@ int main(int argc, char const *argv[])
                 /*1 number is clicked*/
                 if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
                 {
+                    client_one.appendDialNumber("1") ;
                     client_one.playDialpadTone(1);
                 }
 
                 /*2 number is clicked*/
                 if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
                 {
+                    client_one.appendDialNumber("2") ;
                     client_one.playDialpadTone(2);
                 }
 
                 /*3 number is clicked*/
                 if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
                 {
-
+                    client_one.appendDialNumber("3") ;
                     client_one.playDialpadTone(3);
                 }
 
                 /*4 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
+                    client_one.appendDialNumber("3") ;
                     client_one.playDialpadTone(4);
                 }
 
                 /*5 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
                 {
+                    client_one.appendDialNumber("5") ;                    
                     client_one.playDialpadTone(5);
                 }
 
                 /*6 number is clicked*/
                 if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
                 {
+                    client_one.appendDialNumber("6") ;                    
                     client_one.playDialpadTone(6);
                 }
 
                 /*7 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
                 {
+                    client_one.appendDialNumber("7") ;
                     client_one.playDialpadTone(7);
                 }
 
                 /*8 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
                 {
-
+                    client_one.appendDialNumber("8") ;
                     client_one.playDialpadTone(8);
                 }
 
                 /*9 number is clicked*/
                 if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
                 {
+                    client_one.appendDialNumber("9") ;                
                     client_one.playDialpadTone(9);
                 }
 
                 /* 0 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
                 {
+                    client_one.appendDialNumber("0") ;                    
                     client_one.playDialpadTone(0);
                 }
             }
