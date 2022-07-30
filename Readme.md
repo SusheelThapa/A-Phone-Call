@@ -44,19 +44,22 @@ A Phone call is a project which aims to demonstrate how the working of call app 
 - [x] Fixed different bugs related to backspace error when no number is pressed, 
 ## Screenshots
 
+1. Boot on Iphone
+   ![Boot on Iphone](/Screenshots/switch-on.png)
+
 1. Dial Pad Screen
 
    ![Dial Pad Screen](/Screenshots/dial_pad.png)
 
-2. Incoming Call Screen
+1. Incoming Call Screen
 
    ![Incoming Call Screen](/Screenshots/incoming-call.png)
 
-3. Outgoing Call Screen
+1. Outgoing Call Screen
 
    ![Outgoing Call Screen](/Screenshots/outgoing-call.png)
 
-4. Call in progress screen
+1. Call in progress screen
 
    ![Call in Progress](/Screenshots/call-in-progess.png)
 
