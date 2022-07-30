@@ -399,7 +399,11 @@ void Phone::resetDialNumber()
 
 void Phone::removeOneDialNumber()
 {
-    dial_pad_number.pop_back();
+    if (dial_pad_number != " " )
+    {
+        dial_pad_number.pop_back();
+    }
+
 }
 
 void Phone::playEndCallTone()
