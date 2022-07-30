@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "window.hpp"
 #include "phone.hpp"
@@ -21,6 +22,8 @@ int main(int argc, char const *argv[])
     Window window("Client One");
     Phone client_one(window, "Client One");
     SDL_Event e;
+    std::string NumberString ="";
+
 
     while (!window.isWindowClosed())
     {
@@ -108,6 +111,7 @@ int main(int argc, char const *argv[])
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
+                std::cout<<"X: "<< x << ", Y: "<< y << std::endl;
 
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
@@ -137,10 +141,27 @@ int main(int argc, char const *argv[])
                 /*0 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+                if ( x >= 63 && x <= 120 && y >=160 && y<= 210 )
+                {
+                    NumberString+= "1";   
+                    std::cout<<"\n" << NumberString;
+                    client_one.playDialpadTone(1);
+                    
+
+                }
 
                 /*1 number is clicked*/
                 // Print the number that is being clicked
                 // Play the sound of respect number
+
+                   if ( x >= 180 && x <= 235 && y >=155 && y<= 205 )
+                {
+                    NumberString+= "2";   
+                    
+                    std::cout<<NumberString;
+                    client_one.playDialpadTone(2);
+
+                }
 
                 /*2 number is clicked*/
                 // Print the number that is being clicked
