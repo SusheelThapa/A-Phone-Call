@@ -273,3 +273,16 @@ void Phone::resetCallConnectedTime()
     call_connected_time.resetTime();
     start_time = 0;
 }
+
+void Phone::appendDialNumber( std::string num_string )
+{
+    number_string+= num_string;
+    std::cout<<number_string<< std::endl;
+  
+}
+
+void Phone::resetDialNumber(  )
+{
+    number_string = " ";
+  
+}
