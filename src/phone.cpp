@@ -23,10 +23,10 @@ Time Time::operator++(int)
     return Time(sec, min);
 }
 
-void Time::timeReset()
+void Time::resetTime()
 {
-    min = 0 ; 
-    sec = 0 ;
+    min = 0;
+    sec = 0;
 }
 
 Phone::Phone(Window &window, std::string name)
@@ -255,4 +255,9 @@ void Phone::playOutgoingTone()
 void Phone::stopOutgoingTone()
 {
     outgoing_tone.stop();
+}
+
+void Phone::resetCallConnectedTime()
+{
+    call_connected_time.resetTime();
 }

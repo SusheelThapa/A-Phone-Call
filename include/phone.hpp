@@ -37,7 +37,7 @@ public:
 
     Time operator++(int);
 
-    void timeReset();
+    void resetTime();
 };
 
 class Phone
@@ -108,6 +108,8 @@ public:
     void playOutgoingTone();
 
     void stopOutgoingTone();
+
+    void resetCallConnectedTime();
 
     ~Phone() {}
 };
