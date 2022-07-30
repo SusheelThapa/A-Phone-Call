@@ -36,6 +36,8 @@ public:
     int getSeconds();
 
     Time operator++(int);
+
+    void timeReset();
 };
 
 class Phone
