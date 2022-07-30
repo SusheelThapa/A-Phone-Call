@@ -144,6 +144,8 @@ public:
 
     void resetDialNumber();
 
+    void removeOneDialNumber();
+
     void playEndCallTone();
 
     void playBusyTone();

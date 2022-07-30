@@ -397,6 +397,11 @@ void Phone::resetDialNumber()
     dial_pad_number = " ";
 }
 
+void Phone::removeOneDialNumber()
+{
+    dial_pad_number.pop_back();
+}
+
 void Phone::playEndCallTone()
 {
     end_call_tone.play();

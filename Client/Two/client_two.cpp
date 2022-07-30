@@ -155,8 +155,16 @@ int main(int argc, char const *argv[])
 
                     /*Start the outgoing call time*/
                     client_two.startOutgoingCallTime();
-
                     
+                    /*Resetting dialpad number status after we press calling green button*/
+                    client_two.resetDialNumber();
+                    
+                }
+
+                /* Section for back press in dial pad */
+                if ((x >= 300 && x <= 350) && (y >= 610 && y <= 635) )
+                {
+                   client_two.removeOneDialNumber();
                 }
 
                 /*1 number is clicked*/

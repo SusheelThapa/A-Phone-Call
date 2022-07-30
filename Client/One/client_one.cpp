@@ -129,6 +129,7 @@ int main(int argc, char const *argv[])
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
+                // std::cout<< "x: "<< x << " , " << "y: "<< y << std::endl;
 
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
@@ -161,15 +162,22 @@ int main(int argc, char const *argv[])
                     client_one.resetDialNumber();
                 }
 
+
+                /* Section for back press in dial pad */
+                if ((x >= 300 && x <= 350) && (y >= 610 && y <= 635) )
+                {
+                   client_one.removeOneDialNumber();
+                }
+
                 /*1 number is clicked*/
-                if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
+                if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210) )
                 {
                     client_one.appendDialNumber("1");
                     client_one.playDialpadTone(1);
                 }
 
                 /*2 number is clicked*/
-                if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
+                if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205) )
                 {
                     client_one.appendDialNumber("2");
                     client_one.playDialpadTone(2);
