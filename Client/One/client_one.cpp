@@ -61,25 +61,39 @@ int main(int argc, char const *argv[])
 
                         /*Play the incoming call sound*/
                         client_one.playRingtone();
+
+                        /*Start incoming call time*/
+                        client_one.startIncomingCallTime();
                     }
                     else if (message == "CALLDECLINEDFROMCLIENTTWO")
                     {
                         /*Client Two has reject our call*/
                         client_one.setScreen(DIALPAD); // Later on we will say to user sth like besta xa
 
+                        /*Stop the outgoing call Tone*/
                         client_one.stopOutgoingTone();
+
+                        /*Stop the outgoing call time*/
+                        client_one.endOutgoingCallTime();
                     }
                     else if (message == "CALLRECEIVEDFROMCLIENTTWO")
                     {
                         /*Client two has receive our call*/
-                        client_one.setScreen(CALL_CONNECTED); /*later it will be replaced by received call screen*/
+                        client_one.setScreen(CALL_CONNECTED);
 
+                        /*Set the name of person who is calling*/
                         client_one.setCallingPersonName("Client Two");
 
+                        /*Stop the outgoing call tone*/
                         client_one.stopOutgoingTone();
+
+                        /*Stop outgoing call time*/
+                        client_one.endOutgoingCallTime();
                     }
                     else if (message == "CALLENDEDFROMCLIENTTWO")
                     {
+                        /*<<<<<<<<Need to how call time is being reset>>>>>>>>>>>>>>>>>>>*/
+
                         /*Call had been ended by client two*/
                         client_one.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
 
@@ -134,6 +148,9 @@ int main(int argc, char const *argv[])
 
                     /*Play outgoing call sound*/
                     client_one.playOutgoingTone();
+
+                    /*Start the outgoing call time*/
+                    client_one.startOutgoingCallTime();
                 }
 
                 /*1 number is clicked*/
@@ -271,6 +288,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the outgoing call tone*/
                     client_one.stopOutgoingTone();
+
+                    /*Stop the count of outgoing call*/
+                    client_one.endOutgoingCallTime();
                 }
             }
 
@@ -304,6 +324,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
+
+                    /*Stop incoming call time*/
+                    client_one.endIncomingCallTime();
                 }
 
                 /*Receive button is pressed*/
@@ -330,6 +353,9 @@ int main(int argc, char const *argv[])
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
+
+                    /*Stop incoming call time*/
+                    client_one.endIncomingCallTime();
                 }
             }
 

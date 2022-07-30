@@ -44,6 +44,10 @@ Phone::Phone(Window &window, std::string name)
     /*Setting the value of start time after call connected*/
     start_time = 0;
 
+    /*Setting the value of incoming and outgoing call time*/
+    incoming_call_time = 0;
+    outgoing_call_time = 0;
+
     /*Loading Dialpad tone*/
     dialpad_tone[0].setTonePath("resources/audio/tone-zero.wav");
     dialpad_tone[1].setTonePath("resources/audio/tone-one.wav");
@@ -78,12 +82,15 @@ PhoneScreen Phone::getScreen()
 
 void Phone::render(Window &window)
 {
+
     if (current_screen == DIALPAD)
     {
         dialpad_screen.render(window, 0, 0, nullptr, nullptr);
     }
     else if (current_screen == INCOMING_CALL)
     {
+        this->checkIncomingCallTime();
+
         incoming_call.render(window, 0, 0, nullptr, nullptr);
 
         /*Add the name of person who is calling*/
@@ -99,6 +106,8 @@ void Phone::render(Window &window)
     }
     else if (current_screen == OUTGOING_CALL)
     {
+        this->checkOutgoingCallTime();
+
         outgoing_call.render(window, 0, 0, nullptr, nullptr);
 
         /*Add the person name to whom he/she is calling*/
@@ -164,6 +173,58 @@ void Phone::startCallTime()
 void Phone::endCallTime()
 {
     start_time = 0;
+}
+
+void Phone::startIncomingCallTime()
+{
+    incoming_call_time = SDL_GetTicks();
+}
+
+void Phone::endIncomingCallTime()
+{
+    incoming_call_time = 0;
+}
+
+void Phone::checkIncomingCallTime()
+{
+    if ((SDL_GetTicks() - incoming_call_time) / 1000 > 15)
+    {
+        /*Stop the ringtone*/
+        this->stopRingtone();
+
+        /*Change the current screen to dial pad*/
+        this->current_screen = DIALPAD;
+
+        /*Reset incoming call time*/
+        incoming_call_time = 0;
+    }
+}
+void Phone::startOutgoingCallTime()
+{
+    outgoing_call_time = SDL_GetTicks();
+}
+
+void Phone::endOutgoingCallTime()
+{
+    outgoing_call_time = 0;
+}
+
+void Phone::checkOutgoingCallTime()
+{
+    /*When the outgoing has lasted for more that 10 sec i.e phone hasn't been received then we will play besta tone*/
+
+    /*For now if the outgoing call has gone for 15 sec we will close call*/
+    if ((SDL_GetTicks() - outgoing_call_time) / 1000 > 15)
+    {
+        /*Stop the outgoing call tone*/
+        this->stopOutgoingTone();
+
+        /*Change the current screen to dialpad*/
+        this->current_screen = DIALPAD;
+
+        /*Reset the outcoming call time*/
+        outgoing_call_time = 0;
+    }
 }
 
 void Phone::playDialpadTone(int dialpad_number)

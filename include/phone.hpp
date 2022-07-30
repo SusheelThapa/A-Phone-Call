@@ -66,6 +66,10 @@ private:
     Audio ringtone;
     Audio outgoing_tone;
 
+    int outgoing_call_time;
+
+    int incoming_call_time;
+
 public:
     Phone(Window &window, std::string name);
 
@@ -80,6 +84,18 @@ public:
     void startCallTime();
 
     void endCallTime();
+
+    void startIncomingCallTime();
+
+    void endIncomingCallTime();
+
+    void checkIncomingCallTime();
+
+    void startOutgoingCallTime();
+
+    void endOutgoingCallTime();
+
+    void checkOutgoingCallTime();
 
     void playDialpadTone(int dialpad_number);
 
