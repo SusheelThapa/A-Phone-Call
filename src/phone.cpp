@@ -98,6 +98,9 @@ Phone::Phone(Window &window, std::string name)
 
     /*Set the texture to display while switch on the phone*/
     switch_on_texture_to_display = 0;
+
+    /*Load end call tone*/
+    end_call_tone.setTonePath("resources/audio/end_call_tone.wav");
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -335,4 +338,9 @@ void Phone::appendDialNumber(std::string num_string)
 void Phone::resetDialNumber()
 {
     number_string = " ";
+}
+
+void Phone::playEndCallTone()
+{
+    end_call_tone.play();
 }

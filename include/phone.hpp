@@ -91,6 +91,8 @@ private:
 
     int switch_on_texture_to_display;
 
+    Tone end_call_tone;
+
 public:
     Phone(Window &window, std::string name);
 
@@ -137,6 +139,8 @@ public:
     void appendDialNumber(std::string number);
 
     void resetDialNumber();
+
+    void playEndCallTone();
 
     ~Phone() {}
 };
