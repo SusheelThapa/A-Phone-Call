@@ -89,17 +89,23 @@ int main(int argc, char const *argv[])
 
                         /*Stop outgoing call time*/
                         client_one.endOutgoingCallTime();
+
+                        /*Start call time connected*/
+                        client_one.startCallConnectedTime();
                     }
                     else if (message == "CALLENDEDFROMCLIENTTWO")
                     {
-                        /*<<<<<<<<Need to how call time is being reset>>>>>>>>>>>>>>>>>>>*/
-
                         /*Call had been ended by client two*/
                         client_one.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
 
-                        client_one.setCallingPersonName("");
+                        /*Reset the calling person name*/
+                        client_one.setCallingPersonName(" ");
 
+                        /*Stop the ringtone*/
                         client_one.stopRingtone();
+
+                        /*Reset the call connected time*/
+                        client_one.resetCallConnectedTime();
                     }
                 }
 

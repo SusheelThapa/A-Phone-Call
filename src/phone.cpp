@@ -143,13 +143,7 @@ void Phone::render(Window &window)
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
 
         /*Updating the call time*/
-        if ((SDL_GetTicks() - start_time) / 1000 > 1)
-        {
-            start_time = SDL_GetTicks();
-
-            /*Increase Time object*/
-            call_connected_time++;
-        }
+        this->updateCallConnectedTime();
 
         /*Display the call_time*/
         call_time.loadFromText(window, medium_font, std::to_string(call_connected_time.getMinutes()) + ":" + std::to_string(call_connected_time.getSeconds()), {0, 0, 0, 0});
@@ -257,7 +251,25 @@ void Phone::stopOutgoingTone()
     outgoing_tone.stop();
 }
 
+void Phone::startCallConnectedTime()
+{
+    this->call_connected_time = 0;
+    this->start_time = SDL_GetTicks();
+}
+
+void Phone::updateCallConnectedTime()
+{
+    if ((SDL_GetTicks() - this->start_time) / 1000 > 1)
+    {
+        this->start_time = SDL_GetTicks();
+
+        /*Increase Time object*/
+        this->call_connected_time++;
+    }
+}
+
 void Phone::resetCallConnectedTime()
 {
     call_connected_time.resetTime();
+    start_time = 0;
 }

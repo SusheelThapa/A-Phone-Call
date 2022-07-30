@@ -88,17 +88,23 @@ int main(int argc, char const *argv[])
 
                         /*Stop the outgoing call time*/
                         client_two.endOutgoingCallTime();
+
+                        /*Start call time connected*/
+                        client_two.startCallConnectedTime();
                     }
                     else if (message == "CALLENDEDFROMCLIENTONE")
                     {
-                        /*<<<<<<<<Need to how call time is being reset>>>>>>>>>>>>>>>>>>>*/
-
                         /*Call had been ended by client two*/
                         client_two.setScreen(DIALPAD); /*Later on we will display sth like money deducted*/
 
+                        /*Reset the calling person name*/
                         client_two.setCallingPersonName(" ");
 
+                        /*Stop the ringtone*/
                         client_two.stopRingtone();
+
+                        /*Reset the call connected time*/
+                        client_two.resetCallConnectedTime();
                     }
                 }
 
@@ -151,68 +157,65 @@ int main(int argc, char const *argv[])
                     client_two.startOutgoingCallTime();
                 }
 
-               
-                /*1 number is clicked*/         
-                if ( (x >= 63 && x <= 120) && ( y >= 160 && y <= 210) )
+                /*1 number is clicked*/
+                if ((x >= 63 && x <= 120) && (y >= 160 && y <= 210))
                 {
-                        client_two.playDialpadTone(1);
+                    client_two.playDialpadTone(1);
                 }
 
-                /*2 number is clicked*/     
-                if ( (x >= 180 && x <= 235 ) && ( y >= 155 && y <= 205) )
+                /*2 number is clicked*/
+                if ((x >= 180 && x <= 235) && (y >= 155 && y <= 205))
                 {
                     client_two.playDialpadTone(2);
                 }
 
-                /*3 number is clicked*/               
+                /*3 number is clicked*/
                 if (x >= 295 && x <= 350 && y >= 160 && y <= 205)
                 {
                     client_two.playDialpadTone(3);
                 }
 
-                /*4 number is clicked*/          
+                /*4 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 265 && y <= 315)
                 {
                     client_two.playDialpadTone(4);
                 }
 
-                /*5 number is clicked*/           
+                /*5 number is clicked*/
                 if (x >= 180 && x <= 235 && y >= 260 && y <= 315)
                 {
                     client_two.playDialpadTone(5);
                 }
 
-                /*6 number is clicked*/            
+                /*6 number is clicked*/
                 if (x >= 300 && x <= 355 && y >= 265 && y <= 315)
                 {
                     client_two.playDialpadTone(6);
                 }
 
-                /*7 number is clicked*/           
+                /*7 number is clicked*/
                 if (x >= 65 && x <= 120 && y >= 375 && y <= 425)
                 {
                     client_two.playDialpadTone(7);
                 }
 
                 /*8 number is clicked*/
-                if (x >=180  && x <= 235 && y >= 375 && y <= 425 )
+                if (x >= 180 && x <= 235 && y >= 375 && y <= 425)
                 {
                     client_two.playDialpadTone(8);
                 }
 
                 /*9 number is clicked*/
-                if (x >= 295 && x <= 350 && y >= 380 && y <= 425 )
+                if (x >= 295 && x <= 350 && y >= 380 && y <= 425)
                 {
                     client_two.playDialpadTone(9);
                 }
 
                 /* 0 number is clicked*/
-                if (x >= 180 && x <= 235 && y >= 485 && y <= 531 )
+                if (x >= 180 && x <= 235 && y >= 485 && y <= 531)
                 {
                     client_two.playDialpadTone(0);
                 }
-
-
             }
 
             /*Outgoing Call*/
@@ -324,7 +327,6 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
 
-                    std::cout << "End button was pressed";
                     /*Print in server file that i want to edn call with client two*/
                     server_file.open(SERVER_FILE, std::ios::out);
                     if (server_file)

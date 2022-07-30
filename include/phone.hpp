@@ -109,6 +109,10 @@ public:
 
     void stopOutgoingTone();
 
+    void startCallConnectedTime();
+
+    void updateCallConnectedTime();
+
     void resetCallConnectedTime();
 
     ~Phone() {}
