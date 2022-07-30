@@ -41,7 +41,7 @@ Phone::Phone(Window &window, std::string name)
 
     /*Setting the name of the phone*/
     this->name = name;
-    this->calling_person_name = "Client One";
+    this->calling_person_name = " ";
 
     /*Loading the TTF Font*/
     big_font = TTF_OpenFont("resources/fonts/freesans.ttf", 56);
