@@ -2,6 +2,10 @@ CPP_COMPILER = g++
 HEADER_FLAGS = -Iinclude/
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
+# Telling user to use target if target is not specified
+default:
+	# Please Specify Some target
+
 # Running server client_one and client_two simutaneoulsy
 run:
 	git restore Server/server.txt
@@ -29,15 +33,15 @@ build/server.o: Server/server.cpp
 	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
 
 # Creating Client One
-client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o
-	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o
+	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_one.o: Client/One/client_one.cpp
 	${CPP_COMPILER} -o build/client_one.o -c Client/One/client_one.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 #Creating Client Two
-client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o
-	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o
+	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o  ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_two.o: Client/Two/client_two.cpp
 	${CPP_COMPILER} -o build/client_two.o -c Client/Two/client_two.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
@@ -69,6 +73,9 @@ build/tone.o: src/tone.cpp include/tone.hpp
 
 build/audio.o: src/audio.cpp include/audio.hpp
 	${CPP_COMPILER} -o build/audio.o -c src/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
+build/clientfile.o : src/clientfile.cpp include/clientfile.hpp
+	${CPP_COMPILER} -o build/clientfile.o -c src/clientfile.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
