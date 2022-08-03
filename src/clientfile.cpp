@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-bool ClientFile::init()
+void ClientFile::init()
 {
     /*Set the file size value to 0*/
     previous_client_file_size = 0;
@@ -51,7 +51,7 @@ bool ClientFile::openServerFile()
     return false;
 }
 
-bool ClientFile::closeServerFile()
+void ClientFile::closeServerFile()
 {
     this->server_file.close();
 }
@@ -69,7 +69,7 @@ bool ClientFile::openClientFile()
     return false;
 }
 
-bool ClientFile::closeClientFile()
+void ClientFile::closeClientFile()
 {
     this->client_file.close();
 }
@@ -81,7 +81,7 @@ ClientFile::ClientFile(std::string client_file_path)
     init();
 }
 
-bool ClientFile::clearFileContent()
+void ClientFile::clearFileContent()
 {
     this->client_file.open(this->client_file_path, std::ios::out);
 

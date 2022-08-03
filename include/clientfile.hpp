@@ -18,15 +18,15 @@ private:
     int previous_client_file_size;
 
 private:
-    bool init();
+    void init();
 
     bool openServerFile();
 
-    bool closeServerFile();
+    void closeServerFile();
 
     bool openClientFile();
 
-    bool closeClientFile();
+    void closeClientFile();
 
 public:
     ClientFile(std::string client_file_path);
@@ -38,6 +38,6 @@ public:
     void sendMessageToServer(std::string message);
 
     std::string receiveMessageFromServer();
-    
-    bool clearFileContent();
+
+    void clearFileContent();
 };
