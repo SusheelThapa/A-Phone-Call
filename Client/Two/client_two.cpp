@@ -99,7 +99,7 @@ int main(int argc, char const *argv[])
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
-                    /*Sending server to call client one/
+                    /*Sending server to call client one*/
                     client_two_file.sendMessageToServer("CALLCLIENTONE");
 
                     client_two.setCallingPersonName("Client One");
