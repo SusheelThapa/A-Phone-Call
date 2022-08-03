@@ -66,9 +66,8 @@ For other platform, ..............
 
    _Give it sometime it will install all the dependencies required by the project. When it completed you can head over to [Project Compilation](#project-compilation)_
 
-### Here are some of the [screenshots](screenshot.md)
-
-
+## Screenshots
+Here are some [screenshots](screenshot.md)
 ## Project Compilation
 
 We are using [Makefile](Makefile) to compile our project.
