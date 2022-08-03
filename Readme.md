@@ -42,38 +42,7 @@ A Phone call is a project which aims to demonstrate how the working of call app 
 - [x] Iphone incoming call ringtone set with required amplitude
 - [x] Outgoing call sound and Incoming call sound set nearly to equal intensity
 - [x] Fixed different bugs related to backspace error when no number is pressed, 
-## Screenshots
 
-1. Boot on Iphone
-   ![Boot on Iphone](/Screenshots/switch-on.png)
-
-1. Dial Pad Screen
-
-   ![Dial Pad Screen](/Screenshots/dial_pad.png)
-
-1. Incoming Call Screen
-
-   ![Incoming Call Screen](/Screenshots/incoming-call.png)
-
-1. Outgoing Call Screen
-
-   ![Outgoing Call Screen](/Screenshots/outgoing-call.png)
-
-1. Call in progress screen
-
-   ![Call in Progress](/Screenshots/call-in-progess.png)
-
-1. dialpad with numbers entered 
-
-   ![dialpad with numbers entered](/Screenshots/dialpad-with-number-entered.png)
-
-2. both client together 
-
-   ![dialpad with numbers entered](/Screenshots/both-dialpad-together.png)
-
-2. both client and receiver together 
-
-   ![dialpad with numbers entered](/Screenshots/both-client-and%20-receiver-together.png)
 
 ## Installation
 
@@ -96,6 +65,9 @@ For other platform, ..............
    ```
 
    _Give it sometime it will install all the dependencies required by the project. When it completed you can head over to [Project Compilation](#project-compilation)_
+
+### Here are some of the [screenshots](screenshot.md)
+
 
 ## Project Compilation
 
