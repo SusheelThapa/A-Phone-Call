@@ -1,27 +1,24 @@
 #pragma once
 
-#ifndef TONE_HEADER_FILE
-#define TONE_HEADER_FILE 1
-#endif
-
 #include <SDL2/SDL_mixer.h>
 
 #include <iostream>
 
-class Audio
+#include "sound.hpp"
+
+class Audio : public AbstractSound
 {
 private:
     Mix_Music *audio;
-    std::string audio_path;
+
+private:
+    void loadAudio();
 
 public:
-    Audio();
+    Audio(){};
+    Audio(std::string sound_path);
 
-    Audio(std::string);
-
-    void setAudioPath(std::string);
-
-    std::string getAudioPath();
+    void setSoundPath(std::string sound_path);
 
     void play();
 

@@ -1,32 +1,32 @@
 #include "audio.hpp"
 
-Audio::Audio()
+void Audio::loadAudio()
 {
-    this->audio = nullptr;
-    this->audio_path = " ";
-}
-
-Audio::Audio(std::string)
-{
-    this->setAudioPath(audio_path);
-}
-
-void Audio::setAudioPath(std::string audio_path)
-{
-    this->audio_path = audio_path;
-    this->audio = Mix_LoadMUS(this->audio_path.c_str());
+    this->audio = Mix_LoadMUS(this->getSoundPath().c_str());
 
     /*Checking if the audio is loaded or not*/
     if (this->audio == nullptr)
     {
         std::cout << "Audio file cannot be loaded\n";
-        std::cout<< this->audio_path << "\n";
+        std::cout << this->getSoundPath() << "\n";
     }
+}
+
+Audio::Audio(std::string sound_path)
+{
+    this->setSoundPath(sound_path);
+    this->loadAudio();
+}
+
+void Audio::setSoundPath(std::string sound_path)
+{
+    this->AbstractSound::setSoundPath(sound_path);
+    this->loadAudio();
 }
 
 void Audio::play()
 {
-    if (this->getAudioPath() == " ")
+    if (this->getSoundPath() == " ")
     {
         std::cout << "Audio Path isn't set\n";
         return;
@@ -40,9 +40,4 @@ void Audio::stop()
 {
     /*Stop the music*/
     Mix_HaltMusic();
-}
-
-std::string Audio::getAudioPath()
-{
-    return this->audio_path;
 }

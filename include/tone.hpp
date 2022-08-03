@@ -1,27 +1,28 @@
 #pragma once
 
-#ifndef TONE_HEADER_FILE
-#define TONE_HEADER_FILE 1
-#endif
+#include "sound.hpp"
 
 #include <SDL2/SDL_mixer.h>
 
 #include <iostream>
 
-class Tone
+class Tone : public AbstractSound
 {
 private:
     Mix_Chunk *tone_audio;
-    std::string audio_path;
+
+private:
+    void loadTone();
 
 public:
-    Tone();
+    Tone(){};
 
     Tone(std::string);
 
-    void setTonePath(std::string);
-
-    std::string getTonePath();
+    void setSoundPath(std::string sound_path);
 
     void play();
+
+    /*Since it is pure virtual function*/
+    void stop();
 };

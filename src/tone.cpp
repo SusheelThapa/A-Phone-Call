@@ -1,21 +1,9 @@
 
 #include "tone.hpp"
 
-Tone::Tone()
+void Tone::loadTone()
 {
-    this->tone_audio = nullptr;
-    this->audio_path = " ";
-}
-
-Tone::Tone(std::string audio_path)
-{
-    this->setTonePath(audio_path);
-}
-
-void Tone::setTonePath(std::string audio_path)
-{
-    this->audio_path = audio_path;
-    this->tone_audio = Mix_LoadWAV(this->audio_path.c_str());
+    this->tone_audio = Mix_LoadWAV(this->getSoundPath().c_str());
 
     /*Checking if the audio is loaded or not*/
     if (this->tone_audio == nullptr)
@@ -24,9 +12,20 @@ void Tone::setTonePath(std::string audio_path)
     }
 }
 
+Tone::Tone(std::string audio_path)
+{
+    this->setSoundPath(audio_path);
+    this->loadTone();
+}
+void Tone::setSoundPath(std::string sound_path)
+{
+    this->AbstractSound::setSoundPath(sound_path);
+    this->loadTone();
+}
+
 void Tone::play()
 {
-    if (this->getTonePath() == " ")
+    if (this->getSoundPath() == " ")
     {
         std::cout << "Audio Path isn't set\n";
         return;
@@ -36,7 +35,4 @@ void Tone::play()
     Mix_PlayChannel(-1, this->tone_audio, 0);
 }
 
-std::string Tone::getTonePath()
-{
-    return this->audio_path;
-}
+void Tone::stop(){};
