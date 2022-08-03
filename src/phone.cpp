@@ -64,20 +64,20 @@ Phone::Phone(Window &window, std::string name)
     outgoing_call_time = 0;
 
     /*Loading Dialpad tone*/
-    dialpad_tone[0].setTonePath("resources/audio/tone-zero.wav");
-    dialpad_tone[1].setTonePath("resources/audio/tone-one.wav");
-    dialpad_tone[2].setTonePath("resources/audio/tone-two.wav");
-    dialpad_tone[3].setTonePath("resources/audio/tone-three.wav");
-    dialpad_tone[4].setTonePath("resources/audio/tone-four.wav");
-    dialpad_tone[5].setTonePath("resources/audio/tone-five.wav");
-    dialpad_tone[6].setTonePath("resources/audio/tone-six.wav");
-    dialpad_tone[7].setTonePath("resources/audio/tone-seven.wav");
-    dialpad_tone[8].setTonePath("resources/audio/tone-eight.wav");
-    dialpad_tone[9].setTonePath("resources/audio/tone-nine.wav");
+    dialpad_tone[0].setSoundPath("resources/audio/tone-zero.wav");
+    dialpad_tone[1].setSoundPath("resources/audio/tone-one.wav");
+    dialpad_tone[2].setSoundPath("resources/audio/tone-two.wav");
+    dialpad_tone[3].setSoundPath("resources/audio/tone-three.wav");
+    dialpad_tone[4].setSoundPath("resources/audio/tone-four.wav");
+    dialpad_tone[5].setSoundPath("resources/audio/tone-five.wav");
+    dialpad_tone[6].setSoundPath("resources/audio/tone-six.wav");
+    dialpad_tone[7].setSoundPath("resources/audio/tone-seven.wav");
+    dialpad_tone[8].setSoundPath("resources/audio/tone-eight.wav");
+    dialpad_tone[9].setSoundPath("resources/audio/tone-nine.wav");
 
     /*Loading ringtone*/
-    ringtone.setAudioPath("resources/audio/ringtone.wav");
-    outgoing_tone.setAudioPath("resources/audio/outgoing-tone.wav");
+    ringtone.setSoundPath("resources/audio/ringtone.wav");
+    outgoing_tone.setSoundPath("resources/audio/outgoing-tone.wav");
 
     /*Set the phone status*/
     phone_status = SWITCH_OFF;
@@ -100,10 +100,10 @@ Phone::Phone(Window &window, std::string name)
     switch_on_texture_to_display = 0;
 
     /*Load end call tone*/
-    end_call_tone.setTonePath("resources/audio/end_call_tone.wav");
+    end_call_tone.setSoundPath("resources/audio/end_call_tone.wav");
 
     /*Load busy_audio*/
-    busy_audio.setAudioPath("resources/audio/busy-tone.wav");
+    busy_audio.setSoundPath("resources/audio/busy-tone.wav");
 
     /*Create callended texture*/
     call_ended.loadFromText(window, medium_font, "Call Ended", {255, 0, 0, 255});
@@ -399,11 +399,10 @@ void Phone::resetDialNumber()
 
 void Phone::removeOneDialNumber()
 {
-    if (dial_pad_number != " " )
+    if (dial_pad_number != " ")
     {
         dial_pad_number.pop_back();
     }
-
 }
 
 void Phone::playEndCallTone()
