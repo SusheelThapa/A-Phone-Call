@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
             if (message_from_server == "CALLFROMCLIENTTWO")
             {
                 /*Show incoming call screen*/
-                client_one.setScreen(INCOMING_CALL);
+                client_one.setCurrentScreen(INCOMING_CALL);
 
                 /*Set the name of person who have called*/
                 client_one.setCallingPersonName("Client Two");
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
             else if (message_from_server == "CALLDECLINEDFROMCLIENTTWO")
             {
                 /*Set the screen to call declined*/
-                client_one.setScreen(CALL_REJECTED);
+                client_one.setCurrentScreen(CALL_REJECTED);
 
                 /*Stop the outgoing call Tone*/
                 client_one.stopOutgoingTone();
@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
             else if (message_from_server == "CALLRECEIVEDFROMCLIENTTWO")
             {
                 /*Client two has receive our call*/
-                client_one.setScreen(CALL_CONNECTED);
+                client_one.setCurrentScreen(CALL_CONNECTED);
 
                 /*Set the name of person who is calling*/
                 client_one.setCallingPersonName("Client Two");
@@ -73,7 +73,7 @@ int main(int argc, char const *argv[])
             else if (message_from_server == "CALLENDEDFROMCLIENTTWO")
             {
                 /*Call had been ended by client two*/
-                client_one.setScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
+                client_one.setCurrentScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
 
                 /*Stop the ringtone*/
                 client_one.stopRingtone();
@@ -93,7 +93,7 @@ int main(int argc, char const *argv[])
             window.handleEvent(e);
 
             /*Dialpad Section*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == DIALPAD)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == DIALPAD)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
                     client_one.setCallingPersonName("Client Two");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(OUTGOING_CALL);
+                    client_one.setCurrentScreen(OUTGOING_CALL);
 
                     /*Play outgoing call sound*/
                     client_one.playOutgoingTone();
@@ -199,7 +199,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Outgoing Call*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == OUTGOING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == OUTGOING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -212,7 +212,7 @@ int main(int argc, char const *argv[])
                     client_one_file.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(CALL_ENDED);
+                    client_one.setCurrentScreen(CALL_ENDED);
 
                     /*Stop the outgoing call tone*/
                     client_one.stopOutgoingTone();
@@ -229,7 +229,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Incoming Call*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == INCOMING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == INCOMING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -244,7 +244,7 @@ int main(int argc, char const *argv[])
                     client_one.setCallingPersonName(" ");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setCurrentScreen(DIALPAD);
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
@@ -262,7 +262,7 @@ int main(int argc, char const *argv[])
                     client_one.setCallingPersonName("Client Two");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(CALL_CONNECTED);
+                    client_one.setCurrentScreen(CALL_CONNECTED);
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
@@ -273,26 +273,28 @@ int main(int argc, char const *argv[])
             }
 
             /*Call get Connected with another client*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN && client_one.getScreen() == CALL_CONNECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN && client_one.getCurrentScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
-                int x, y;
-                SDL_GetMouseState(&x, &y);
-
-                /*End button is pressed*/
-                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                if (e.type == SDL_MOUSEBUTTONDOWN)
                 {
-                    /*Sending message to server that call has been ended*/
-                    client_one_file.sendMessageToServer("CALLENDEDBYCLIENTONE");
+                    int x, y;
+                    SDL_GetMouseState(&x, &y);
 
-                    /*Display the calling screen*/
-                    client_one.setScreen(CALL_ENDED);
+                    /*End button is pressed*/
+                    if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                    {
+                        /*Sending message to server that call has been ended*/
+                        client_one_file.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
-                    /*Playing End Call Tone*/
-                    client_one.playEndCallTone();
+                        /*Display the calling screen*/
+                        client_one.setCurrentScreen(CALL_ENDED);
+
+                        /*Playing End Call Tone*/
+                        client_one.playEndCallTone();
+                    }
                 }
-
-                if (e.type == SDL_KEYDOWN)
+                else if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_r)
                     {
@@ -309,7 +311,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call Rejected*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_REJECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == CALL_REJECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -320,7 +322,7 @@ int main(int argc, char const *argv[])
                 {
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setCurrentScreen(DIALPAD);
 
                     /*Stop the busy tone(if there is )*/
                     client_one.stopBusyTone();
@@ -337,11 +339,11 @@ int main(int argc, char const *argv[])
         window.present();
 
         /*This is used to render the CALL_ENDED screen so that call end tone get played*/
-        if (client_one.getScreen() == CALL_ENDED)
+        if (client_one.getCurrentScreen() == CALL_ENDED)
         {
             SDL_Delay(1500);
 
-            client_one.setScreen(DIALPAD);
+            client_one.setCurrentScreen(DIALPAD);
         }
     }
 
