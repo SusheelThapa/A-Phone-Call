@@ -69,9 +69,6 @@ int main(int argc, char const *argv[])
 
                 /*Stop outgoing call time*/
                 client_one.endOutgoingCallTime();
-
-                /*Start call time connected*/
-                client_one.startCallConnectedTime();
             }
             else if (message_from_server == "CALLENDEDFROMCLIENTTWO")
             {
@@ -80,9 +77,12 @@ int main(int argc, char const *argv[])
 
                 /*Stop the ringtone*/
                 client_one.stopRingtone();
+            }
+            else if (message_from_server == "AUDIOMESSAGESENDFROMCLIENTTWO")
+            {
+                client_one.setCallConnectedRecordingStatus(PLAYING);
 
-                /*Reset the call connected time*/
-                client_one.resetCallConnectedTime();
+                client_one.startPlayingAudioMessage();
             }
         }
 
@@ -273,7 +273,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call get Connected with another client*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_CONNECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN && client_one.getScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -290,6 +290,21 @@ int main(int argc, char const *argv[])
 
                     /*Playing End Call Tone*/
                     client_one.playEndCallTone();
+                }
+
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_r)
+                    {
+                        client_one.startRecordingAudioMessage();
+                        client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::RECORDING);
+                    }
+                    else if (e.key.keysym.sym == SDLK_s)
+                    {
+                        client_one_file.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTONE");
+
+                        client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);
+                    }
                 }
             }
 

@@ -1,34 +1,5 @@
 #include "phone.hpp"
 
-int Time::getMinutes()
-{
-    return this->min;
-}
-
-int Time::getSeconds()
-{
-    return this->sec;
-}
-
-Time Time::operator++(int)
-{
-
-    sec++;
-    if (sec == 60)
-    {
-        min++;
-        sec = 0;
-    }
-
-    return Time(sec, min);
-}
-
-void Time::resetTime()
-{
-    min = 0;
-    sec = 0;
-}
-
 Phone::Phone(Window &window, std::string name)
 {
     /*Dynamically allocating the memory for texture of incoming call*/
@@ -110,6 +81,9 @@ Phone::Phone(Window &window, std::string name)
 
     /*Initialize the dial number string*/
     dial_pad_number = " ";
+
+    /*Set the status of audio call recording*/
+    call_connected_audio_recording_status = AudioRecordingStatus::NONE;
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -216,19 +190,76 @@ void Phone::render(Window &window)
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
 
-        /*Updating the call time*/
-        this->updateCallConnectedTime();
+        if ((SDL_GetTicks() - call_connected_audio_recording.getRecordingStartedTime()) / 1000 > 10 && call_connected_audio_recording_status == RECORDING)
+        {
+            call_connected_audio_recording.resetRecordingStartedTime();
+            call_connected_audio_recording_status = RECORDED;
+        }
 
-        /*Display the call_time*/
-        call_time.loadFromText(window, medium_font, std::to_string(call_connected_time.getMinutes()) + ":" + std::to_string(call_connected_time.getSeconds()), {0, 0, 0, 0});
+        if ((SDL_GetTicks() - call_connected_audio_recording.getPlayingStartedTime()) / 1000 > 10 && call_connected_audio_recording_status == PLAYING)
+        {
+            call_connected_audio_recording.resetPlayingStartedTime();
+            call_connected_audio_recording_status = PLAYED;
+        }
 
-        SDL_Rect render_call_time_rect = {
-            (window.getWidth() - call_time.getWidth()) / 2,
-            120,
-            call_time.getWidth(),
-            call_time.getHeight()};
+        std::string message;
+        SDL_Color color;
 
-        call_time.render(window, 0, 0, nullptr, &render_call_time_rect);
+        if (call_connected_audio_recording_status == AudioRecordingStatus::NONE)
+        {
+            message = " ";
+            color = {0, 0, 0, 0};
+        }
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::RECORDING)
+        {
+            message = "Recording";
+            color = {255, 0, 0, 255};
+        }
+
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::RECORDED)
+        {
+            message = "Recorded";
+            color = {255, 0, 0, 255};
+        }
+
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::PLAYING)
+        {
+            message = "Playing";
+            color = {0, 255, 0, 255};
+        }
+
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::PLAYED)
+        {
+            message = "Played";
+            color = {0, 255, 0, 255};
+        }
+
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::SENDING)
+        {
+            message = "Sending";
+            color = {0, 255, 0, 255};
+
+            this->setCallConnectedRecordingStatus(NONE);
+        }
+
+        else if (call_connected_audio_recording_status == AudioRecordingStatus::NONE)
+        {
+            message = " ";
+            color = {0, 255, 0, 255};
+        }
+
+        call_connected_status.loadFromText(
+            window,
+            this->medium_font,
+            message, color);
+
+        SDL_Rect call_connected_status_rect = {
+            (window.getWidth() - call_connected_status.getWidth()) / 2,
+            0,
+            call_connected_status.getWidth(),
+            call_connected_status.getHeight()};
+
+        call_connected_status.render(window, 0, 0, nullptr, &call_connected_status_rect);
     }
     else if (current_screen == CALL_REJECTED)
     {
@@ -361,29 +392,6 @@ void Phone::stopOutgoingTone()
     outgoing_tone.stop();
 }
 
-void Phone::startCallConnectedTime()
-{
-    this->call_connected_time = 0;
-    this->start_time = SDL_GetTicks();
-}
-
-void Phone::updateCallConnectedTime()
-{
-    if ((SDL_GetTicks() - this->start_time) / 1000 > 1)
-    {
-        this->start_time = SDL_GetTicks();
-
-        /*Increase Time object*/
-        this->call_connected_time++;
-    }
-}
-
-void Phone::resetCallConnectedTime()
-{
-    call_connected_time.resetTime();
-    start_time = 0;
-}
-
 void Phone::appendDialNumber(std::string num_string)
 {
     if (dial_pad_number.size() <= 10)
@@ -418,4 +426,30 @@ void Phone::playBusyTone()
 void Phone::stopBusyTone()
 {
     busy_audio.stop();
+}
+
+void Phone::startRecordingAudioMessage()
+{
+    /*This will start recording audio for 5 second*/
+    call_connected_audio_recording.startRecordingAudio();
+
+    /*Set the recording status*/
+    call_connected_audio_recording_status = AudioRecordingStatus::RECORDING;
+}
+
+void Phone::startPlayingAudioMessage()
+{
+    call_connected_audio_recording.startPlayingAudio();
+
+    call_connected_audio_recording_status = AudioRecordingStatus::PLAYING;
+}
+
+void Phone::setCallConnectedRecordingStatus(AudioRecordingStatus status)
+{
+    call_connected_audio_recording_status = status;
+}
+
+AudioRecordingStatus Phone::getCallConnectedRecordingStatus()
+{
+    return this->call_connected_audio_recording_status;
 }
