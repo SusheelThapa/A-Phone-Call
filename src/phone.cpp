@@ -110,6 +110,9 @@ Phone::Phone(Window &window, std::string name)
 
     /*Initialize the dial number string*/
     dial_pad_number = " ";
+
+    /*Set the status of audio call recording*/
+    call_connected_audio_recording_status = AudioRecordingStatus::NONE;
 }
 
 void Phone::setScreen(PhoneScreen screen)
@@ -418,4 +421,23 @@ void Phone::playBusyTone()
 void Phone::stopBusyTone()
 {
     busy_audio.stop();
+}
+
+void Phone::startRecording()
+{
+    /*This will start recording audio for 5 second*/
+    call_connected_audio_recording.startRecordingAudio();
+
+    /*Set the recording status*/
+    call_connected_audio_recording_status = AudioRecordingStatus::RECORDING;
+}
+
+void Phone::setCallConnectedRecordingStatus(AudioRecordingStatus status)
+{
+    call_connected_audio_recording_status = status;
+}
+
+AudioRecordingStatus Phone::getCallConnectedRecordingStatus()
+{
+    return this->call_connected_audio_recording_status;
 }

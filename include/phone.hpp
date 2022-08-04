@@ -7,6 +7,7 @@
 #include "texture.hpp"
 #include "tone.hpp"
 #include "audio.hpp"
+#include "audio_recording.hpp"
 
 enum PhoneScreen
 {
@@ -97,6 +98,10 @@ private:
 
     Texture call_ended;
 
+    AudioRecording call_connected_audio_recording;
+
+    AudioRecordingStatus call_connected_audio_recording_status;
+
 public:
     Phone(Window &window, std::string name);
 
@@ -151,6 +156,12 @@ public:
     void playBusyTone();
 
     void stopBusyTone();
+
+    void startRecording();
+
+    void setCallConnectedRecordingStatus(AudioRecordingStatus status);
+    
+    AudioRecordingStatus getCallConnectedRecordingStatus();
 
     ~Phone() {}
 };
