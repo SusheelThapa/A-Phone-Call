@@ -5,21 +5,12 @@
 
 #include "window.hpp"
 #include "texture.hpp"
-#include "tone.hpp"
-#include "audio.hpp"
 #include "audio_recording.hpp"
+#include "phonescreen.hpp"
+#include "phonesound.hpp"
+#include "phonefont.hpp"
 
-enum PhoneScreen
-{
-    DIALPAD,
-    INCOMING_CALL,
-    OUTGOING_CALL,
-    CALL_CONNECTED,
-    CALL_REJECTED,
-    CALL_ENDED
-};
-
-class Phone
+class Phone : public Screen, public PhoneSound, public PhoneFont
 {
 private:
     enum Status
@@ -33,30 +24,15 @@ private:
 
     std::string calling_person_name;
 
-    PhoneScreen current_screen;
-
-    Texture dialpad_screen;
-    Texture outgoing_call;
-    Texture *incoming_call;
-
-    int incoming_call_texture_to_load;
-
     Texture calling_person;
     Texture call_connected_status;
 
     Texture dial_number;
     std::string dial_pad_number;
 
-    TTF_Font *big_font;
 
-    TTF_Font *medium_font;
 
     int start_time; // Dummy argument to keep track how call connected time
-
-    Tone dialpad_tone[10];
-
-    Audio ringtone;
-    Audio outgoing_tone;
 
     int outgoing_call_time;
 
@@ -68,10 +44,6 @@ private:
 
     int switch_on_texture_to_display;
 
-    Tone end_call_tone;
-
-    Audio busy_audio;
-
     Texture call_ended;
 
     AudioRecording call_connected_audio_recording;
@@ -81,11 +53,7 @@ private:
 public:
     Phone(Window &window, std::string name);
 
-    void setScreen(PhoneScreen screen);
-
     void setCallingPersonName(std::string name);
-
-    PhoneScreen getScreen();
 
     void render(Window &window);
 
@@ -105,27 +73,11 @@ public:
 
     void checkOutgoingCallTime();
 
-    void playDialpadTone(int dialpad_number);
-
-    void playRingtone();
-
-    void stopRingtone();
-
-    void playOutgoingTone();
-
-    void stopOutgoingTone();
-
     void appendDialNumber(std::string number);
 
     void resetDialNumber();
 
     void removeOneDialNumber();
-
-    void playEndCallTone();
-
-    void playBusyTone();
-
-    void stopBusyTone();
 
     void startRecordingAudioMessage();
 
