@@ -18,6 +18,17 @@ Screen::Screen(Window &window)
 
     /*Setting the default screen*/
     this->current_screen = DIALPAD;
+
+    /*Dynamically allocation the memory for texture of call connected*/
+    call_connected = new Texture[4];
+
+    /*Loading the texture*/
+    call_connected[0].loadFromFile(window, "resources/images/outgoing_call.png");
+    call_connected[1].loadFromFile(window, "resources/images/call_connected_record.png");
+    call_connected[2].loadFromFile(window, "resources/images/call_connected_play.png");
+    call_connected[3].loadFromFile(window, "resources/images/call_connected_send.png");
+
+    call_connected_status = CALLCONNECTEDNONE;
 }
 
 void Screen::setCurrentScreen(PhoneScreen screen)
@@ -51,9 +62,33 @@ void Screen::renderScreen(Window &window)
             incoming_call_texture_to_load = 0;
         }
     }
-    else if (current_screen == OUTGOING_CALL || current_screen == CALL_CONNECTED || current_screen == CALL_REJECTED || current_screen == CALL_ENDED)
+    else if (current_screen == OUTGOING_CALL || current_screen == CALL_REJECTED || current_screen == CALL_ENDED)
     {
 
         outgoing_call.render(window, 0, 0, nullptr, nullptr);
     }
+    else if (current_screen == CALL_CONNECTED)
+    {
+        if (call_connected_status == CALLCONNECTEDNONE)
+        {
+            call_connected[CALLCONNECTEDNONE].render(window, 0, 0, nullptr, nullptr);
+        }
+        else if (call_connected_status == CALLCONNECTEDRECORDING)
+        {
+            call_connected[CALLCONNECTEDRECORDING].render(window, 0, 0, nullptr, nullptr);
+        }
+        else if (call_connected_status == CALLCONNECTEDPLAYING)
+        {
+            call_connected[CALLCONNECTEDPLAYING].render(window, 0, 0, nullptr, nullptr);
+        }
+        else if (call_connected_status == CALLCONNECTEDSENDING)
+        {
+            call_connected[CALLCONNECTEDSENDING].render(window, 0, 0, nullptr, nullptr);
+        }
+    }
+}
+
+void Screen::setCallConnectedStatus(CallConnectedStatus status)
+{
+    this->call_connected_status = status;
 }

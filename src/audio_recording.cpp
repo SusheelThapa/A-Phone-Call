@@ -22,9 +22,11 @@ Uint32 AudioRecording::getRecordingStartedTime()
 
 void AudioRecording::startPlayingAudio()
 {
+    std::cout << "I am playing audio message";
     this->playing_started_time = SDL_GetTicks();
 
     system("aplay resources/audio/test.wav &");
+
 }
 
 void AudioRecording::resetPlayingStartedTime()

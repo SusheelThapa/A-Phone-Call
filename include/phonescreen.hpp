@@ -13,6 +13,14 @@ enum PhoneScreen
     CALL_ENDED
 };
 
+enum CallConnectedStatus
+{
+    CALLCONNECTEDNONE,
+    CALLCONNECTEDRECORDING,
+    CALLCONNECTEDPLAYING,
+    CALLCONNECTEDSENDING
+};
+
 class Screen
 {
 private:
@@ -20,9 +28,11 @@ private:
     Texture outgoing_call;
     Texture *incoming_call;
 
+    Texture *call_connected;
     int incoming_call_texture_to_load;
 
     PhoneScreen current_screen;
+    CallConnectedStatus call_connected_status;
 
 public:
     Screen(Window &window);
@@ -32,4 +42,6 @@ public:
     PhoneScreen getCurrentScreen();
 
     void renderScreen(Window &window);
+
+    void setCallConnectedStatus(CallConnectedStatus status);
 };

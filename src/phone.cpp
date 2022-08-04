@@ -125,16 +125,22 @@ void Phone::render(Window &window)
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
 
-        if ((SDL_GetTicks() - call_connected_audio_recording.getRecordingStartedTime()) / 1000 > 10 && call_connected_audio_recording_status == RECORDING)
+        if ((SDL_GetTicks() - call_connected_audio_recording.getRecordingStartedTime()) / 1000 > 5 && call_connected_audio_recording_status == RECORDING)
         {
             call_connected_audio_recording.resetRecordingStartedTime();
-            call_connected_audio_recording_status = RECORDED;
+            call_connected_audio_recording_status = NONE;
+
+            this->setCallConnectedStatus(CALLCONNECTEDNONE);
         }
 
-        if ((SDL_GetTicks() - call_connected_audio_recording.getPlayingStartedTime()) / 1000 > 10 && call_connected_audio_recording_status == PLAYING)
+        if ((SDL_GetTicks() - call_connected_audio_recording.getPlayingStartedTime()) / 1000 > 5 && call_connected_audio_recording_status == PLAYING)
         {
             call_connected_audio_recording.resetPlayingStartedTime();
-            call_connected_audio_recording_status = PLAYED;
+            call_connected_audio_recording_status = NONE;
+
+            system("rm resources/audio/test.wav");
+
+            this->setCallConnectedStatus(CALLCONNECTEDNONE);
         }
 
         std::string message;
@@ -151,21 +157,9 @@ void Phone::render(Window &window)
             color = {255, 0, 0, 255};
         }
 
-        else if (call_connected_audio_recording_status == AudioRecordingStatus::RECORDED)
-        {
-            message = "Recorded";
-            color = {255, 0, 0, 255};
-        }
-
         else if (call_connected_audio_recording_status == AudioRecordingStatus::PLAYING)
         {
             message = "Playing";
-            color = {0, 255, 0, 255};
-        }
-
-        else if (call_connected_audio_recording_status == AudioRecordingStatus::PLAYED)
-        {
-            message = "Played";
             color = {0, 255, 0, 255};
         }
 
@@ -175,12 +169,7 @@ void Phone::render(Window &window)
             color = {0, 255, 0, 255};
 
             this->setCallConnectedRecordingStatus(NONE);
-        }
-
-        else if (call_connected_audio_recording_status == AudioRecordingStatus::NONE)
-        {
-            message = " ";
-            color = {0, 255, 0, 255};
+            this->setCallConnectedStatus(CALLCONNECTEDNONE);
         }
 
         call_connected_status.loadFromText(

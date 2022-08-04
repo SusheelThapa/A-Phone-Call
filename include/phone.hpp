@@ -30,8 +30,6 @@ private:
     Texture dial_number;
     std::string dial_pad_number;
 
-
-
     int start_time; // Dummy argument to keep track how call connected time
 
     int outgoing_call_time;

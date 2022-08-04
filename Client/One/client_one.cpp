@@ -80,6 +80,8 @@ int main(int argc, char const *argv[])
             }
             else if (message_from_server == "AUDIOMESSAGESENDFROMCLIENTTWO")
             {
+                client_one.setCallConnectedStatus(CALLCONNECTEDPLAYING);
+
                 client_one.setCallConnectedRecordingStatus(PLAYING);
 
                 client_one.startPlayingAudioMessage();
@@ -275,12 +277,11 @@ int main(int argc, char const *argv[])
             /*Call get Connected with another client*/
             else if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) && client_one.getCurrentScreen() == CALL_CONNECTED)
             {
-                /*Getting the position of the place where we have click on the window*/
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
                 if (e.type == SDL_MOUSEBUTTONDOWN)
                 {
-                    int x, y;
-                    SDL_GetMouseState(&x, &y);
-
                     /*End button is pressed*/
                     if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                     {
@@ -294,15 +295,19 @@ int main(int argc, char const *argv[])
                         client_one.playEndCallTone();
                     }
                 }
-                else if (e.type == SDL_KEYDOWN)
+                if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN)
                 {
-                    if (e.key.keysym.sym == SDLK_r)
+                    if ((e.key.keysym.sym == SDLK_r || (x >= 62 && x <= 120 && y >= 240 && y <= 297)) && client_one.getCallConnectedRecordingStatus() == NONE)
                     {
+                        client_one.setCallConnectedStatus(CALLCONNECTEDRECORDING);
+
                         client_one.startRecordingAudioMessage();
                         client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::RECORDING);
                     }
-                    else if (e.key.keysym.sym == SDLK_s)
+                    else if ((e.key.keysym.sym == SDLK_s || (x >= 291 && x <= 355 && y >= 247 && y <= 297)) && client_one.getCallConnectedRecordingStatus() == NONE)
                     {
+                        client_one.setCallConnectedStatus(CALLCONNECTEDSENDING);
+
                         client_one_file.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTONE");
 
                         client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);

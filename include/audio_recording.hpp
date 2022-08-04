@@ -6,9 +6,7 @@ enum AudioRecordingStatus
 {
     NONE,
     RECORDING,
-    RECORDED,
     PLAYING,
-    PLAYED,
     SENDING
 };
 
