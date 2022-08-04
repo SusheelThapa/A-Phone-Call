@@ -8,19 +8,17 @@ default:
 
 # Running server client_one and client_two simutaneoulsy
 run:
-	git restore Server/server.txt
-	git restore Client/One/client_one.txt
-	git restore Client/Two/client_two.txt
+	make restore
 	./client_one.out &
 	./client_two.out &
 	./server.out
 
 # Building client_two client_one server at once
 all:
+	make restore 
 	make server
 	make client_one
 	make client_two
-	# git restore *.txt
 	clear
 	#Console was cleared
 
@@ -50,11 +48,13 @@ build/client_two.o: Client/Two/client_two.cpp
 #Helper
 
 client_one_run:
+	make restore
 	make client_one
 	clear
 	./client_one.out
 
 client_two_run:
+	make restore
 	make client_two
 	clear
 	./client_two.out
@@ -98,3 +98,8 @@ build/phonefont.o: src/phonefont.cpp include/phonefont.hpp
 clean:	
 	rm -rf build
 	rm *.out
+
+restore:
+	git restore Server/server.txt
+	git restore Client/One/client_one.txt
+	git restore Client/Two/client_two.txt
