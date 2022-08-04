@@ -273,7 +273,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call get Connected with another client*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN && client_one.getCurrentScreen() == CALL_CONNECTED)
+            else if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) && client_one.getCurrentScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
                 if (e.type == SDL_MOUSEBUTTONDOWN)
