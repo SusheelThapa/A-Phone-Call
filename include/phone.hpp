@@ -19,28 +19,6 @@ enum PhoneScreen
     CALL_ENDED
 };
 
-class Time
-{
-private:
-    int min;
-    int sec;
-
-public:
-    Time(int m = 0, int s = 0)
-    {
-        min = m;
-        sec = s;
-    }
-
-    int getMinutes();
-
-    int getSeconds();
-
-    Time operator++(int);
-
-    void resetTime();
-};
-
 class Phone
 {
 private:
@@ -64,7 +42,7 @@ private:
     int incoming_call_texture_to_load;
 
     Texture calling_person;
-    Texture call_time;
+    Texture call_connected_status;
 
     Texture dial_number;
     std::string dial_pad_number;
@@ -74,8 +52,6 @@ private:
     TTF_Font *medium_font;
 
     int start_time; // Dummy argument to keep track how call connected time
-
-    Time call_connected_time;
 
     Tone dialpad_tone[10];
 
@@ -139,12 +115,6 @@ public:
 
     void stopOutgoingTone();
 
-    void startCallConnectedTime();
-
-    void updateCallConnectedTime();
-
-    void resetCallConnectedTime();
-
     void appendDialNumber(std::string number);
 
     void resetDialNumber();
@@ -157,10 +127,12 @@ public:
 
     void stopBusyTone();
 
-    void startRecording();
+    void startRecordingAudioMessage();
+
+    void startPlayingAudioMessage();
 
     void setCallConnectedRecordingStatus(AudioRecordingStatus status);
-    
+
     AudioRecordingStatus getCallConnectedRecordingStatus();
 
     ~Phone() {}
