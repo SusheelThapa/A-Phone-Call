@@ -58,6 +58,8 @@ int main()
             server_file.seekg(0, ios::beg);
             std::getline(server_file, message);
 
+            std::cout << "Message = " << message << "\n";
+
             /*Processing the content of files*/
             if (message == "CALLCLIENTTWO")
             {
@@ -176,6 +178,42 @@ int main()
                     client_one_file_pointer << "CALLENDEDFROMCLIENTTWO";
 
                     log_message_file_pointer << "Call has been ended by Client Two\n";
+                }
+                else
+                {
+                    std::cout << "Error opening the file";
+                }
+            }
+
+            else if (message == "AUDIOMESSAGESENDBYCLIENTONE")
+            {
+
+                client_two_file_pointer.open(CLIENT_TWO_FILE, ios::out);
+
+                if (client_two_file_pointer)
+                {
+                    client_two_file_pointer << "AUDIOMESSAGESENDFROMCLIENTONE";
+
+                    log_message_file_pointer
+                        << "Audio message has been sent from client one\n";
+                }
+                else
+                {
+                    std::cout << "Error opening the file";
+                }
+            }
+            else if (message == "AUDIOMESSAGESENDBYCLIENTTWO")
+
+            {
+
+                client_one_file_pointer.open(CLIENT_ONE_FILE, ios::out);
+
+                if (client_one_file_pointer)
+                {
+                    client_one_file_pointer << "AUDIOMESSAGESENDFROMCLIENTTWO";
+
+                    log_message_file_pointer
+                        << "Audio message has been sent from client two\n";
                 }
                 else
                 {
