@@ -198,8 +198,6 @@ void Phone::render(Window &window)
     }
     else if (this->getCurrentScreen() == CALL_REJECTED)
     {
-        std::cout << "I am inside call rejected of render";
-
         /*Add the person name to whom he/she is calling*/
         calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
 

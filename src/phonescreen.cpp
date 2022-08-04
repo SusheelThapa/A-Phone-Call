@@ -22,14 +22,6 @@ Screen::Screen(Window &window)
 
 void Screen::setCurrentScreen(PhoneScreen screen)
 {
-    if (screen == CALL_REJECTED)
-    {
-        std::cout << "Call Rejected";
-    }
-    else if (screen == CALL_CONNECTED)
-    {
-        std::cout << "Call Connected";
-    }
     this->current_screen = screen;
 }
 
