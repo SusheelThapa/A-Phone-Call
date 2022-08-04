@@ -10,7 +10,6 @@
 
 int main(int argc, char const *argv[])
 {
-
     /*Variable used by Client One GUI*/
     Window window("Client Two");
     Phone client_two(window, "Client Two");
@@ -66,9 +65,6 @@ int main(int argc, char const *argv[])
 
                 /*Stop the outgoing call time*/
                 client_two.endOutgoingCallTime();
-
-                /*Start call time connected*/
-                client_two.startCallConnectedTime();
             }
             else if (message_from_server == "CALLENDEDFROMCLIENTONE")
             {
@@ -77,9 +73,12 @@ int main(int argc, char const *argv[])
 
                 /*Stop the ringtone*/
                 client_two.stopRingtone();
+            }
+            else if (message_from_server == "AUDIOMESSAGESENDFROMCLIENTONE")
+            {
+                client_two.setCallConnectedRecordingStatus(PLAYING);
 
-                /*Reset the call connected time*/
-                client_two.resetCallConnectedTime();
+                client_two.startPlayingAudioMessage();
             }
         }
 
@@ -268,7 +267,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call get Connected with another client*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getScreen() == CALL_CONNECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN && client_two.getScreen() == CALL_CONNECTED)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -284,6 +283,21 @@ int main(int argc, char const *argv[])
                     client_two.setScreen(CALL_ENDED);
 
                     client_two.playEndCallTone();
+                }
+
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_r)
+                    {
+                        client_two.startRecordingAudioMessage();
+                        client_two.setCallConnectedRecordingStatus(AudioRecordingStatus::RECORDING);
+                    }
+                    else if (e.key.keysym.sym == SDLK_s)
+                    {
+                        client_two_file.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTTWO");
+
+                        client_two.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);
+                    }
                 }
             }
 
