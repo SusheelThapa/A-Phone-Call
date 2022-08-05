@@ -3,7 +3,6 @@
 
 #include "window.hpp"
 #include "phone.hpp"
-#include "clientfile.hpp"
 
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_TWO_FILE "Client/Two/client_two.txt"
@@ -13,15 +12,15 @@ int main(int argc, char const *argv[])
     /*Variable used by Client One GUI*/
     Window window("Client Two");
     Phone client_two(window, "Client Two");
-    ClientFile client_two_file(CLIENT_TWO_FILE);
+    client_two.setClientFilePath(CLIENT_TWO_FILE);
     SDL_Event e;
 
     while (!window.isWindowClosed())
     {
-        if (client_two_file.isClientFileSizeChanged())
+        if (client_two.isClientFileSizeChanged())
         {
             /*Receive the message that has been send by the server*/
-            std::string message_from_server = client_two_file.receiveMessageFromServer();
+            std::string message_from_server = client_two.receiveMessageFromServer();
 
             /*Processing the message that has been send by the server*/
             if (message_from_server == "CALLFROMCLIENTONE")
@@ -85,7 +84,7 @@ int main(int argc, char const *argv[])
         }
 
         /*Clear the content of the files*/
-        client_two_file.clearFileContent();
+        client_two.clearFileContent();
 
         /*Handle the events*/
         while (SDL_PollEvent(&e) != 0)
@@ -104,7 +103,7 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
                     /*Sending server to call client one*/
-                    client_two_file.sendMessageToServer("CALLCLIENTONE");
+                    client_two.sendMessageToServer("CALLCLIENTONE");
 
                     client_two.setCallingPersonName("Client One");
 
@@ -209,7 +208,7 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
                     /*Sending server that the call has been ended*/
-                    client_two_file.sendMessageToServer("CALLENDEDBYCLIENTTWO");
+                    client_two.sendMessageToServer("CALLENDEDBYCLIENTTWO");
 
                     /*Display the calling screen*/
                     client_two.setCurrentScreen(CALL_ENDED);
@@ -238,7 +237,7 @@ int main(int argc, char const *argv[])
                 if (x >= 74 && x <= 134 && y >= 543 && y <= 593)
                 {
                     /*Sending server that call has been declined*/
-                    client_two_file.sendMessageToServer("CALLDECLINEDBYCLIENTTWO");
+                    client_two.sendMessageToServer("CALLDECLINEDBYCLIENTTWO");
 
                     client_two.setCallingPersonName(" ");
 
@@ -256,7 +255,7 @@ int main(int argc, char const *argv[])
                 if (x >= 280 && x <= 344 && y >= 543 && y <= 593)
                 {
                     /*Sending server that  call has been recieved*/
-                    client_two_file.sendMessageToServer("CALLRECEIVEDBYCLIENTTWO");
+                    client_two.sendMessageToServer("CALLRECEIVEDBYCLIENTTWO");
 
                     client_two.setCallingPersonName("Client One");
 
@@ -283,7 +282,7 @@ int main(int argc, char const *argv[])
                     if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                     {
                         /*Sending message to server that call has been ended*/
-                        client_two_file.sendMessageToServer("CALLENDEDBYCLIENTTWO");
+                        client_two.sendMessageToServer("CALLENDEDBYCLIENTTWO");
 
                         /*Display the calling screen*/
                         client_two.setCurrentScreen(CALL_ENDED);
@@ -305,7 +304,7 @@ int main(int argc, char const *argv[])
                     {
                         client_two.setCallConnectedStatus(CALLCONNECTEDSENDING);
 
-                        client_two_file.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTTWO");
+                        client_two.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTTWO");
 
                         client_two.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);
                     }

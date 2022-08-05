@@ -9,8 +9,9 @@
 #include "phonescreen.hpp"
 #include "phonesound.hpp"
 #include "phonefont.hpp"
+#include "phonefile.hpp"
 
-class Phone : public Screen, public PhoneSound, public PhoneFont
+class Phone : public Screen, public PhoneSound, public PhoneFont, public PhoneFile
 {
 private:
     enum Status

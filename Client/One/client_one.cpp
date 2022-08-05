@@ -4,7 +4,6 @@
 
 #include "window.hpp"
 #include "phone.hpp"
-#include "clientfile.hpp"
 
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
@@ -15,17 +14,17 @@ int main(int argc, char const *argv[])
     /*Variable used by Client One GUI*/
     Window window("Client One");
     Phone client_one(window, "Client One");
-    ClientFile client_one_file(CLIENT_ONE_FILE);
+    client_one.setClientFilePath(CLIENT_ONE_FILE);
     SDL_Event e;
 
     while (!window.isWindowClosed())
     {
 
         /*Runs if the size of the file has been changed or not*/
-        if (client_one_file.isClientFileSizeChanged())
+        if (client_one.isClientFileSizeChanged())
         {
             /*Receive the message that has been send by the server*/
-            std::string message_from_server = client_one_file.receiveMessageFromServer();
+            std::string message_from_server = client_one.receiveMessageFromServer();
 
             /*Processing the message that has been send by the server*/
             if (message_from_server == "CALLFROMCLIENTTWO")
@@ -89,7 +88,7 @@ int main(int argc, char const *argv[])
         }
 
         /*Clear the content of the file*/
-        client_one_file.clearFileContent();
+        client_one.clearFileContent();
 
         /*Handle the events*/
         while (SDL_PollEvent(&e) != 0)
@@ -108,7 +107,7 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
                     /*Sending server to call client two*/
-                    client_one_file.sendMessageToServer("CALLCLIENTTWO");
+                    client_one.sendMessageToServer("CALLCLIENTTWO");
 
                     /*Set the name of the person calling*/
                     client_one.setCallingPersonName("Client Two");
@@ -214,7 +213,7 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
                     /*Sending server that the call has been ended*/
-                    client_one_file.sendMessageToServer("CALLENDEDBYCLIENTONE");
+                    client_one.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
                     /*Display the calling screen*/
                     client_one.setCurrentScreen(CALL_ENDED);
@@ -244,7 +243,7 @@ int main(int argc, char const *argv[])
                 if (x >= 74 && x <= 134 && y >= 543 && y <= 593)
                 {
                     /*Sending server that call has been declined*/
-                    client_one_file.sendMessageToServer("CALLDECLINEDBYCLIENTONE");
+                    client_one.sendMessageToServer("CALLDECLINEDBYCLIENTONE");
 
                     client_one.setCallingPersonName(" ");
 
@@ -262,7 +261,7 @@ int main(int argc, char const *argv[])
                 if (x >= 280 && x <= 344 && y >= 543 && y <= 593)
                 {
                     /*Sending server that  call has been recieved*/
-                    client_one_file.sendMessageToServer("CALLRECEIVEDBYCLIENTONE");
+                    client_one.sendMessageToServer("CALLRECEIVEDBYCLIENTONE");
 
                     client_one.setCallingPersonName("Client Two");
 
@@ -289,7 +288,7 @@ int main(int argc, char const *argv[])
                     if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                     {
                         /*Sending message to server that call has been ended*/
-                        client_one_file.sendMessageToServer("CALLENDEDBYCLIENTONE");
+                        client_one.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
                         /*Display the calling screen*/
                         client_one.setCurrentScreen(CALL_ENDED);
@@ -311,7 +310,7 @@ int main(int argc, char const *argv[])
                     {
                         client_one.setCallConnectedStatus(CALLCONNECTEDSENDING);
 
-                        client_one_file.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTONE");
+                        client_one.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTONE");
 
                         client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);
                     }
