@@ -1,12 +1,12 @@
-#include "clientfile.hpp"
+#include "phonefile.hpp"
 
 #include <iostream>
 
-void ClientFile::init()
+void PhoneFile::init()
 {
     /*Set the file size value to 0*/
-    previous_client_file_size = 0;
-    current_client_file_size = 0;
+    previous_phone_file_size = 0;
+    current_phone_file_size = 0;
 }
 
 /*
@@ -14,7 +14,7 @@ void ClientFile::init()
  * If it has been changed then it updated the file size
  * in our variable.
  */
-bool ClientFile::isClientFileSizeChanged()
+bool PhoneFile::isClientFileSizeChanged()
 {
     /*Opening client file*/
     bool file_open_status = this->openClientFile();
@@ -23,12 +23,12 @@ bool ClientFile::isClientFileSizeChanged()
     this->client_file.seekg(0, std::ios::end);
 
     /*Updating the value of file size*/
-    this->previous_client_file_size = this->current_client_file_size;
-    this->current_client_file_size = this->client_file.tellg();
+    this->previous_phone_file_size = this->current_phone_file_size;
+    this->current_phone_file_size = this->client_file.tellg();
 
     if (file_open_status)
     {
-        if (this->previous_client_file_size != this->current_client_file_size)
+        if (this->previous_phone_file_size != this->current_phone_file_size)
         {
             this->closeClientFile();
             return true;
@@ -39,7 +39,7 @@ bool ClientFile::isClientFileSizeChanged()
     return false;
 }
 
-bool ClientFile::openServerFile()
+bool PhoneFile::openServerFile()
 {
     this->server_file.open(SERVERFILE, std::ios::out);
 
@@ -51,12 +51,12 @@ bool ClientFile::openServerFile()
     return false;
 }
 
-void ClientFile::closeServerFile()
+void PhoneFile::closeServerFile()
 {
     this->server_file.close();
 }
 
-bool ClientFile::openClientFile()
+bool PhoneFile::openClientFile()
 {
     this->client_file.open(this->client_file_path, std::ios::in);
 
@@ -69,19 +69,23 @@ bool ClientFile::openClientFile()
     return false;
 }
 
-void ClientFile::closeClientFile()
+void PhoneFile::closeClientFile()
 {
     this->client_file.close();
 }
 
-ClientFile::ClientFile(std::string client_file_path)
+PhoneFile::PhoneFile()
 {
-    this->client_file_path = client_file_path;
 
     init();
 }
 
-void ClientFile::clearFileContent()
+void PhoneFile::setClientFilePath(std::string client_file_path)
+{
+    this->client_file_path = client_file_path;
+}
+
+void PhoneFile::clearFileContent()
 {
     this->client_file.open(this->client_file_path, std::ios::out);
 
@@ -90,7 +94,7 @@ void ClientFile::clearFileContent()
     this->closeClientFile();
 }
 
-void ClientFile::sendMessageToServer(std::string message)
+void PhoneFile::sendMessageToServer(std::string message)
 {
     this->openServerFile();
 
@@ -98,7 +102,7 @@ void ClientFile::sendMessageToServer(std::string message)
 
     this->closeServerFile();
 }
-void ClientFile::readMessageFromServer()
+void PhoneFile::readMessageFromServer()
 {
 
     bool result = this->openClientFile();
@@ -108,7 +112,7 @@ void ClientFile::readMessageFromServer()
 
     this->closeClientFile();
 }
-std::string ClientFile::receiveMessageFromServer()
+std::string PhoneFile::receiveMessageFromServer()
 {
     this->readMessageFromServer();
 

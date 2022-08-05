@@ -4,7 +4,7 @@
 
 #define SERVERFILE "Server/server.txt"
 
-class ClientFile
+class PhoneFile
 {
 private:
     std::fstream server_file;
@@ -14,8 +14,8 @@ private:
 
     std::string message;
 
-    int current_client_file_size;
-    int previous_client_file_size;
+    int current_phone_file_size;
+    int previous_phone_file_size;
 
 private:
     void init();
@@ -29,7 +29,9 @@ private:
     void closeClientFile();
 
 public:
-    ClientFile(std::string client_file_path);
+    PhoneFile();
+
+    void setClientFilePath(std::string client_file_path);
 
     bool isClientFileSizeChanged();
 
