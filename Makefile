@@ -31,15 +31,15 @@ build/server.o: Server/server.cpp
 	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
 
 # Creating Client One
-client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o build/sound.o build/audio_recording.o build/phonescreen.o build/phonesound.o build/phonefont.o 
-	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o build/sound.o build/phonescreen.o build/audio_recording.o build/phonesound.o build/phonefont.o  ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/phonefile.o build/sound.o build/audio_recording.o build/phonescreen.o build/phonesound.o build/phonefont.o 
+	${CPP_COMPILER} -o client_one.out build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/phonefile.o build/sound.o build/phonescreen.o build/audio_recording.o build/phonesound.o build/phonefont.o  ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_one.o: Client/One/client_one.cpp
 	${CPP_COMPILER} -o build/client_one.o -c Client/One/client_one.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 #Creating Client Two
-client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o build/sound.o build/audio_recording.o build/phonescreen.o build/phonesound.o build/phonefont.o
-	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/clientfile.o build/sound.o build/phonescreen.o build/audio_recording.o build/phonesound.o build/phonefont.o ${HEADER_FLAGS} ${LINKER_FLAGS}
+client_two: build/ build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/phonefile.o build/sound.o build/audio_recording.o build/phonescreen.o build/phonesound.o build/phonefont.o
+	${CPP_COMPILER} -o client_two.out build/client_two.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/phonefile.o build/sound.o build/phonescreen.o build/audio_recording.o build/phonesound.o build/phonefont.o ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/client_two.o: Client/Two/client_two.cpp
 	${CPP_COMPILER} -o build/client_two.o -c Client/Two/client_two.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
@@ -74,8 +74,8 @@ build/tone.o: src/tone.cpp include/tone.hpp
 build/audio.o: src/audio.cpp include/audio.hpp
 	${CPP_COMPILER} -o build/audio.o -c src/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/clientfile.o : src/clientfile.cpp include/clientfile.hpp
-	${CPP_COMPILER} -o build/clientfile.o -c src/clientfile.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phonefile.o : src/phonefile.cpp include/phonefile.hpp
+	${CPP_COMPILER} -o build/phonefile.o -c src/phonefile.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
