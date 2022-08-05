@@ -84,6 +84,9 @@ int main(int argc, char const *argv[])
             }
         }
 
+        /*Clear the content of the files*/
+        client_two_file.clearFileContent();
+
         /*Handle the events*/
         while (SDL_PollEvent(&e) != 0)
         {
