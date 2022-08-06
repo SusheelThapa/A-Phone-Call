@@ -3,13 +3,13 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 
-#include "Client/window.hpp"
-#include "Client/texture.hpp"
-#include "Client/audio_recording.hpp"
-#include "Client/phonescreen.hpp"
-#include "Client/phonesound.hpp"
-#include "Client/phonefont.hpp"
-#include "Client/phonefile.hpp"
+#include <Client/window.hpp>
+#include <Client/texture.hpp>
+#include <Client/audio_recording.hpp>
+#include <Client/phonescreen.hpp>
+#include <Client/phonesound.hpp>
+#include <Client/phonefont.hpp>
+#include <Client/phonefile.hpp>
 
 class Phone : public Screen, public PhoneSound, public PhoneFont, public PhoneFile
 {
