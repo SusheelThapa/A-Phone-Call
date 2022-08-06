@@ -1,4 +1,4 @@
-#include "sound.hpp"
+#include "Client/sound.hpp"
 
 void AbstractSound::setSoundPath(std::string sound_path)
 {

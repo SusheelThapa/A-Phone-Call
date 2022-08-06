@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sound.hpp"
+#include "Client/sound.hpp"
 
 #include <SDL2/SDL_mixer.h>
 

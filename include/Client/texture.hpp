@@ -11,11 +11,7 @@ surface or a part of the window, loading text over the window,etc
 
 #pragma once
 
-#define TEXTURE_HEADER_FILE 1
-
-#ifndef WINDOW_HEADER_FILE
-#include "window.hpp"
-#endif
+#include "Client/window.hpp"
 
 class Texture
 {

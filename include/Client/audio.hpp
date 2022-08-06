@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "sound.hpp"
+#include "Client/sound.hpp"
 
 class Audio : public AbstractSound
 {

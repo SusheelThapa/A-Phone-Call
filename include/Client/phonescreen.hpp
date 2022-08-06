@@ -1,7 +1,7 @@
 #pragma once
 
-#include "texture.hpp"
-#include "window.hpp"
+#include "Client/texture.hpp"
+#include "Client/window.hpp"
 
 enum PhoneScreen
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "audio.hpp"
-#include "tone.hpp"
+#include "Client/audio.hpp"
+#include "Client/tone.hpp"
 
 class PhoneSound
 {

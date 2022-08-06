@@ -59,41 +59,41 @@ client_two_run:
 	clear
 	./client_two.out
 
-build/window.o: src/window.cpp include/window.hpp
-	${CPP_COMPILER} -o build/window.o -c src/window.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/window.o: src/Client/window.cpp include/Client/window.hpp
+	${CPP_COMPILER} -o build/window.o -c src/Client/window.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/texture.o: src/texture.cpp include/texture.hpp
-	${CPP_COMPILER} -o build/texture.o -c src/texture.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/texture.o: src/Client/texture.cpp include/Client/texture.hpp
+	${CPP_COMPILER} -o build/texture.o -c src/Client/texture.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/phone.o:	src/phone.cpp include/phone.hpp
-	${CPP_COMPILER} -o build/phone.o -c src/phone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phone.o:	src/Client/phone.cpp include/Client/phone.hpp
+	${CPP_COMPILER} -o build/phone.o -c src/Client/phone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/tone.o: src/tone.cpp include/tone.hpp
-	${CPP_COMPILER} -o build/tone.o -c src/tone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/tone.o: src/Client/tone.cpp include/Client/tone.hpp
+	${CPP_COMPILER} -o build/tone.o -c src/Client/tone.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/audio.o: src/audio.cpp include/audio.hpp
-	${CPP_COMPILER} -o build/audio.o -c src/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/audio.o: src/Client/audio.cpp include/Client/audio.hpp
+	${CPP_COMPILER} -o build/audio.o -c src/Client/audio.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/phonefile.o : src/phonefile.cpp include/phonefile.hpp
-	${CPP_COMPILER} -o build/phonefile.o -c src/phonefile.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phonefile.o : src/Client/phonefile.cpp include/Client/phonefile.hpp
+	${CPP_COMPILER} -o build/phonefile.o -c src/Client/phonefile.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 build/:
 	mkdir build
 
-build/sound.o: src/sound.cpp include/sound.hpp
-	${CPP_COMPILER} -o build/sound.o -c src/sound.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/sound.o: src/Client/sound.cpp include/Client/sound.hpp
+	${CPP_COMPILER} -o build/sound.o -c src/Client/sound.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/audio_recording.o: src/audio_recording.cpp include/audio_recording.hpp
-	${CPP_COMPILER} -o build/audio_recording.o  -c src/audio_recording.cpp ${HEADER_FLAGS}
+build/audio_recording.o: src/Client/audio_recording.cpp include/Client/audio_recording.hpp
+	${CPP_COMPILER} -o build/audio_recording.o  -c src/Client/audio_recording.cpp ${HEADER_FLAGS}
 
-build/phonescreen.o: src/phonescreen.cpp include/phonescreen.hpp
-	${CPP_COMPILER} -o build/phonescreen.o -c src/phonescreen.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phonescreen.o: src/Client/phonescreen.cpp include/Client/phonescreen.hpp
+	${CPP_COMPILER} -o build/phonescreen.o -c src/Client/phonescreen.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/phonesound.o: src/phonesound.cpp include/phonesound.hpp
-	${CPP_COMPILER} -o build/phonesound.o -c src/phonesound.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phonesound.o: src/Client/phonesound.cpp include/Client/phonesound.hpp
+	${CPP_COMPILER} -o build/phonesound.o -c src/Client/phonesound.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
-build/phonefont.o: src/phonefont.cpp include/phonefont.hpp
-	${CPP_COMPILER} -o build/phonefont.o -c src/phonefont.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+build/phonefont.o: src/Client/phonefont.cpp include/Client/phonefont.hpp
+	${CPP_COMPILER} -o build/phonefont.o -c src/Client/phonefont.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
 clean:	
 	rm -rf build

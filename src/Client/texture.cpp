@@ -7,7 +7,7 @@ Filename: texture.cpp
 This is defination/body of the header file texture.hpp
 */
 
-#include "texture.hpp"
+#include "Client/texture.hpp"
 
 Texture::Texture()
 {

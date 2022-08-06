@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 
-#include "window.hpp"
-#include "phone.hpp"
+#include "Client/window.hpp"
+#include "Client/phone.hpp"
 
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
