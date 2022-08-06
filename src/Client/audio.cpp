@@ -18,6 +18,11 @@ Audio::Audio(std::string sound_path)
     this->loadAudio();
 }
 
+Audio::~Audio()
+{
+    Mix_FreeMusic(audio);
+}
+
 void Audio::setSoundPath(std::string sound_path)
 {
     this->AbstractSound::setSoundPath(sound_path);

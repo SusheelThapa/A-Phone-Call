@@ -44,6 +44,11 @@ Phone::Phone(Window &window, std::string name) : Screen(window)
     call_connected_audio_recording_status = AudioRecordingStatus::NONE;
 }
 
+Phone::~Phone()
+{
+    delete[] switch_on;
+}
+
 void Phone::setCallingPersonName(std::string name)
 {
     this->calling_person_name = name;

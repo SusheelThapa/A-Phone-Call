@@ -31,6 +31,12 @@ Screen::Screen(Window &window)
     call_connected_status = CALLCONNECTEDNONE;
 }
 
+Screen::~Screen()
+{
+    delete[] incoming_call;
+    delete[] call_connected;
+}
+
 void Screen::setCurrentScreen(PhoneScreen screen)
 {
     this->current_screen = screen;

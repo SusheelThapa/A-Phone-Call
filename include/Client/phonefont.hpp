@@ -10,6 +10,7 @@ class PhoneFont
 
 public:
     PhoneFont();
+    ~PhoneFont();
 
     TTF_Font *getBigFont();
     TTF_Font *getMediumFont();

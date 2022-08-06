@@ -18,6 +18,8 @@ public:
     Audio(){};
     Audio(std::string sound_path);
 
+    ~Audio();
+
     void setSoundPath(std::string sound_path);
 
     void play();

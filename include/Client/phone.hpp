@@ -52,6 +52,8 @@ private:
 public:
     Phone(Window &window, std::string name);
 
+    ~Phone();
+
     void setCallingPersonName(std::string name);
 
     void render(Window &window);
@@ -85,6 +87,4 @@ public:
     void setCallConnectedRecordingStatus(AudioRecordingStatus status);
 
     AudioRecordingStatus getCallConnectedRecordingStatus();
-
-    ~Phone() {}
 };

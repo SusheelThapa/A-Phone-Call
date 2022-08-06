@@ -19,6 +19,8 @@ public:
 
     Tone(std::string);
 
+    ~Tone();
+
     void setSoundPath(std::string sound_path);
 
     void play();

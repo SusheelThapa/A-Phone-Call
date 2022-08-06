@@ -23,6 +23,11 @@ void Tone::setSoundPath(std::string sound_path)
     this->loadTone();
 }
 
+Tone::~Tone()
+{
+    Mix_FreeChunk(tone_audio);
+}
+
 void Tone::play()
 {
     if (this->getSoundPath() == " ")

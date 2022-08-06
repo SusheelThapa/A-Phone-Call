@@ -37,6 +37,8 @@ private:
 public:
     Screen(Window &window);
 
+    ~Screen();
+
     void setCurrentScreen(PhoneScreen screen);
 
     PhoneScreen getCurrentScreen();
