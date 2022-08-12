@@ -338,3 +338,9 @@ AudioRecordingStatus Phone::getCallConnectedRecordingStatus()
 {
     return this->call_connected_audio_recording_status;
 }
+
+std::string Phone::getDialNumber()
+{
+    return dial_pad_number;
+}
+

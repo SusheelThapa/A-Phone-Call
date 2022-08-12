@@ -80,6 +80,8 @@ public:
 
     void removeOneDialNumber();
 
+    std::string getDialNumber();
+    
     void startRecordingAudioMessage();
 
     void startPlayingAudioMessage();

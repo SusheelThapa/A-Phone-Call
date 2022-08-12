@@ -61,7 +61,7 @@ int main()
             std::cout << "Message = " << message << "\n";
 
             /*Processing the content of files*/
-            if (message == "CALLCLIENTTWO")
+            if (message == "CALLCLIENTTWO1111111111")
             {
                 client_two_file_pointer.open(CLIENT_TWO_FILE, ios::out);
                 if (client_two_file_pointer)
@@ -75,7 +75,7 @@ int main()
                     std::cout << "Error opening the file";
                 }
             }
-            else if (message == "CALLCLIENTONE")
+            else if (message == "CALLCLIENTONE2222222222")
             {
 
                 client_one_file_pointer.open(CLIENT_ONE_FILE, ios::out);
