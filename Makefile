@@ -24,11 +24,11 @@ all:
 
 
 # Creating Server
-server: build/ build/server.o
-	${CPP_COMPILER} -o server.out build/server.o
+server: build/ build/server.o build/NTC.o
+	${CPP_COMPILER} -o server.out build/server.o build/NTC.o
 
-build/server.o: Server/server.cpp	
-	${CPP_COMPILER} -o build/server.o -c Server/server.cpp
+build/server.o: Server/server.cpp
+	${CPP_COMPILER} -o build/server.o -c Server/server.cpp ${HEADER_FLAGS}
 
 # Creating Client One
 client_one: build/  build/client_one.o build/window.o build/texture.o build/phone.o build/tone.o build/audio.o build/phonefile.o build/sound.o build/audio_recording.o build/phonescreen.o build/phonesound.o build/phonefont.o 
@@ -95,6 +95,10 @@ build/phonesound.o: src/Client/phonesound.cpp include/Client/phonesound.hpp
 build/phonefont.o: src/Client/phonefont.cpp include/Client/phonefont.hpp
 	${CPP_COMPILER} -o build/phonefont.o -c src/Client/phonefont.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
 
+
+build/NTC.o: src/Server/NTC.cpp include/Server/NTC.hpp
+	${CPP_COMPILER} -o build/NTC.o -c src/Server/NTC.cpp ${HEADER_FLAGS} ${LINKER_FLAGS}
+
 clean:	
 	rm -rf build
 	rm *.out
@@ -103,3 +107,4 @@ restore:
 	git restore Server/server.txt
 	git restore Client/One/client_one.txt
 	git restore Client/Two/client_two.txt
+	git restore Server/logs.log
