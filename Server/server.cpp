@@ -17,9 +17,6 @@ int main()
         {
             server.readMessage();
 
-            std::cout << "Message = " << server.getMessage() << "\n";
-            std::cout << (server.getMessage() == "CALLCLIENTTWO");
-
             /*Processing the content of files*/
             if (server.getMessage() == "CALLCLIENTTWO")
             {
@@ -33,12 +30,12 @@ int main()
             }
             else if (server.getMessage() == "CALLDECLINEDBYCLIENTTWO")
             {
-                server.sendMessageToClientTwo("CALLDECLINEDFROMCLIENTTWO");
+                server.sendMessageToClientOne("CALLDECLINEDFROMCLIENTTWO");
                 server.updateLogMessage("Client Two has declined the call from Client One\n");
             }
             else if (server.getMessage() == "CALLDECLINEDBYCLIENTONE")
             {
-                server.sendMessageToClientOne("CALLDECLINEDFROMCLIENTONE");
+                server.sendMessageToClientTwo("CALLDECLINEDFROMCLIENTONE");
                 server.updateLogMessage("Client Two has declined the call from Client Two\n");
             }
             else if (server.getMessage() == "CALLRECEIVEDBYCLIENTONE")
