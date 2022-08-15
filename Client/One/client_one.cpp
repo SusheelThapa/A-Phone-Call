@@ -85,6 +85,10 @@ int main(int argc, char const *argv[])
 
                 client_one.startPlayingAudioMessage();
             }
+            // else if()
+            // {
+                
+            // }
         }
 
         /*Clear the content of the file*/
@@ -107,14 +111,13 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
 
-                    if ( client_one.getDialNumber() == " 2222222222" )
-                    {
+                
                         /*Sending server to call client two*/
-                        client_one.sendMessageToServer("CALLCLIENTTWO1111111111");
-
+                        client_one.sendMessageToServer("CALLCLIENTTWO"+ client_one.getDialNumber() );
+                        
                         /*Set the name of the person calling*/
-                        client_one.setCallingPersonName("Client Two");
-                       
+                          
+
                         /*Display the calling screen*/
                         client_one.setCurrentScreen(OUTGOING_CALL);
 
@@ -123,7 +126,7 @@ int main(int argc, char const *argv[])
 
                         /*Start the outgoing call time*/
                         client_one.startOutgoingCallTime();
-                    }
+              
                         /*Resetting dialpad number status after we press calling green button*/
                         client_one.resetDialNumber();
 

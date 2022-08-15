@@ -18,11 +18,18 @@ int main()
             server.readMessage();
 
             /*Processing the content of files*/
-            if (server.getMessage() == "CALLCLIENTTWO1111111111")
-
+            if (server.getMessage().substr(0, 13) == "CALLCLIENTTWO")
             {
-                server.sendMessageToClientTwo("CALLFROMCLIENTONE");
-                server.updateLogMessage("Client One is calling Client Two.\n");
+                if (server.getMessage().substr(13, 11) == " 2222222222")
+                {
+                    server.sendMessageToClientTwo("CALLFROMCLIENTONE");
+                    server.updateLogMessage("Client One is calling Client Two.\n");
+                }
+                else
+                {
+                    // server.sendMessageToClientOne("DIALPADNUMBERMACHEDWITHCLIENTTWO");
+                    std::cout << "inside else of number checking" << std::endl;
+                }
             }
             else if (server.getMessage() == "CALLCLIENTONE2222222222")
             {
