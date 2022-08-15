@@ -1,10 +1,26 @@
+/*
+
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
+
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
+
+Filename : window.cpp
+Categories : C++ Header File
+Description : It is used to render the window of the project.
+*/
+
 #pragma once
 
+/*SDL2 Header file*/
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 
+/*Standard C++ Header file*/
 #include <iostream>
 #include <string>
 
