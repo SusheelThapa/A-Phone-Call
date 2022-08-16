@@ -31,7 +31,7 @@ A Phone Call is all about demostrating the simulation of how phone call  works b
 ## Glimpse of the project
 
 <!-- Here, we will have the gif of the project -->
-![Phone-call-simulation](resources/markdown/Phone-call-simulation.gif)
+<img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)
 
 
 ## Tools we have used
