@@ -13,7 +13,8 @@
 </p>
 
 <!-- Short introduction about Project -->
-A Phone Call is all about demostrating the simulation of how phone call  works between two clients in real world and how everything is controlled and managed by server at the backend of the communication.
+
+A Phone Call is all about demostrating the simulation of how phone call works between two clients in real world and how everything is controlled and managed by server at the backend of the communication.
 
 ## Table of Contents
 
@@ -31,8 +32,7 @@ A Phone Call is all about demostrating the simulation of how phone call  works b
 ## Glimpse of the project
 
 <!-- Here, we will have the gif of the project -->
-<img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)
-
+<p align="center"><img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)</p>
 
 ## Tools we have used
 
