@@ -29,10 +29,20 @@ A Phone Call is all about demostrating the simulation of how phone call works be
 
 ## Objectives
 
+- To learn **Object Oriented Programming**
+  - Encapsulation
+  - Inheritance
+  - Abstraction
+  - Polymorphism
+- To learn **Simple Media Direct Layer**
+- To learn how to collaborate with each other in a project.
+- To learn how does call get establish in real world.
+
 ## Glimpse of the project
 
-<!-- Here, we will have the gif of the project -->
-<p align="center"><img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)</p>
+<p align="center">
+   <img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)
+</p>
 
 ## Tools we have used
 
