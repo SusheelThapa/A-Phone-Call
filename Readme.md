@@ -115,7 +115,7 @@ This project has been created and tested in **linux platform**.
 ## How does it works?
 
 <p align="center">
-   <img src= "resources/images/Communication Between Two Client and Server.png" height = "500" width = "750">
+   <img src= "resources/images/markdown/Communication Between Two Client and Server.png" height = "500" width = "750">
 </p>
 
 **IMPORTANT**
