@@ -29,12 +29,12 @@ A Phone Call is all about demostrating the simulation of how phone call works be
 
 ## Objectives
 
-- To learn **Object Oriented Programming**
-  - Encapsulation
-  - Inheritance
-  - Abstraction
-  - Polymorphism
-- To learn **Simple Media Direct Layer**
+- To learn **[Object Oriented Programming](resources/markdown/oops.md)**
+  - [Encapsulation](resources/markdown/oops.md#encapsulation)
+  - [Inheritance](resources/markdown/oops.md#inheritance)
+  - [Abstraction](resources/markdown/oops.md#abstraction)
+  - [Polymorphism](resources/markdown/oops.md#polymorphism)
+- To learn **[Simple Media Direct Layer](https://www.libsdl.org/)**
 - To learn how to collaborate with each other in a project.
 - To learn how does call get establish in real world.
 
