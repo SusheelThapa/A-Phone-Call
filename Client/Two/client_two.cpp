@@ -102,11 +102,8 @@ int main(int argc, char const *argv[])
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
-
-                    if (client_two.getDialNumber() == " 1111111111")
-                    {
                         /*Sending server to call client one*/
-                        client_two.sendMessageToServer("CALLCLIENTONE2222222222");
+                        client_two.sendMessageToServer("CALLCLIENTONE" + client_two.getDialNumber());
 
                         /*Set the name of the personn calling */
                         client_two.setCallingPersonName("Client One");
@@ -119,9 +116,6 @@ int main(int argc, char const *argv[])
 
                         /*Start the outgoing call time*/
                         client_two.startOutgoingCallTime();
-                    }
-                    /*Resetting dialpad number status after we press calling green button*/
-                    client_two.resetDialNumber();
                 }
 
                 /* Section for back press in dial pad */

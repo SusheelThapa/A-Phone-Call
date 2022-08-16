@@ -106,7 +106,7 @@ void Phone::render(Window &window)
         this->checkOutgoingCallTime();
 
         /*Add the person name to whom he/she is calling*/
-        calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
+        calling_person.loadFromText(window, this->getBigFont(), calling_person_name , {0, 0, 0, 0});
 
         SDL_Rect render_calling_person_rect = {
             (window.getWidth() - calling_person.getWidth()) / 2,
@@ -115,6 +115,21 @@ void Phone::render(Window &window)
             calling_person.getHeight()};
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
+
+
+        // SASA
+        calling_person_number.loadFromText(window, this->getBigFont(), dial_pad_number , {0, 0, 0, 0});
+        
+        // SASA
+        SDL_Rect render_calling_person_number = {
+            (window.getWidth() - calling_person_number.getWidth() ) / 2,
+            100,
+            calling_person_number.getWidth(),
+            calling_person_number.getHeight()};
+
+        /* Display the name of the calling person */
+        calling_person_number.render(window, 0, 0, nullptr, &render_calling_person_number);
+
     }
     else if (this->getCurrentScreen() == CALL_CONNECTED)
     {
@@ -192,6 +207,9 @@ void Phone::render(Window &window)
     }
     else if (this->getCurrentScreen() == CALL_REJECTED)
     {
+
+        // resetDialNumber();
+
         /*Add the person name to whom he/she is calling*/
         calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
 
@@ -205,6 +223,8 @@ void Phone::render(Window &window)
     }
     else if (this->getCurrentScreen() == CALL_ENDED)
     {
+
+        //  resetDialNumber(); 
 
         /*Render the name of person*/
         calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
@@ -343,4 +363,3 @@ std::string Phone::getDialNumber()
 {
     return dial_pad_number;
 }
-

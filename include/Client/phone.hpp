@@ -26,6 +26,11 @@ private:
     std::string calling_person_name;
 
     Texture calling_person;
+    
+    // SASA
+    Texture calling_person_number;
+    //
+
     Texture call_connected_status;
 
     Texture dial_number;

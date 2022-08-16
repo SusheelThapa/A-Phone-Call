@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
             }
             // else if()
             // {
-                
+
             // }
         }
 
@@ -111,25 +111,20 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
 
-                
-                        /*Sending server to call client two*/
-                        client_one.sendMessageToServer("CALLCLIENTTWO"+ client_one.getDialNumber() );
-                        
-                        /*Set the name of the person calling*/
-                          
+                    /*Sending server to call client two*/
+                    client_one.sendMessageToServer("CALLCLIENTTWO" + client_one.getDialNumber());
 
-                        /*Display the calling screen*/
-                        client_one.setCurrentScreen(OUTGOING_CALL);
+                    /*Set the name of person who have called*/
+                    client_one.setCallingPersonName("Client Two");
 
-                        /*Play outgoing call sound*/
-                        client_one.playOutgoingTone();
+                    /*Display the calling screen*/
+                    client_one.setCurrentScreen(OUTGOING_CALL);
 
-                        /*Start the outgoing call time*/
-                        client_one.startOutgoingCallTime();
-              
-                        /*Resetting dialpad number status after we press calling green button*/
-                        client_one.resetDialNumber();
+                    /*Play outgoing call sound*/
+                    client_one.playOutgoingTone();
 
+                    /*Start the outgoing call time*/
+                    client_one.startOutgoingCallTime();
                 }
 
                 /* Section for back press in dial pad */
