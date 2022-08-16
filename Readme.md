@@ -114,6 +114,52 @@ This project has been created and tested in **linux platform**.
 
 ## How does it works?
 
+<p align="center">
+   <img src= "resources/images/Communication Between Two Client and Server.png" height = "500" width = "750">
+</p>
+
+**IMPORTANT**
+
+`server`, `client_one` and `client_two` have their own file which they check if they have been changed or not.
+
+- When `client_one` calls `client_two`
+
+  `client_one` will send message to server(by writing in the `server_file`) i.e **CALLCLIENTTWO2222222222** as can been seen from above images.
+
+  Then, `server` will analyse if the number `client_one` is calling is of `client_two` or not.
+
+  If the number is correct, then it will write in `client_two` file **CALLFROMCLIENTONE1111111111**
+
+  If the number is incorrect, then it will write in `client_one` file **NUMBERUNMATCHED**
+
+- When **dialed number is correct**(call from `client_one` to `client_two`)
+
+  Here, `client_two` have two option.
+
+  - To reject the call
+
+    When `client_two` reject the calls then it will write **CALLREJECTEDBYCLIENTTWO** in `server` file.
+
+    Then `server` will write **CALLREJECTEDFROMCLIENTTWO** in `client_one` file
+
+  - To accept the call
+
+    When `client_two` accept the calls then it will write **CALLRECEIVEDBYCLIENTTWO** in `server` file.
+
+    Then `server` will write **CALLRECEIVEDFROMCLIENTTWO** in `client_one` file
+
+- When `client_two` accept call from `client_two`
+
+  Both of the **client** can send _audio message to each other_ one at a time.
+
+  Suppose `client_one` has send _audiomessage_ to `client_two`.
+
+  Then, `client_one` will write **AUDIOMESSAGESENDBYCLIENTONE** in `server` file.
+
+  After that, `server` will write **AUDIOMESSAGESENDFROMCLIENTONE** in `client_two` file.
+
+_Note: All the above explanation is based from `client_one` to `client_two`. The explanation is true from `client_two` to `client_one`. Also, we have explain only how client communicates but not what happen after the message is receive by respective client_
+
 ## Authors
 
 - [Saurav Kumar Mahato](https://github.com/SauravKumarMahato)
