@@ -25,11 +25,11 @@ private:
 
     std::string calling_person_name;
 
+    std::string calling_person_number;
+
     Texture calling_person;
-    
-    // SASA
-    Texture calling_person_number;
-    //
+
+    Texture calling_person_number_texture;
 
     Texture call_connected_status;
 
@@ -61,6 +61,8 @@ public:
 
     void setCallingPersonName(std::string name);
 
+    void setCallingPersonNumber(std::string number);
+
     void render(Window &window);
 
     void startCallTime();
@@ -86,7 +88,7 @@ public:
     void removeOneDialNumber();
 
     std::string getDialNumber();
-    
+
     void startRecordingAudioMessage();
 
     void startPlayingAudioMessage();

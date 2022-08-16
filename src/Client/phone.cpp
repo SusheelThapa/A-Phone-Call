@@ -54,6 +54,11 @@ void Phone::setCallingPersonName(std::string name)
     this->calling_person_name = name;
 }
 
+void Phone::setCallingPersonNumber(std::string number)
+{
+    this->calling_person_number = number;
+}
+
 void Phone::render(Window &window)
 {
 
@@ -100,13 +105,24 @@ void Phone::render(Window &window)
             calling_person.getHeight()};
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
+
+        /*Add the number of the person who is calling*/
+        calling_person_number_texture.loadFromText(window, this->getMediumFont(), calling_person_number, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_number_rect = {
+            (window.getWidth() - calling_person_number_texture.getWidth()) / 2,
+            380,
+            calling_person_number_texture.getWidth(),
+            calling_person_number_texture.getHeight()};
+
+        calling_person_number_texture.render(window, 0, 0, nullptr, &render_calling_person_number_rect);
     }
     else if (this->getCurrentScreen() == OUTGOING_CALL)
     {
         this->checkOutgoingCallTime();
 
         /*Add the person name to whom he/she is calling*/
-        calling_person.loadFromText(window, this->getBigFont(), calling_person_name , {0, 0, 0, 0});
+        calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
 
         SDL_Rect render_calling_person_rect = {
             (window.getWidth() - calling_person.getWidth()) / 2,
@@ -116,20 +132,16 @@ void Phone::render(Window &window)
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
 
+        /*Add the number of the person to whom we are calling*/
+        calling_person_number_texture.loadFromText(window, this->getMediumFont(), dial_pad_number, {0, 0, 0, 0});
 
-        // SASA
-        calling_person_number.loadFromText(window, this->getBigFont(), dial_pad_number , {0, 0, 0, 0});
-        
-        // SASA
         SDL_Rect render_calling_person_number = {
-            (window.getWidth() - calling_person_number.getWidth() ) / 2,
-            100,
-            calling_person_number.getWidth(),
-            calling_person_number.getHeight()};
+            (window.getWidth() - calling_person_number_texture.getWidth()) / 2,
+            120,
+            calling_person_number_texture.getWidth(),
+            calling_person_number_texture.getHeight()};
 
-        /* Display the name of the calling person */
-        calling_person_number.render(window, 0, 0, nullptr, &render_calling_person_number);
-
+        calling_person_number_texture.render(window, 0, 0, nullptr, &render_calling_person_number);
     }
     else if (this->getCurrentScreen() == CALL_CONNECTED)
     {
@@ -145,6 +157,18 @@ void Phone::render(Window &window)
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
 
+        /*Add the number of the person who is calling*/
+        calling_person_number_texture.loadFromText(window, this->getMediumFont(), calling_person_number, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_number_rect = {
+            (window.getWidth() - calling_person_number_texture.getWidth()) / 2,
+            120,
+            calling_person_number_texture.getWidth(),
+            calling_person_number_texture.getHeight()};
+
+        calling_person_number_texture.render(window, 0, 0, nullptr, &render_calling_person_number_rect);
+
+        /*Record Play and Send of the audio*/
         if ((SDL_GetTicks() - call_connected_audio_recording.getRecordingStartedTime()) / 1000 > 5 && call_connected_audio_recording_status == RECORDING)
         {
             call_connected_audio_recording.resetRecordingStartedTime();
@@ -224,8 +248,6 @@ void Phone::render(Window &window)
     else if (this->getCurrentScreen() == CALL_ENDED)
     {
 
-        //  resetDialNumber(); 
-
         /*Render the name of person*/
         calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
 
@@ -248,6 +270,9 @@ void Phone::render(Window &window)
 
         /*Reset the name of the calling person*/
         this->setCallingPersonName(" ");
+
+        /*Reseting the dialnumber*/
+        this->resetDialNumber();
     }
 }
 

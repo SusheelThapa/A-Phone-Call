@@ -27,13 +27,16 @@ int main(int argc, char const *argv[])
             std::string message_from_server = client_one.receiveMessageFromServer();
 
             /*Processing the message that has been send by the server*/
-            if (message_from_server == "CALLFROMCLIENTTWO")
+            if (message_from_server.substr(0, 17) == "CALLFROMCLIENTTWO")
             {
                 /*Show incoming call screen*/
                 client_one.setCurrentScreen(INCOMING_CALL);
 
                 /*Set the name of person who have called*/
                 client_one.setCallingPersonName("Client Two");
+
+                /*Set the number of calling person*/
+                client_one.setCallingPersonNumber(message_from_server.substr(17, 10));
 
                 /*Play the incoming call sound*/
                 client_one.playRingtone();
@@ -119,6 +122,9 @@ int main(int argc, char const *argv[])
 
                         /*Set the name of person who have called*/
                         client_one.setCallingPersonName("Client Two");
+
+                        /*Set the number of person to whom we are calling*/
+                        client_one.setCallingPersonNumber(client_one.getDialNumber());
 
                         /*Display the calling screen*/
                         client_one.setCurrentScreen(OUTGOING_CALL);

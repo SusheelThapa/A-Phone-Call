@@ -23,13 +23,16 @@ int main(int argc, char const *argv[])
             std::string message_from_server = client_two.receiveMessageFromServer();
 
             /*Processing the message that has been send by the server*/
-            if (message_from_server == "CALLFROMCLIENTONE")
+            if (message_from_server.substr(0, 17) == "CALLFROMCLIENTONE")
             {
                 /*Show incoming call screen*/
                 client_two.setCurrentScreen(INCOMING_CALL);
 
                 /*Set the name of person who have called*/
                 client_two.setCallingPersonName("Client One");
+
+                /*Set the number of calling person*/
+                client_two.setCallingPersonNumber(message_from_server.substr(17, 10));
 
                 /*Play the incoming call sound*/
                 client_two.playRingtone();
@@ -102,11 +105,17 @@ int main(int argc, char const *argv[])
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
+                    /*If the dial number is of 10 then only call will take place*/
+                    if (client_two.getDialNumber().length() == 11)
+                    {
                         /*Sending server to call client one*/
                         client_two.sendMessageToServer("CALLCLIENTONE" + client_two.getDialNumber());
 
                         /*Set the name of the personn calling */
                         client_two.setCallingPersonName("Client One");
+
+                        /*Set the number of calling person*/
+                        client_two.setCallingPersonNumber(client_two.getDialNumber());
 
                         /*Display the calling screen*/
                         client_two.setCurrentScreen(OUTGOING_CALL);
@@ -116,6 +125,7 @@ int main(int argc, char const *argv[])
 
                         /*Start the outgoing call time*/
                         client_two.startOutgoingCallTime();
+                    }
                 }
 
                 /* Section for back press in dial pad */

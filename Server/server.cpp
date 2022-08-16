@@ -10,6 +10,10 @@ int main()
     server.updateLogMessage("Date: " + std::string(__DATE__) + "\n");
     server.updateLogMessage("Date: " + std::string(__TIME__) + "\n");
 
+    /*Setting the number of the client one and client two*/
+    std::string client_one_number = "1111111111";
+    std::string client_two_number = "2222222222";
+
     while (true)
     {
 
@@ -20,21 +24,27 @@ int main()
             /*Processing the content of files*/
             if (server.getMessage().substr(0, 13) == "CALLCLIENTTWO")
             {
-                if (server.getMessage().substr(13, 11) == " 2222222222")
+                if (server.getMessage().substr(14, 11) == client_two_number)
                 {
-                    server.sendMessageToClientTwo("CALLFROMCLIENTONE");
+                    server.sendMessageToClientTwo("CALLFROMCLIENTONE" + client_one_number);
                     server.updateLogMessage("Client One is calling Client Two.\n");
                 }
                 else
                 {
-                    // server.sendMessageToClientOne("DIALPADNUMBERMACHEDWITHCLIENTTWO");
-                    std::cout << "inside else of number checking" << std::endl;
+                    std::cout << "Number doesn't match with that of client two" << std::endl;
                 }
             }
-            else if (server.getMessage() == "CALLCLIENTONE2222222222")
+            else if (server.getMessage().substr(0, 13) == "CALLCLIENTONE")
             {
-                server.sendMessageToClientOne("CALLFROMCLIENTTWO");
-                server.updateLogMessage("Client Two is calling Client One\n");
+                if (server.getMessage().substr(14, 11) == client_one_number)
+                {
+                    server.sendMessageToClientOne("CALLFROMCLIENTTWO" + client_two_number);
+                    server.updateLogMessage("Client Two is calling Client One\n");
+                }
+                else
+                {
+                    std::cout << "Number doesn't match with that of client two" << std::endl;
+                }
             }
             else if (server.getMessage() == "CALLDECLINEDBYCLIENTTWO")
             {
