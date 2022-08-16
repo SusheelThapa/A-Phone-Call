@@ -31,6 +31,8 @@ class PhoneSound
 
     Audio busy_audio;
 
+    Audio number_unmatched;
+
 public:
     PhoneSound();
 
@@ -49,4 +51,8 @@ public:
     void playBusyTone();
 
     void stopBusyTone();
+
+    void playNumberUnmatchedTone();
+
+    void stopNumberUnmatchedTone();
 };

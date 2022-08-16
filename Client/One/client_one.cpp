@@ -58,6 +58,20 @@ int main(int argc, char const *argv[])
                 /*Play the busy tone*/
                 client_one.playBusyTone();
             }
+            else if (message_from_server == "NUMBERUNMATCHED")
+            {
+                /*Set the screen to call declined*/
+                client_one.setCurrentScreen(NUMBER_UNMATCHED);
+
+                /*Stop the outgoing call Tone*/
+                client_one.stopOutgoingTone();
+
+                /*Stop the outgoing call time*/
+                client_one.endOutgoingCallTime();
+
+                /*Play the busy tone*/
+                client_one.playNumberUnmatchedTone();
+            }
             else if (message_from_server == "CALLRECEIVEDFROMCLIENTTWO")
             {
                 /*Client two has receive our call*/
@@ -88,10 +102,6 @@ int main(int argc, char const *argv[])
 
                 client_one.startPlayingAudioMessage();
             }
-            // else if()
-            // {
-
-            // }
         }
 
         /*Clear the content of the file*/
@@ -330,7 +340,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call Rejected*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == CALL_REJECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && (client_one.getCurrentScreen() == CALL_REJECTED || client_one.getCurrentScreen() == NUMBER_UNMATCHED))
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -343,8 +353,16 @@ int main(int argc, char const *argv[])
                     /*Display the calling screen*/
                     client_one.setCurrentScreen(DIALPAD);
 
-                    /*Stop the busy tone(if there is )*/
-                    client_one.stopBusyTone();
+                    if (client_one.getCurrentScreen() == CALL_REJECTED)
+                    {
+                        /*Stop the busy tone(if there is )*/
+                        client_one.stopBusyTone();
+                    }
+                    else
+                    {
+                        /*Stop the number mismatched*/
+                        client_one.stopNumberUnmatchedTone();
+                    }
                 }
             }
         }

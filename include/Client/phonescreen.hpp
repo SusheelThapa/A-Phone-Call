@@ -10,7 +10,8 @@ enum PhoneScreen
     OUTGOING_CALL,
     CALL_CONNECTED,
     CALL_REJECTED,
-    CALL_ENDED
+    CALL_ENDED,
+    NUMBER_UNMATCHED,
 };
 
 enum CallConnectedStatus

@@ -23,6 +23,9 @@ PhoneSound::PhoneSound()
 
     /*Load busy_audio*/
     busy_audio.setSoundPath("resources/audio/busy-tone.wav");
+
+    /*Load number_unmatched audio*/
+    number_unmatched.setSoundPath("resources/audio/number-unmatched.wav");
 }
 
 void PhoneSound::playDialpadTone(int dialpad_number)
@@ -62,4 +65,14 @@ void PhoneSound::playBusyTone()
 void PhoneSound::stopBusyTone()
 {
     busy_audio.stop();
+}
+
+void PhoneSound::playNumberUnmatchedTone()
+{
+    number_unmatched.play();
+}
+
+void PhoneSound::stopNumberUnmatchedTone()
+{
+    number_unmatched.stop();
 }

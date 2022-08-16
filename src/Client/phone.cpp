@@ -229,10 +229,8 @@ void Phone::render(Window &window)
 
         call_connected_status.render(window, 0, 0, nullptr, &call_connected_status_rect);
     }
-    else if (this->getCurrentScreen() == CALL_REJECTED)
+    else if (this->getCurrentScreen() == CALL_REJECTED || this->getCurrentScreen() == NUMBER_UNMATCHED)
     {
-
-        // resetDialNumber();
 
         /*Add the person name to whom he/she is calling*/
         calling_person.loadFromText(window, this->getBigFont(), calling_person_name, {0, 0, 0, 0});
@@ -244,6 +242,17 @@ void Phone::render(Window &window)
             calling_person.getHeight()};
 
         calling_person.render(window, 0, 0, nullptr, &render_calling_person_rect);
+
+        /*Add the number of the person who is calling*/
+        calling_person_number_texture.loadFromText(window, this->getMediumFont(), calling_person_number, {0, 0, 0, 0});
+
+        SDL_Rect render_calling_person_number_rect = {
+            (window.getWidth() - calling_person_number_texture.getWidth()) / 2,
+            120,
+            calling_person_number_texture.getWidth(),
+            calling_person_number_texture.getHeight()};
+
+        calling_person_number_texture.render(window, 0, 0, nullptr, &render_calling_person_number_rect);
     }
     else if (this->getCurrentScreen() == CALL_ENDED)
     {

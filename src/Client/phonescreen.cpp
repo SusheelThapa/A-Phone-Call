@@ -68,7 +68,7 @@ void Screen::renderScreen(Window &window)
             incoming_call_texture_to_load = 0;
         }
     }
-    else if (current_screen == OUTGOING_CALL || current_screen == CALL_REJECTED || current_screen == CALL_ENDED)
+    else if (current_screen == OUTGOING_CALL || current_screen == CALL_REJECTED || current_screen == CALL_ENDED || NUMBER_UNMATCHED)
     {
 
         outgoing_call.render(window, 0, 0, nullptr, nullptr);
