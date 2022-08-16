@@ -1,16 +1,8 @@
 # More about Project
 
-## Tool we have used
-
-1. [Visual Studio Code](https://code.visualstudio.com/): As our code editor
-2. [g++](https://www.msys2.org/): As our compiler
-3. [SDL2](https://www.libsdl.org/download-2.0.php) : As our Library to create GUI interface
-4. [Git](https://git-scm.com/) : As our local version control system
-5. [Github](https://github.com/) : As our central version control system
-6. [Latex](https://www.latex-project.org/) : As our document preparation software
-
 ## Project Progess Track
 
+Since we have break our project into different phase. All the task we have done in different phase has been listed here.
 ### Phase One
 
 - [x] Design iphone dialpad, incoming screen and outgoing screen
