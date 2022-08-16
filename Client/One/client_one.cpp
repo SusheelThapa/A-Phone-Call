@@ -362,6 +362,9 @@ int main(int argc, char const *argv[])
                     {
                         /*Stop the number mismatched*/
                         client_one.stopNumberUnmatchedTone();
+
+                        /*Reset the dial number*/
+                        client_one.resetDialNumber();
                     }
                 }
             }
