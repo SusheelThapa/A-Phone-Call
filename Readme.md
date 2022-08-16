@@ -41,7 +41,7 @@ A Phone Call is all about demostrating the simulation of how phone call works be
 ## Glimpse of the project
 
 <p align="center">
-   <img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>)
+   <img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>
 </p>
 
 ## Tools we have used
@@ -128,7 +128,7 @@ This project has been created and tested in **linux platform**.
 ## How does it works?
 
 <p align="center">
-   <img src= "resources/images/markdown/Communication Between Two Client and Server.png" height = "500" width = "750">
+   <img src= "resources/markdown/images/Communication Between Two Client and Server.png" height = "500" width = "750">
 </p>
 
 **IMPORTANT**

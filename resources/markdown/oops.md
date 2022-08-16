@@ -11,10 +11,15 @@ In every [header files](../../include/Client/), we can seen that we have create 
 Moreover, we have discard the use of `global function` and rather focused over `local function` which greatly support **encapsulation**.
 
 ## Abstraction
+Abstraction automatically comes with the use of classes and functions. We have used different meaningful named function to perform specific task without the need of knowing whats happening in background in detail. 
+
+Different rendering, playing sound, resetting variables and rendering texts have been done by using simple meaningful named function which does its task in background. 
+
+In this way, we have used abstraction in our project.
 
 ## Inheritance
 
-<p align="center">
+<p align="center"> 
    <img src= "./images/Inheritance Diagram.png" height="500" width="800">
 </p>
 
