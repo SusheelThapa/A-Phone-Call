@@ -1,10 +1,13 @@
+/*Standard C++ Header File*/
 #include <iostream>
 #include <fstream>
 #include <string>
 
+/*Custom Made Files*/
 #include "Client/window.hpp"
 #include "Client/phone.hpp"
 
+/*Some char constant*/
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
 
@@ -96,10 +99,13 @@ int main(int argc, char const *argv[])
             }
             else if (message_from_server == "AUDIOMESSAGESENDFROMCLIENTTWO")
             {
+                /*Audio message is received so setting in Playing mode*/
                 client_one.setCallConnectedStatus(CALLCONNECTEDPLAYING);
 
+                /*Setting the recording status*/
                 client_one.setCallConnectedRecordingStatus(PLAYING);
 
+                /*Start playing the audio message that has been send*/
                 client_one.startPlayingAudioMessage();
             }
         }
@@ -298,7 +304,7 @@ int main(int argc, char const *argv[])
                 }
             }
 
-            /*Call get Connected with another client*/
+            /*Call Connected to Another Client*/
             else if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) && client_one.getCurrentScreen() == CALL_CONNECTED)
             {
                 int x, y;
@@ -373,6 +379,7 @@ int main(int argc, char const *argv[])
         /*Clear the window with the color provided*/
         window.clear({0, 255, 0, 255});
 
+        /*Render the content for client one*/
         client_one.render(window);
 
         /*Render all the context we have written in background in the window*/
@@ -381,8 +388,10 @@ int main(int argc, char const *argv[])
         /*This is used to render the CALL_ENDED screen so that call end tone get played*/
         if (client_one.getCurrentScreen() == CALL_ENDED)
         {
+            /*Halt the program fo 1500 milisecond*/
             SDL_Delay(1500);
 
+            /*Set the current screen to dial pad*/
             client_one.setCurrentScreen(DIALPAD);
         }
     }
