@@ -54,6 +54,20 @@ int main(int argc, char const *argv[])
                 /*Play the busy tone*/
                 client_two.playBusyTone();
             }
+            else if (message_from_server == "NUMBERUNMATCHED")
+            {
+                /*Set the screen to call declined*/
+                client_two.setCurrentScreen(NUMBER_UNMATCHED);
+
+                /*Stop the outgoing call Tone*/
+                client_two.stopOutgoingTone();
+
+                /*Stop the outgoing call time*/
+                client_two.endOutgoingCallTime();
+
+                /*Play the busy tone*/
+                client_two.playNumberUnmatchedTone();
+            }
             else if (message_from_server == "CALLRECEIVEDFROMCLIENTONE")
             {
                 /*Client one has receive our call*/
@@ -320,7 +334,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Call Rejected*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_two.getCurrentScreen() == CALL_REJECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && (client_two.getCurrentScreen() == CALL_REJECTED || client_two.getCurrentScreen() == NUMBER_UNMATCHED))
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -329,11 +343,20 @@ int main(int argc, char const *argv[])
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
+
                     /*Display the calling screen*/
                     client_two.setCurrentScreen(DIALPAD);
 
-                    /*Stop the busy tone(if there is )*/
-                    client_two.stopBusyTone();
+                    if (client_two.getCurrentScreen() == CALL_REJECTED)
+                    {
+                        /*Stop the busy tone(if there is )*/
+                        client_two.stopBusyTone();
+                    }
+                    else
+                    {
+                        /*Stop the number mismatched*/
+                        client_two.stopNumberUnmatchedTone();
+                    }
                 }
             }
         }

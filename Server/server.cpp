@@ -43,7 +43,7 @@ int main()
                 }
                 else
                 {
-                    std::cout << "Number doesn't match with that of client two" << std::endl;
+                    server.sendMessageToClientTwo("NUMBERUNMATCHED");
                 }
             }
             else if (server.getMessage() == "CALLDECLINEDBYCLIENTTWO")
