@@ -1,8 +1,14 @@
 # OOPs
 
-Through this project we have learn about OOPs which are described by the pillar of OOPs as well as how we have use them.
+Through this project,we have learn about OOPs which are described by the pillar of OOPs as well as how we have use them.
 
 ## Encapsulation
+
+In this project, we have packed the data and function a single entity with the help of `C++` keyword ***`class`***
+
+In every [header files](../../include/Client/), we can seen that we have create a class to bind its data and function associated with that data.
+
+Moreover, we have discard the use of `global function` and rather focused over `local function` which greatly support **encapsulation**.
 
 ## Abstraction
 
