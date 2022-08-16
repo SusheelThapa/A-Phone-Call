@@ -111,20 +111,24 @@ int main(int argc, char const *argv[])
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
 
-                    /*Sending server to call client two*/
-                    client_one.sendMessageToServer("CALLCLIENTTWO" + client_one.getDialNumber());
+                    /*If the dial number is of 10 number then only call will take place*/
+                    if (client_one.getDialNumber().length() == 11)
+                    {
+                        /*Sending server to call client two*/
+                        client_one.sendMessageToServer("CALLCLIENTTWO" + client_one.getDialNumber());
 
-                    /*Set the name of person who have called*/
-                    client_one.setCallingPersonName("Client Two");
+                        /*Set the name of person who have called*/
+                        client_one.setCallingPersonName("Client Two");
 
-                    /*Display the calling screen*/
-                    client_one.setCurrentScreen(OUTGOING_CALL);
+                        /*Display the calling screen*/
+                        client_one.setCurrentScreen(OUTGOING_CALL);
 
-                    /*Play outgoing call sound*/
-                    client_one.playOutgoingTone();
+                        /*Play outgoing call sound*/
+                        client_one.playOutgoingTone();
 
-                    /*Start the outgoing call time*/
-                    client_one.startOutgoingCallTime();
+                        /*Start the outgoing call time*/
+                        client_one.startOutgoingCallTime();
+                    }
                 }
 
                 /* Section for back press in dial pad */
