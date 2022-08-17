@@ -25,6 +25,7 @@ A Phone Call is all about demostrating the simulation of how phone call works be
 - [Project Compilation](#project-compilation)
 - [How does it works?](#how-does-it-works)
 - [Author](#authors)
+- [Helping Hands](#helping-hands)
 - [Others](#others)
 
 ## Objectives
@@ -178,14 +179,16 @@ _Note: All the above explanation is based from `client_one` to `client_two`. The
 - [Saurav Kumar Mahato](https://github.com/SauravKumarMahato)
 - [Susheel Thapa](https://github.com/SusheelThapa)
 
-### Helping Hands
+## Helping Hands
 
 - [Utsav Manandhar](https://github.com/Utsav-Manandhar)
 - [Nabin Khanal](https://github.com/khanalnabin)
 - [Suprim Devkota](https://github.com/SuprimDevkota)
+- [Rajendra Khanal](https://github.com/Rajendrakhanal)
+- [Raj Kumar Paneru](https://github.com/Rajkumarpaneru18)
 
 ## Others
 
-You can find the screenshot of the project [here](/resources/markdown/screenshot.md).
+You can find the screenshot of the project [here](/resources/markdown/screenshgitot.md).
 
 For more information, you can look [here](/resources/markdown/information.md).
