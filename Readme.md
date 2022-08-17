@@ -186,9 +186,10 @@ _Note: All the above explanation is based from `client_one` to `client_two`. The
 - [Suprim Devkota](https://github.com/SuprimDevkota)
 - [Rajendra Khanal](https://github.com/Rajendrakhanal)
 - [Raj Kumar Paneru](https://github.com/Rajkumarpaneru18)
+- [Pratik Tharu](https://github.com/pratiktharu)
 
 ## Others
 
-You can find the screenshot of the project [here](/resources/markdown/screenshgitot.md).
+You can find the gif of the project [here](/resources/markdown/project_gif.md).
 
 For more information, you can look [here](/resources/markdown/information.md).
