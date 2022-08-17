@@ -34,4 +34,13 @@ Since we have break our project into different phase. All the task we have done 
 
 ### Phase Three
 
-**_Under Development_**
+- [x] Voice recording system added using different linux commmands in background 
+- [x] Arecord of linux was just for sound recording purpose for 5 seconds
+- [x] Different recording button, sending button and playing buttons were made and added
+- [x] Number checking and connecting call to targeted client  done by server
+- [x] In case of wrong number called, playing specific tone 
+- [x] Displaying calling person name and number  
+- [x] Incoming call person name and number displaying simultaneously
+- [x] Decreased the volume strength of different audio wave file for better sounding 
+- [x] Different bugs related to playing audio, rendering texts was fixed
+
