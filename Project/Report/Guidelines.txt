@@ -1,0 +1,22 @@
+Report Guidelines
+
+Guidelines for Submitting Project Report and Project Presentation
+
+Your report should include:
+
+1. Acknowledgment - DONE 
+2. Abstract 
+3. Table of Contents
+4. Objectives
+5. Introduction
+6. Application
+7. Literature survey
+8. Existing System
+9. Methodology
+10. Implementation
+11. Block diagram
+12. Results
+13. Problems Faced and solutions
+14. Limitations and future enhancements
+15. Conclusion and recommendations
+15. References
