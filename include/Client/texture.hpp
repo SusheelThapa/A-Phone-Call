@@ -1,45 +1,36 @@
 /*
 
-Author : Susheel Thapa
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
 
-Filename : texture.hpp
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
 
-A custom made class which helps you with image loading over window
-surface or a part of the window, loading text over the window,etc
-
+Filename : texture.cpp
+Categories : C++ Header File
+Description : It is used to handle all the images that will be used in the project.
 */
 
 #pragma once
 
-#define TEXTURE_HEADER_FILE 1
-
-#ifndef WINDOW_HEADER_FILE
-#include "window.hpp"
-#endif
+/*Custom Header file*/
+#include <Client/window.hpp>
 
 class Texture
 {
 
 private:
-	// private variables
-
 	SDL_Texture *texture = nullptr;
 
 	int width;
 
 	int height;
 
-public:
-	// public variables
-
 private:
-	// private functions
-
 	void free();
 
 public:
-	// public functions
-
 	Texture();
 
 #if defined SDL_IMAGE_MAJOR_VERSION

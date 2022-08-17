@@ -1,8 +1,51 @@
-# A Phone Call
+# <p align = "center">A Phone Call</p>
 
-A Phone call is a project which aims to demonstrate how the working of call app that exist in every smart phone.
+<p align="center">
+<a href="https://github.com/SusheelThapa/A-Phone-Call/blob/master/LICENSE" target="blank">
+<img src="https://img.shields.io/github/license/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator license" />
+</a>
+<a href="https://github.com/SusheelThapa/A-Phone-Call/fork" target="blank">
+<img src="https://img.shields.io/github/forks/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator forks"/>
+</a>
+<a href="https://github.comSusheelThapa/A-Phone-Call/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator stars"/>
+</a>
+</p>
 
-## Tool we will be using
+<!-- Short introduction about Project -->
+
+A Phone Call is all about demostrating the simulation of how phone call works between two clients in real world and how everything is controlled and managed by server at the backend of the communication.
+
+## Table of Contents
+
+- [Objectives](#objectives)
+- [Glimpse of the Project](#glimpse-of-the-project)
+- [Tools we have used](#tools-we-have-used)
+- [Installation of Dependencies](#installation-of-dependencies)
+- [Project Compilation](#project-compilation)
+- [How does it works?](#how-does-it-works)
+- [Author](#authors)
+- [Helping Hands](#helping-hands)
+- [Others](#others)
+
+## Objectives
+
+- To learn **[Object Oriented Programming](resources/markdown/oops.md)**
+  - [Encapsulation](resources/markdown/oops.md#encapsulation)
+  - [Inheritance](resources/markdown/oops.md#inheritance)
+  - [Abstraction](resources/markdown/oops.md#abstraction)
+  - [Polymorphism](resources/markdown/oops.md#polymorphism)
+- To learn **[Simple Media Direct Layer](https://www.libsdl.org/)**
+- To learn how to collaborate with each other in a project.
+- To learn how does call get establish in real world.
+
+## Glimpse of the project
+
+<p align="center">
+   <img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>
+</p>
+
+## Tools we have used
 
 1. [Visual Studio Code](https://code.visualstudio.com/): As our code editor
 2. [g++](https://www.msys2.org/): As our compiler
@@ -10,76 +53,10 @@ A Phone call is a project which aims to demonstrate how the working of call app 
 4. [Git](https://git-scm.com/) : As our local version control system
 5. [Github](https://github.com/) : As our central version control system
 6. [Latex](https://www.latex-project.org/) : As our document preparation software
-7. [Kali Linux](https://www.kali.org/): As our working operating system
 
-## Project Progess
+## Installation of Dependencies
 
-### Phase One
-
-- [x] Design iphone dialpad, incoming screen and outgoing screen
-- [x] Create a phone call class(Two client will be created from it)
-- [x] Create a server(acts as bridge for two client to communicate)
-- [x] Create two client from phone call class
-- [x] Implement dialpad screen on both client
-- [x] Show the incoming call screen when one client call another(when call button is pressed)
-- [x] When client reject the incoming call, drop the call of the client who is calling
-- [x] When client accept the call show the time they are calling each other
-- [x] Display the name of the client who is called to who.
-- [x] After the call has been connected when one user pressed the end call button drop the call.
-- [x] Add the script file to to download necessary libraries for compilation of this project
-
-### Phase Two
-
-- [x] Opening screen animation with different color for different clients
-- [x] Made every button clickable playing specific sound for specific button
-- [x] Dial pad number appearing when we press numbers
-- [x] Limited number length to 10 digits
-- [x] Backspace button added with functionality to remove one number when pressed
-- [x] Refreshing dialpad entered number when green call button is pressed
-- [x] Ongoing call sound apperance after call button is pressed
-- [x] When pressed end button, shows red text as "Call Ended"
-- [x] When the receiver cuts the call, specific NCELL, unable to call sound appearance
-- [x] Iphone incoming call ringtone set with required amplitude
-- [x] Outgoing call sound and Incoming call sound set nearly to equal intensity
-- [x] Fixed different bugs related to backspace error when no number is pressed, 
-## Screenshots
-
-1. Boot on Iphone
-   ![Boot on Iphone](/Screenshots/switch-on.png)
-
-1. Dial Pad Screen
-
-   ![Dial Pad Screen](/Screenshots/dial_pad.png)
-
-1. Incoming Call Screen
-
-   ![Incoming Call Screen](/Screenshots/incoming-call.png)
-
-1. Outgoing Call Screen
-
-   ![Outgoing Call Screen](/Screenshots/outgoing-call.png)
-
-1. Call in progress screen
-
-   ![Call in Progress](/Screenshots/call-in-progess.png)
-
-1. dialpad with numbers entered 
-
-   ![dialpad with numbers entered](/Screenshots/dialpad-with-number-entered.png)
-
-2. both client together 
-
-   ![dialpad with numbers entered](/Screenshots/both-dialpad-together.png)
-
-2. both client and receiver together 
-
-   ![dialpad with numbers entered](/Screenshots/both-client-and%20-receiver-together.png)
-
-## Installation
-
-This project has been created and tested in linux platform.
-
-For other platform, ..............
+This project has been created and tested in **linux platform**.
 
 1. First of all give `install.sh` file executable permission
 
@@ -99,17 +76,15 @@ For other platform, ..............
 
 ## Project Compilation
 
-We are using [Makefile](Makefile) to compile our project.
-
-**_Basic Command_**
+### _Basic Command_
 
 1. Compiling Client Code
 
    ```make
-    make client_one client
+    make client_one client_two
    ```
 
-   It will create two client `client_one` and `client_two`.
+   _It will create two client `client_one` and `client_two`._
 
 2. Compiling Server Code
 
@@ -117,7 +92,7 @@ We are using [Makefile](Makefile) to compile our project.
     make server
    ```
 
-   It will create `server`.
+   _It will create `server`._
 
 3. Clean command
 
@@ -125,9 +100,7 @@ We are using [Makefile](Makefile) to compile our project.
     make clean
    ```
 
-   It will clean the working directory by removing all those file created using [Makefile](Makefile)
-
-**_Helping Command_**
+### _Helping Command_
 
 4. Compiling `client_one` and running
 
@@ -152,3 +125,70 @@ We are using [Makefile](Makefile) to compile our project.
    ```make
    make run
    ```
+
+## How does it works?
+
+<p align="center">
+   <img src= "resources/markdown/images/Communication Between Two Client and Server.png" height = "500" width = "750">
+</p>
+
+**IMPORTANT**
+
+`server`, `client_one` and `client_two` have their own file which they check if they have been changed or not.
+
+- When `client_one` calls `client_two`
+
+  `client_one` will send message to server(by writing in the `server_file`) i.e **CALLCLIENTTWO2222222222** as can been seen from above images.
+
+  Then, `server` will analyse if the number `client_one` is calling is of `client_two` or not.
+
+  If the number is correct, then it will write in `client_two` file **CALLFROMCLIENTONE1111111111**
+
+  If the number is incorrect, then it will write in `client_one` file **NUMBERUNMATCHED**
+
+- When **dialed number is correct**(call from `client_one` to `client_two`)
+
+  Here, `client_two` have two option.
+
+  - To reject the call
+
+    When `client_two` reject the calls then it will write **CALLREJECTEDBYCLIENTTWO** in `server` file.
+
+    Then `server` will write **CALLREJECTEDFROMCLIENTTWO** in `client_one` file
+
+  - To accept the call
+
+    When `client_two` accept the calls then it will write **CALLRECEIVEDBYCLIENTTWO** in `server` file.
+
+    Then `server` will write **CALLRECEIVEDFROMCLIENTTWO** in `client_one` file
+
+- When `client_two` accept call from `client_two`
+
+  Both of the **client** can send _audio message to each other_ one at a time.
+
+  Suppose `client_one` has send _audiomessage_ to `client_two`.
+
+  Then, `client_one` will write **AUDIOMESSAGESENDBYCLIENTONE** in `server` file.
+
+  After that, `server` will write **AUDIOMESSAGESENDFROMCLIENTONE** in `client_two` file.
+
+_Note: All the above explanation is based from `client_one` to `client_two`. The explanation is true from `client_two` to `client_one`. Also, we have explain only how client communicates but not what happen after the message is receive by respective client_
+
+## Authors
+
+- [Saurav Kumar Mahato](https://github.com/SauravKumarMahato)
+- [Susheel Thapa](https://github.com/SusheelThapa)
+
+## Helping Hands
+
+- [Utsav Manandhar](https://github.com/Utsav-Manandhar)
+- [Nabin Khanal](https://github.com/khanalnabin)
+- [Suprim Devkota](https://github.com/SuprimDevkota)
+- [Rajendra Khanal](https://github.com/Rajendrakhanal)
+- [Raj Kumar Paneru](https://github.com/Rajkumarpaneru18)
+
+## Others
+
+You can find the screenshot of the project [here](/resources/markdown/screenshgitot.md).
+
+For more information, you can look [here](/resources/markdown/information.md).

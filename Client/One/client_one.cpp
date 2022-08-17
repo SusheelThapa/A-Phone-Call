@@ -1,121 +1,117 @@
+/*Standard C++ Header File*/
 #include <iostream>
 #include <fstream>
 #include <string>
 
-#include "window.hpp"
-#include "phone.hpp"
+/*Custom Made Files*/
+#include "Client/window.hpp"
+#include "Client/phone.hpp"
 
+/*Some char constant*/
 #define SERVER_FILE "Server/server.txt"
 #define CLIENT_ONE_FILE "Client/One/client_one.txt"
 
 int main(int argc, char const *argv[])
 {
 
-    /*Variable required for communication with server*/
-    std::fstream server_file;
-    std::fstream client_one_file;
-    std::string message;
-    int previous_client_one_file_size = 0;
-    int current_client_one_file_size = 0;
-
     /*Variable used by Client One GUI*/
     Window window("Client One");
     Phone client_one(window, "Client One");
+    client_one.setClientFilePath(CLIENT_ONE_FILE);
     SDL_Event e;
 
     while (!window.isWindowClosed())
     {
 
-        /*This is for communication with other client via server. I will work over it later on*/
+        /*Runs if the size of the file has been changed or not*/
+        if (client_one.isClientFileSizeChanged())
         {
-            /*Opening server and client file*/
-            client_one_file.open(CLIENT_ONE_FILE, std::ios::in);
+            /*Receive the message that has been send by the server*/
+            std::string message_from_server = client_one.receiveMessageFromServer();
 
-            /*Getting the total charcter of the file*/
-            client_one_file.seekg(0, std::ios::end);
-
-            /*Updating the value of file size*/
-            previous_client_one_file_size = current_client_one_file_size;
-            current_client_one_file_size = client_one_file.tellg();
-
-            /*Client File*/
-            if (client_one_file)
+            /*Processing the message that has been send by the server*/
+            if (message_from_server.substr(0, 17) == "CALLFROMCLIENTTWO")
             {
-                if (previous_client_one_file_size != current_client_one_file_size)
-                {
-                    /*Resetting the file pointer*/
-                    client_one_file.seekg(0, std::ios::beg);
+                /*Show incoming call screen*/
+                client_one.setCurrentScreen(INCOMING_CALL);
 
-                    /*Reading the content of the file*/
-                    getline(client_one_file, message);
+                /*Set the name of person who have called*/
+                client_one.setCallingPersonName("Client Two");
 
-                    /*Handling based on the message*/
-                    if (message == "CALLFROMCLIENTTWO")
-                    {
-                        /*Show incoming call screen*/
-                        client_one.setScreen(INCOMING_CALL);
+                /*Set the number of calling person*/
+                client_one.setCallingPersonNumber(message_from_server.substr(17, 10));
 
-                        /*Set the name of person who have called*/
-                        client_one.setCallingPersonName("Client Two");
+                /*Play the incoming call sound*/
+                client_one.playRingtone();
 
-                        /*Play the incoming call sound*/
-                        client_one.playRingtone();
+                /*Start incoming call time*/
+                client_one.startIncomingCallTime();
+            }
+            else if (message_from_server == "CALLDECLINEDFROMCLIENTTWO")
+            {
+                /*Set the screen to call declined*/
+                client_one.setCurrentScreen(CALL_REJECTED);
 
-                        /*Start incoming call time*/
-                        client_one.startIncomingCallTime();
-                    }
-                    else if (message == "CALLDECLINEDFROMCLIENTTWO")
-                    {
-                        /*Set the screen to call declined*/
-                        client_one.setScreen(CALL_REJECTED);
+                /*Stop the outgoing call Tone*/
+                client_one.stopOutgoingTone();
 
-                        /*Stop the outgoing call Tone*/
-                        client_one.stopOutgoingTone();
+                /*Stop the outgoing call time*/
+                client_one.endOutgoingCallTime();
 
-                        /*Stop the outgoing call time*/
-                        client_one.endOutgoingCallTime();
+                /*Play the busy tone*/
+                client_one.playBusyTone();
+            }
+            else if (message_from_server == "NUMBERUNMATCHED")
+            {
+                /*Set the screen to call declined*/
+                client_one.setCurrentScreen(NUMBER_UNMATCHED);
 
-                        /*Play the busy tone*/
-                        client_one.playBusyTone();
-                    }
-                    else if (message == "CALLRECEIVEDFROMCLIENTTWO")
-                    {
-                        /*Client two has receive our call*/
-                        client_one.setScreen(CALL_CONNECTED);
+                /*Stop the outgoing call Tone*/
+                client_one.stopOutgoingTone();
 
-                        /*Set the name of person who is calling*/
-                        client_one.setCallingPersonName("Client Two");
+                /*Stop the outgoing call time*/
+                client_one.endOutgoingCallTime();
 
-                        /*Stop the outgoing call tone*/
-                        client_one.stopOutgoingTone();
+                /*Play the busy tone*/
+                client_one.playNumberUnmatchedTone();
+            }
+            else if (message_from_server == "CALLRECEIVEDFROMCLIENTTWO")
+            {
+                /*Client two has receive our call*/
+                client_one.setCurrentScreen(CALL_CONNECTED);
 
-                        /*Stop outgoing call time*/
-                        client_one.endOutgoingCallTime();
+                /*Set the name of person who is calling*/
+                client_one.setCallingPersonName("Client Two");
 
-                        /*Start call time connected*/
-                        client_one.startCallConnectedTime();
-                    }
-                    else if (message == "CALLENDEDFROMCLIENTTWO")
-                    {
-                        /*Call had been ended by client two*/
-                        client_one.setScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
+                /*Stop the outgoing call tone*/
+                client_one.stopOutgoingTone();
 
-                        /*Stop the ringtone*/
-                        client_one.stopRingtone();
+                /*Stop outgoing call time*/
+                client_one.endOutgoingCallTime();
+            }
+            else if (message_from_server == "CALLENDEDFROMCLIENTTWO")
+            {
+                /*Call had been ended by client two*/
+                client_one.setCurrentScreen(CALL_ENDED); /*Later on we will display sth like money deducted*/
 
-                        /*Reset the call connected time*/
-                        client_one.resetCallConnectedTime();
-                    }
-                }
+                /*Stop the ringtone*/
+                client_one.stopRingtone();
+            }
+            else if (message_from_server == "AUDIOMESSAGESENDFROMCLIENTTWO")
+            {
+                /*Audio message is received so setting in Playing mode*/
+                client_one.setCallConnectedStatus(CALLCONNECTEDPLAYING);
 
-                /*Erase Everything*/
-                client_one_file.close();
-                client_one_file.open(CLIENT_ONE_FILE, std::ios::out);
+                /*Setting the recording status*/
+                client_one.setCallConnectedRecordingStatus(PLAYING);
 
-                client_one_file << "";
-                client_one_file.close();
+                /*Start playing the audio message that has been send*/
+                client_one.startPlayingAudioMessage();
             }
         }
+
+        /*Clear the content of the file*/
+        client_one.clearFileContent();
 
         /*Handle the events*/
         while (SDL_PollEvent(&e) != 0)
@@ -124,7 +120,7 @@ int main(int argc, char const *argv[])
             window.handleEvent(e);
 
             /*Dialpad Section*/
-            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == DIALPAD)
+            if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == DIALPAD)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -133,32 +129,28 @@ int main(int argc, char const *argv[])
                 /*Call button is pressed*/
                 if (x >= 179 && x <= 238 && y >= 594 && y <= 648)
                 {
-                    /*Print in server file that i want to call client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
+
+                    /*If the dial number is of 10 number then only call will take place*/
+                    if (client_one.getDialNumber().length() == 11)
                     {
-                        server_file << "CALLCLIENTTWO" << std::endl;
+                        /*Sending server to call client two*/
+                        client_one.sendMessageToServer("CALLCLIENTTWO" + client_one.getDialNumber());
+
+                        /*Set the name of person who have called*/
+                        client_one.setCallingPersonName("Client Two");
+
+                        /*Set the number of person to whom we are calling*/
+                        client_one.setCallingPersonNumber(client_one.getDialNumber());
+
+                        /*Display the calling screen*/
+                        client_one.setCurrentScreen(OUTGOING_CALL);
+
+                        /*Play outgoing call sound*/
+                        client_one.playOutgoingTone();
+
+                        /*Start the outgoing call time*/
+                        client_one.startOutgoingCallTime();
                     }
-                    else
-                    {
-                        std::cout << "Server file doesn't exist";
-                    }
-                    server_file.close();
-
-                    /*Set the name of the person calling*/
-                    client_one.setCallingPersonName("Client Two");
-
-                    /*Display the calling screen*/
-                    client_one.setScreen(OUTGOING_CALL);
-
-                    /*Play outgoing call sound*/
-                    client_one.playOutgoingTone();
-
-                    /*Start the outgoing call time*/
-                    client_one.startOutgoingCallTime();
-
-                    /*Resetting dialpad number status after we press calling green button*/
-                    client_one.resetDialNumber();
                 }
 
                 /* Section for back press in dial pad */
@@ -239,7 +231,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Outgoing Call*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == OUTGOING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == OUTGOING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -248,20 +240,11 @@ int main(int argc, char const *argv[])
                 /*End button is pressed*/
                 if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                 {
-                    /*Print in server file that i want to end call with client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
-                    {
-                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "Server file doesn't exist";
-                    }
-                    server_file.close();
+                    /*Sending server that the call has been ended*/
+                    client_one.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(CALL_ENDED);
+                    client_one.setCurrentScreen(CALL_ENDED);
 
                     /*Stop the outgoing call tone*/
                     client_one.stopOutgoingTone();
@@ -278,7 +261,7 @@ int main(int argc, char const *argv[])
             }
 
             /*Incoming Call*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == INCOMING_CALL)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getCurrentScreen() == INCOMING_CALL)
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -287,23 +270,13 @@ int main(int argc, char const *argv[])
                 /*End button is pressed*/
                 if (x >= 74 && x <= 134 && y >= 543 && y <= 593)
                 {
-                    /*Print in server file that i want to end call with client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
-                    {
-
-                        server_file << "CALLDECLINEDBYCLIENTONE" << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "Server file doesn't exist";
-                    }
-                    server_file.close();
+                    /*Sending server that call has been declined*/
+                    client_one.sendMessageToServer("CALLDECLINEDBYCLIENTONE");
 
                     client_one.setCallingPersonName(" ");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setCurrentScreen(DIALPAD);
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
@@ -315,24 +288,13 @@ int main(int argc, char const *argv[])
                 /*Receive button is pressed*/
                 if (x >= 280 && x <= 344 && y >= 543 && y <= 593)
                 {
-                    /*Print in server file that i want to end call with client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
-                    {
-
-                        server_file << "CALLRECEIVEDBYCLIENTONE" << std::endl;
-
-                        server_file.close();
-                    }
-                    else
-                    {
-                        std::cout << "Server file doesn't exist";
-                    }
+                    /*Sending server that  call has been recieved*/
+                    client_one.sendMessageToServer("CALLRECEIVEDBYCLIENTONE");
 
                     client_one.setCallingPersonName("Client Two");
 
                     /*Display the calling screen*/
-                    client_one.setScreen(CALL_CONNECTED);
+                    client_one.setCurrentScreen(CALL_CONNECTED);
 
                     /*Stop the ringtone*/
                     client_one.stopRingtone();
@@ -342,38 +304,49 @@ int main(int argc, char const *argv[])
                 }
             }
 
-            /*Call get Connected with another client*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_CONNECTED)
+            /*Call Connected to Another Client*/
+            else if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) && client_one.getCurrentScreen() == CALL_CONNECTED)
             {
-                /*Getting the position of the place where we have click on the window*/
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
-                /*End button is pressed*/
-                if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
+                if (e.type == SDL_MOUSEBUTTONDOWN)
                 {
-                    /*Print in server file that i want to end call with client two*/
-                    server_file.open(SERVER_FILE, std::ios::out);
-                    if (server_file)
+                    /*End button is pressed*/
+                    if (x >= 179 && x <= 235 && y >= 544 && y <= 597)
                     {
+                        /*Sending message to server that call has been ended*/
+                        client_one.sendMessageToServer("CALLENDEDBYCLIENTONE");
 
-                        server_file << "CALLENDEDBYCLIENTONE" << std::endl;
+                        /*Display the calling screen*/
+                        client_one.setCurrentScreen(CALL_ENDED);
+
+                        /*Playing End Call Tone*/
+                        client_one.playEndCallTone();
                     }
-                    else
+                }
+                if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN)
+                {
+                    if ((e.key.keysym.sym == SDLK_r || (x >= 62 && x <= 120 && y >= 240 && y <= 297)) && client_one.getCallConnectedRecordingStatus() == NONE)
                     {
-                        std::cout << "Server file doesn't exist";
+                        client_one.setCallConnectedStatus(CALLCONNECTEDRECORDING);
+
+                        client_one.startRecordingAudioMessage();
+                        client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::RECORDING);
                     }
-                    server_file.close();
+                    else if ((e.key.keysym.sym == SDLK_s || (x >= 291 && x <= 355 && y >= 247 && y <= 297)) && client_one.getCallConnectedRecordingStatus() == NONE)
+                    {
+                        client_one.setCallConnectedStatus(CALLCONNECTEDSENDING);
 
-                    /*Display the calling screen*/
-                    client_one.setScreen(CALL_ENDED);
+                        client_one.sendMessageToServer("AUDIOMESSAGESENDBYCLIENTONE");
 
-                    client_one.playEndCallTone();
+                        client_one.setCallConnectedRecordingStatus(AudioRecordingStatus::SENDING);
+                    }
                 }
             }
 
             /*Call Rejected*/
-            else if (e.type == SDL_MOUSEBUTTONDOWN && client_one.getScreen() == CALL_REJECTED)
+            else if (e.type == SDL_MOUSEBUTTONDOWN && (client_one.getCurrentScreen() == CALL_REJECTED || client_one.getCurrentScreen() == NUMBER_UNMATCHED))
             {
                 /*Getting the position of the place where we have click on the window*/
                 int x, y;
@@ -384,28 +357,42 @@ int main(int argc, char const *argv[])
                 {
 
                     /*Display the calling screen*/
-                    client_one.setScreen(DIALPAD);
+                    client_one.setCurrentScreen(DIALPAD);
 
-                    /*Stop the busy tone(if there is )*/
-                    client_one.stopBusyTone();
+                    if (client_one.getCurrentScreen() == CALL_REJECTED)
+                    {
+                        /*Stop the busy tone(if there is )*/
+                        client_one.stopBusyTone();
+                    }
+                    else
+                    {
+                        /*Stop the number mismatched*/
+                        client_one.stopNumberUnmatchedTone();
+
+                        /*Reset the dial number*/
+                        client_one.resetDialNumber();
+                    }
                 }
             }
         }
 
         /*Clear the window with the color provided*/
-        window.clear({0, 255,0,255});
+        window.clear({0, 255, 0, 255});
 
+        /*Render the content for client one*/
         client_one.render(window);
 
         /*Render all the context we have written in background in the window*/
         window.present();
 
         /*This is used to render the CALL_ENDED screen so that call end tone get played*/
-        if (client_one.getScreen() == CALL_ENDED)
+        if (client_one.getCurrentScreen() == CALL_ENDED)
         {
+            /*Halt the program fo 1500 milisecond*/
             SDL_Delay(1500);
 
-            client_one.setScreen(DIALPAD);
+            /*Set the current screen to dial pad*/
+            client_one.setCurrentScreen(DIALPAD);
         }
     }
 
