@@ -7,6 +7,7 @@ Your report should include:
 1. Acknowledgment - DONE 
 2. Abstract 
 3. Table of Contents
+
 4. Objectives
 5. Introduction
 6. Application
@@ -19,4 +20,4 @@ Your report should include:
 13. Problems Faced and solutions
 14. Limitations and future enhancements
 15. Conclusion and recommendations
-15. References
+16. References
