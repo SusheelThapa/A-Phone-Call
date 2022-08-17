@@ -2,13 +2,13 @@
 
 <p align="center">
 <a href="https://github.com/SusheelThapa/A-Phone-Call/blob/master/LICENSE" target="blank">
-<img src="https://img.shields.io/github/license/SusheelThapa/license?style=flat-square" alt="github-profile-readme-generator license" />
+<img src="https://img.shields.io/github/license/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator license" />
 </a>
 <a href="https://github.com/SusheelThapa/A-Phone-Call/fork" target="blank">
-<img src="https://img.shields.io/github/forks/SusheelThapa/A-Phone-Call?style=flat-square" alt="github-profile-readme-generator forks"/>
+<img src="https://img.shields.io/github/forks/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator forks"/>
 </a>
 <a href="https://github.comSusheelThapa/A-Phone-Call/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/SusheelThapa/A-Phone-Call?style=flat-square" alt="github-profile-readme-generator stars"/>
+<img src="https://img.shields.io/github/stars/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator stars"/>
 </a>
 </p>
 
