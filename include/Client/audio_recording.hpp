@@ -1,3 +1,17 @@
+/*
+
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
+
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
+
+Filename : audio_recording.cpp
+Categories : C++ Header File
+Description : It is used to recording audio and play the audio.
+*/
+
 #pragma once
 
 #include <SDL2/SDL.h>

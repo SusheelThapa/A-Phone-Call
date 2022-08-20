@@ -1,3 +1,17 @@
+/*
+
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
+
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
+
+Filename : window.cpp
+Categories : C++ Header File
+Description : It represent the screen that are present in the phone.
+*/
+
 #pragma once
 
 #include <Client/texture.hpp>
