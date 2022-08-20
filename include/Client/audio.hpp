@@ -1,3 +1,17 @@
+/*
+
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
+
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
+
+Filename : audio.cpp
+Categories : C++ Header File
+Description : It is used to store the audio file that we will used in phone call app.
+*/
+
 #pragma once
 
 #include <SDL2/SDL_mixer.h>

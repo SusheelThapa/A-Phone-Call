@@ -1,3 +1,17 @@
+/*
+
+C++ Object Oriented Programming Final Project
+Dept. of Electronics and Computer Engineering
+
+Author : Susheel Thapa Saurav Kumar Mahato
+Class : BCT CD 090 BCT CD 079
+Semester : Third Semester
+
+Filename : phone.cpp
+Categories : C++ Header File
+Description : It represent the core part of the phone app we are creating.
+*/
+
 #pragma once
 
 #include <SDL2/SDL_ttf.h>
