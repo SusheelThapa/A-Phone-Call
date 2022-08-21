@@ -45,6 +45,8 @@ A Phone Call is all about demostrating the simulation of how phone call works be
    <img src="resources/markdown/Phone-call-simulation.gif" width="530" height="500"/>
 </p>
 
+For demo video click [here](https://user-images.githubusercontent.com/83917129/185776567-599ecb3d-9083-44cd-a1a1-53f917d9596f.mp4).
+
 ## Tools we have used
 
 1. [Visual Studio Code](https://code.visualstudio.com/): As our code editor
