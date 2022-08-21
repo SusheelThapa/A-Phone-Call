@@ -1,7 +1,7 @@
 # Proposal
 
-We have use Latex as our Document Preparation Software as you find Latex code in this folder with name [`OOP_Proposal.tex`](OOP_Proposal.tex).
-To run the latex code you can use online Latex compiler ar you can install yourself or you can simply look into [OOP_Proposal.pdf](OOP_Proposal.pdf) on the same folder.
+We have use Latex as our Document Preparation Software as you find Latex code inside both folder one with name [`OOP_Proposal.tex`](./Proposal/OOP_Proposal.tex) and another with name [`OOP_Report.tex`](./Report/OOP_Report.tex).
+To run the latex code you can use online Latex compiler or you can install yourself.
 
 ## Installation of Latex(VSCode, Linux)
 
